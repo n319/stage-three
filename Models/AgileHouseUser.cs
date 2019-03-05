@@ -3,7 +3,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace UserApi.Models
 {
-    public class AgileHouseUser : IUser
+    public class AgileHouseUser
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]

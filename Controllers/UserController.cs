@@ -17,13 +17,13 @@ namespace UserApi.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<User>> Get()
+        public ActionResult<List<AgileHouseUser>> Get()
         {
             return _userService.Get();
         }
 
         [HttpGet("{id:length(24)}", Name = "GetUser")]
-        public ActionResult<User> Get(string id)
+        public ActionResult<AgileHouseUser> Get(string id)
         {
             var user = _userService.Get(id);
 
@@ -36,7 +36,7 @@ namespace UserApi.Controllers
         }
 
         [HttpPost]
-        public ActionResult<User> Create(User user)
+        public ActionResult<AgileHouseUser> Create(AgileHouseUser user)
         {
             _userService.Create(user);
 
@@ -44,7 +44,7 @@ namespace UserApi.Controllers
         }
 
         [HttpPut("{id:length(24)}")]
-        public IActionResult Update(string id, User userIn)
+        public IActionResult Update(string id, AgileHouseUser userIn)
         {
             var user = _userService.Get(id);
 
