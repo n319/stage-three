@@ -1,5 +1,3 @@
-
-
 # Created by https://www.gitignore.io/api/visualstudiocode
 # Edit at https://www.gitignore.io/?templates=visualstudiocode
 
@@ -13,11 +11,6 @@
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
 .history
-
-# End of https://www.gitignore.io/api/visualstudiocode
-
-# Created by https://www.gitignore.io/api/aspnetcore
-# Edit at https://www.gitignore.io/?templates=aspnetcore
 
 ### ASPNETCore ###
 ## Ignore Visual Studio temporary files, build results, and
