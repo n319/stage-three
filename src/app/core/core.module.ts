@@ -6,6 +6,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { RouteReusableStrategy } from './route-reusable-strategy';
 import { AuthenticationService } from './authentication/authentication.service';
 import { AuthenticationGuard } from './authentication/authentication.guard';
+import { AuthJWTInterceptor } from './authentication/auth-jwt.interceptor';
 import { I18nService } from './i18n.service';
 import { HttpService } from './http/http.service';
 import { HttpCacheService } from './http/http-cache.service';
@@ -23,6 +24,7 @@ import { CacheInterceptor } from './http/cache.interceptor';
     ApiPrefixInterceptor,
     ErrorHandlerInterceptor,
     CacheInterceptor,
+    AuthJWTInterceptor,
     {
       provide: HttpClient,
       useClass: HttpService

@@ -33,8 +33,10 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.isLoading = true;
+    var credentials = this.loginForm.value;
+
     this.authenticationService
-      .login(this.loginForm.value)
+      .login(credentials.username, credentials.password)
       .pipe(
         finalize(() => {
           this.loginForm.markAsPristine();
@@ -43,7 +45,7 @@ export class LoginComponent implements OnInit {
       )
       .subscribe(
         credentials => {
-          log.debug(`${credentials.username} successfully logged in`);
+          log.debug(`${credentials.userName} successfully logged in`);
           this.route.queryParams.subscribe(params =>
             this.router.navigate([params.redirect || '/'], { replaceUrl: true })
           );

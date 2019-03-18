@@ -1,5 +1,11 @@
+import { AboutComponent } from './../../about/about.component';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '@env/environment';
+
+var Hashes = require('jshashes');
 
 export interface Credentials {
   // Customize received credentials here
@@ -23,7 +29,7 @@ const credentialsKey = 'credentials';
 export class AuthenticationService {
   private _credentials: Credentials | null;
 
-  constructor() {
+  constructor(private http: HttpClient) {
     const savedCredentials = sessionStorage.getItem(credentialsKey) || localStorage.getItem(credentialsKey);
     if (savedCredentials) {
       this._credentials = JSON.parse(savedCredentials);
@@ -32,17 +38,28 @@ export class AuthenticationService {
 
   /**
    * Authenticates the user.
-   * @param context The login parameters.
+   * @param loginCredentials The login parameters.
    * @return The user credentials.
    */
-  login(context: LoginContext): Observable<Credentials> {
-    // Replace by proper authentication call
-    const data = {
-      username: context.username,
-      token: '123456'
-    };
-    this.setCredentials(data, context.remember);
-    return of(data);
+  login(username: string, password:string): Observable<AgileHouseUserModel> {
+    var url = environment.apiUrl + environment.userApi.login;
+    debugger;
+    var SHA256 =  new Hashes.SHA256;
+
+    var passwordHash = password;
+    //TODO salt hash me
+      
+    return this.http.post<AgileHouseUserModel>(url, { username, passwordHash })
+            .pipe(
+              map((user : AgileHouseUserModel) => {
+                // login successful if there's a jwt token in the response
+                if (user && user.token) {
+                    // store user details and jwt token in local storage to keep user logged in between page refreshes
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+                }
+
+                return user;
+            }));
   }
 
   /**

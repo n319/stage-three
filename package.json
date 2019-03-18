@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "ng": "ng",
-    "build": "npm run env -s && ng build --prod",
+    "build": "npm run env -s && ng build --dev",
     "start": "npm run env -s && ng serve --aot --proxy-config proxy.conf.js",
     "serve:sw": "npm run build -s && npx http-server ./dist -p 4200",
     "lint": "ng lint && stylelint \"src/**/*.scss\" --syntax scss && htmlhint \"src\" --config .htmlhintrc",
@@ -40,6 +40,7 @@
     "angular": "^1.7.8",
     "core-js": "^2.5.6",
     "d3": "^5.9.1",
+    "jshashes": "^1.0.7",
     "lodash": "^4.17.10",
     "rxjs": "^6.3.1",
     "zone.js": "^0.8.26"
