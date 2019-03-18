@@ -12,12 +12,11 @@ export const environment = {
   defaultLanguage: 'en-US',
   supportedLanguages: ['en-US', 'fr-FR'],
   apiUrl: 'https://localhost:5001',
-  userApi:{
+  userApi: {
     get: '/api/user',
-    getById : '/api/user/',
+    getById: '/api/user/',
     login: '/api/user/authenticate'
   }
-
 };
 
 /*

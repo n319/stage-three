@@ -20,8 +20,8 @@ export class QuoteService {
   getRandomQuote(context: RandomQuoteContext): Observable<string> {
     var url = environment.apiUrl + environment.userApi.get;
     return this.httpClient.get(url).pipe(
-        map((body: any) => body.value),
-        catchError(() => of('Error, could not load joke :-('))
+      map((body: any) => body.value),
+      catchError(() => of('Error, could not load joke :-('))
     );
   }
 }

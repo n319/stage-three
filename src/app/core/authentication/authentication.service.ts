@@ -5,7 +5,8 @@ import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '@env/environment';
 
-var Hashes = require('jshashes');
+declare var Hashes: any;
+
 
 export interface Credentials {
   // Customize received credentials here
@@ -27,9 +28,14 @@ const credentialsKey = 'credentials';
  */
 @Injectable()
 export class AuthenticationService {
+
+  private _hasher: any;
+
   private _credentials: Credentials | null;
 
   constructor(private http: HttpClient) {
+    
+
     const savedCredentials = sessionStorage.getItem(credentialsKey) || localStorage.getItem(credentialsKey);
     if (savedCredentials) {
       this._credentials = JSON.parse(savedCredentials);
@@ -41,25 +47,25 @@ export class AuthenticationService {
    * @param loginCredentials The login parameters.
    * @return The user credentials.
    */
-  login(username: string, password:string): Observable<AgileHouseUserModel> {
+  login(username: string, password: string): Observable<AgileHouseUserModel> {
     var url = environment.apiUrl + environment.userApi.login;
     debugger;
-    var SHA256 =  new Hashes.SHA256;
+    var MD5 = new Hashes.MD5().hex(password);
 
     var passwordHash = password;
     //TODO salt hash me
-      
-    return this.http.post<AgileHouseUserModel>(url, { username, passwordHash })
-            .pipe(
-              map((user : AgileHouseUserModel) => {
-                // login successful if there's a jwt token in the response
-                if (user && user.token) {
-                    // store user details and jwt token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('currentUser', JSON.stringify(user));
-                }
 
-                return user;
-            }));
+    return this.http.post<AgileHouseUserModel>(url, { username, passwordHash }).pipe(
+      map((user: AgileHouseUserModel) => {
+        // login successful if there's a jwt token in the response
+        if (user && user.token) {
+          // store user details and jwt token in local storage to keep user logged in between page refreshes
+          localStorage.setItem('currentUser', JSON.stringify(user));
+        }
+
+        return user;
+      })
+    );
   }
 
   /**
