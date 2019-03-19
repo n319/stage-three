@@ -9,7 +9,7 @@ using MongoDB.Bson.Serialization.Attributes;
 namespace AH.Api.Models {
     public class AgileHouseUser : MongoIdentityUser<Guid> {
 
-        public AgileHouseUser () : base() {
+        public AgileHouseUser () : base () {
 
         }
 
@@ -22,7 +22,17 @@ namespace AH.Api.Models {
         [BsonElement ("LastName")]
         public string LastName { get; set; }
 
+        [BsonElement ("Username")]
+        public string Username { get; set; }
+
+        [BsonElement ("Password")]
+        public string Password { get; set; }
+
+        [BsonElement ("Token")]
+        public string Token { get; set; }
+
         [BsonElement ("Pieces")]
         public string[] Pieces { get; set; }
+
     }
 }

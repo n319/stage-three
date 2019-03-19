@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using AH.Api.Models;
 using AH.Api.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -13,6 +15,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using MongoDbGenericRepository;
 
 namespace server {
@@ -26,15 +29,36 @@ namespace server {
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices (IServiceCollection services) {
 
+            services.AddCors ();
             var mongoDbContext = new MongoDbContext ("mongodb://localhost:27017", "AgileHouse");
             services.AddIdentity<AgileHouseUser, ApplicationRole> ()
                 .AddMongoDbStores<IMongoDbContext> (mongoDbContext)
-                .AddDefaultTokenProviders();
+                .AddDefaultTokenProviders ();
 
-            //TODO add interfaces 
+            //TODO: add interfaces 
             services.AddScoped<ProjectPieceService> ();
             services.AddScoped<ProjectService> ();
             services.AddScoped<UserService> ();
+
+            var appSettingsSection = Configuration.GetSection ("AppSettings");
+            services.Configure<AppSettings> (appSettingsSection);
+
+            var appSettings = appSettingsSection.Get<AppSettings> ();
+            var key = Encoding.ASCII.GetBytes (appSettings.Secret);
+            services.AddAuthentication (x => {
+                    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                .AddJwtBearer (x => {
+                    x.RequireHttpsMetadata = false;
+                    x.SaveToken = true;
+                    x.TokenValidationParameters = new TokenValidationParameters {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey (key),
+                        ValidateIssuer = false,
+                        ValidateAudience = false
+                    };
+                });
 
             services.AddMvc ().SetCompatibilityVersion (CompatibilityVersion.Version_2_2);
         }
@@ -47,6 +71,15 @@ namespace server {
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts ();
             }
+
+            //TODO:: update CORS policy
+            // global cors policy
+            app.UseCors(x => x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
+
+            app.UseAuthentication();
 
             app.UseHttpsRedirection ();
             app.UseMvc ();

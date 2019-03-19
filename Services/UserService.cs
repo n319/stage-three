@@ -1,55 +1,81 @@
 #region snippet_UserServiceClass
+using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 using AH.Api.Models;
 using Microsoft.Extensions.Configuration;
-using MongoDB.Driver;
+using Microsoft.IdentityModel.Tokens;
 using MongoDbGenericRepository;
+using MongoDB.Driver;
 
-namespace AH.Api.Services
-{
-    public class UserService
-    {
+namespace AH.Api.Services {
+    public class UserService {
         private readonly IMongoCollection<AgileHouseUser> _users;
+        private readonly IConfiguration _config;
 
         #region snippet_UserServiceConstructor
-        public UserService(IConfiguration config, IMongoDbContext database)
-        {
+        public UserService (IConfiguration config, IMongoDbContext database) {
             // var client = new MongoClient(config.GetConnectionString("AgileHouseDB"));
             // var database = client.GetDatabase("AgileHouse");
-            _users = database.GetCollection<AgileHouseUser>("HouseUser");
+
+            _config = config;
+
+            _users = database.GetCollection<AgileHouseUser> ("HouseUser");
         }
         #endregion
 
-        public List<AgileHouseUser> Get()
-        {
-            return _users.Find(user => true).ToList();
-        }
+        public AgileHouseUser Authenticate (string username, string passwordHash) {
+            var user = _users.FindSync (x => x.UserName == username && x.PasswordHash == passwordHash).FirstOrDefault ();
 
-        public AgileHouseUser Get(string id)
-        {
-            return _users.Find<AgileHouseUser>(user => user.Id.ToString().CompareTo(id) == 0).FirstOrDefault();
-        }
+            // return null if user not found
+            if (user == null)
+                return null;
 
-        public AgileHouseUser Create(AgileHouseUser user)
-        {
-            _users.InsertOne(user);
+            // authentication successful so generate jwt token
+            var tokenHandler = new JwtSecurityTokenHandler ();
+            var key = Encoding.ASCII.GetBytes (_config.GetSection ("AppSettings").GetValue<string> ("Secret"));
+            var tokenDescriptor = new SecurityTokenDescriptor {
+                Subject = new ClaimsIdentity (new Claim[] {
+                new Claim (ClaimTypes.Name, user.Id.ToString ())
+                }),
+                Expires = DateTime.UtcNow.AddDays (7),
+                SigningCredentials = new SigningCredentials (new SymmetricSecurityKey (key), SecurityAlgorithms.HmacSha256Signature)
+            };
+            var token = tokenHandler.CreateToken (tokenDescriptor);
+            user.Token = tokenHandler.WriteToken (token);
+
+            // remove password before returning
+            user.Password = null;
+
             return user;
         }
 
-        public void Update(string id, AgileHouseUser userIn)
-        {
-            _users.ReplaceOne(user => user.Id.ToString().CompareTo(id) == 0, userIn);
+        public List<AgileHouseUser> Get () {
+            return _users.Find (user => true).ToList ();
         }
 
-        public void Remove(AgileHouseUser userIn)
-        {
-            _users.DeleteOne(user => user.Id == userIn.Id);
+        public AgileHouseUser Get (string id) {
+            return _users.Find<AgileHouseUser> (user => user.Id.ToString ().CompareTo (id) == 0).FirstOrDefault ();
         }
 
-        public void Remove(string id)
-        {
-            _users.DeleteOne(user => user.Id.ToString().CompareTo(id) == 0);
+        public AgileHouseUser Create (AgileHouseUser user) {
+            _users.InsertOne (user);
+            return user;
+        }
+
+        public void Update (string id, AgileHouseUser userIn) {
+            _users.ReplaceOne (user => user.Id.ToString ().CompareTo (id) == 0, userIn);
+        }
+
+        public void Remove (AgileHouseUser userIn) {
+            _users.DeleteOne (user => user.Id == userIn.Id);
+        }
+
+        public void Remove (string id) {
+            _users.DeleteOne (user => user.Id.ToString ().CompareTo (id) == 0);
         }
     }
 }
