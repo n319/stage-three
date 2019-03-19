@@ -31,7 +31,7 @@ export class AuthenticationService {
 
   private _hasher: any;
 
-  private _credentials: Credentials | null;
+  private _credentials: AgileHouseUserModel | null;
 
   constructor(private http: HttpClient) {
     
@@ -49,7 +49,7 @@ export class AuthenticationService {
    */
   login(username: string, password: string): Observable<AgileHouseUserModel> {
     var url = environment.apiUrl + environment.userApi.login;
-    debugger;
+    
     var MD5 = new Hashes.MD5().hex(password);
 
     var passwordHash = password;
@@ -60,7 +60,8 @@ export class AuthenticationService {
         // login successful if there's a jwt token in the response
         if (user && user.token) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('currentUser', JSON.stringify(user));
+          this.setCredentials(user);
+          //localStorage.setItem('currentUser', JSON.stringify(user));
         }
 
         return user;
@@ -90,7 +91,7 @@ export class AuthenticationService {
    * Gets the user credentials.
    * @return The user credentials or null if the user is not authenticated.
    */
-  get credentials(): Credentials | null {
+  get credentials(): AgileHouseUserModel | null {
     return this._credentials;
   }
 
@@ -101,12 +102,12 @@ export class AuthenticationService {
    * @param credentials The user credentials.
    * @param remember True to remember credentials across sessions.
    */
-  private setCredentials(credentials?: Credentials, remember?: boolean) {
-    this._credentials = credentials || null;
+  private setCredentials(creds?: AgileHouseUserModel, remember?: boolean) {
+    this._credentials = creds || null;
 
-    if (credentials) {
+    if (creds) {
       const storage = remember ? localStorage : sessionStorage;
-      storage.setItem(credentialsKey, JSON.stringify(credentials));
+      storage.setItem(credentialsKey, JSON.stringify(creds));
     } else {
       sessionStorage.removeItem(credentialsKey);
       localStorage.removeItem(credentialsKey);
