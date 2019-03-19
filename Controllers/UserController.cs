@@ -19,7 +19,7 @@ namespace AH.Api.Controllers {
         [HttpPost("authenticate")]
         public IActionResult Authenticate([FromBody]AgileHouseUser userParam)
         {
-            var user = _userService.Authenticate(userParam.Username, userParam.Password);
+            var user = _userService.Authenticate(userParam.Username, userParam.PasswordHash);
 
             if (user == null)
                 return BadRequest(new { message = "Username or password is incorrect" });

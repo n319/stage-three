@@ -1,3 +1,4 @@
+using System.Runtime.Serialization;
 using System;
 using AspNetCore.Identity.MongoDbCore.Infrastructure;
 using AspNetCore.Identity.MongoDbCore.Models;
@@ -7,11 +8,10 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace AH.Api.Models {
-    public class AgileHouseUser : MongoIdentityUser<Guid> {
+    public class AgileHouseUser {
 
-        public AgileHouseUser () : base () {
-
-        }
+        [BsonId]
+        public BsonObjectId Id { get; set; }
 
         [BsonElement ("TwitchStreamId")]
         public string TwitchStreamId { get; set; }
@@ -25,8 +25,8 @@ namespace AH.Api.Models {
         [BsonElement ("Username")]
         public string Username { get; set; }
 
-        [BsonElement ("Password")]
-        public string Password { get; set; }
+        [BsonElement ("PasswordHash")]
+        public string PasswordHash { get; set; }
 
         [BsonElement ("Token")]
         public string Token { get; set; }

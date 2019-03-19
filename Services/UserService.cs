@@ -17,18 +17,18 @@ namespace AH.Api.Services {
         private readonly IConfiguration _config;
 
         #region snippet_UserServiceConstructor
-        public UserService (IConfiguration config, IMongoDbContext database) {
-            // var client = new MongoClient(config.GetConnectionString("AgileHouseDB"));
-            // var database = client.GetDatabase("AgileHouse");
+        public UserService (IConfiguration config, IMongoService agileHouse) {
+            
+            _config = config; 
 
-            _config = config;
-
-            _users = database.GetCollection<AgileHouseUser> ("HouseUser");
+            _users = agileHouse.database.GetCollection<AgileHouseUser>("AgileHouseUser");
         }
         #endregion
 
         public AgileHouseUser Authenticate (string username, string passwordHash) {
-            var user = _users.FindSync (x => x.UserName == username && x.PasswordHash == passwordHash).FirstOrDefault ();
+            var first = _users.AsQueryable<AgileHouseUser>().First();
+            
+            var user = _users.AsQueryable<AgileHouseUser>().Where(x => x.Username == username && x.PasswordHash == passwordHash).FirstOrDefault();
 
             // return null if user not found
             if (user == null)
@@ -48,7 +48,7 @@ namespace AH.Api.Services {
             user.Token = tokenHandler.WriteToken (token);
 
             // remove password before returning
-            user.Password = null;
+            user.PasswordHash = null;
 
             return user;
         }

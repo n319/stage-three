@@ -30,12 +30,10 @@ namespace server {
         public void ConfigureServices (IServiceCollection services) {
 
             services.AddCors ();
-            var mongoDbContext = new MongoDbContext ("mongodb://localhost:27017", "AgileHouse");
-            services.AddIdentity<AgileHouseUser, ApplicationRole> ()
-                .AddMongoDbStores<IMongoDbContext> (mongoDbContext)
-                .AddDefaultTokenProviders ();
-
+            
+            
             //TODO: add interfaces 
+            services.AddScoped<IMongoService, AgileHouseMongoService>();
             services.AddScoped<ProjectPieceService> ();
             services.AddScoped<ProjectService> ();
             services.AddScoped<UserService> ();

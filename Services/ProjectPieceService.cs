@@ -12,11 +12,9 @@ namespace AH.Api.Services
         private readonly IMongoCollection<AgileHouseProjectPiece> _projectPieces;
 
         #region snippet_AgileHouseProjectPieceServiceConstructor
-        public ProjectPieceService(IConfiguration config)
+        public ProjectPieceService(IConfiguration config, IMongoService agileHouse)
         {
-            var client = new MongoClient(config.GetConnectionString("AgileHouseDB"));
-            var database = client.GetDatabase("AgileHouse");
-            _projectPieces = database.GetCollection<AgileHouseProjectPiece>("HouseProjectPiece");
+            _projectPieces = agileHouse.database.GetCollection<AgileHouseProjectPiece>("HouseProjectPiece");
         }
         #endregion
 
