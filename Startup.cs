@@ -16,7 +16,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using MongoDbGenericRepository;
 
 namespace server {
     public class Startup {
@@ -29,6 +28,8 @@ namespace server {
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices (IServiceCollection services) {
+            
+            
 
             services.AddCors (options => {
                 options.AddPolicy (MyAllowSpecificOrigins,
@@ -42,6 +43,7 @@ namespace server {
             //TODO: add interfaces 
             services.AddScoped<IMongoService, AgileHouseMongoService> ();
             services.AddScoped<ProjectPieceService> ();
+            services.AddScoped<PostService> ();
             services.AddScoped<ProjectService> ();
             services.AddScoped<UserService> ();
 

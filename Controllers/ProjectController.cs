@@ -22,8 +22,8 @@ namespace AH.Api.Controllers
             return _projectService.Get();
         }
 
-        [HttpGet("{id:length(24)}", Name = "GetProject")]
-        public ActionResult<AgileHouseProject> Get(string id)
+        [HttpGet ("[action]")]
+        public ActionResult<AgileHouseProject> GetProject(string id)
         {
             var project = _projectService.Get(id);
 
@@ -33,6 +33,14 @@ namespace AH.Api.Controllers
             }
 
             return project;
+        }
+
+        [HttpPost("list")]
+        public IActionResult Create(List<AgileHouseProject> projectList)
+        {
+            _projectService.CreateList(projectList);
+
+            return NoContent();
         }
 
         [HttpPost]

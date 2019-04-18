@@ -43,7 +43,7 @@ namespace AH.Api.Controllers {
 
             return user;
         }
-
+        
         [HttpPost]
         public ActionResult<AgileHouseUser> Create (AgileHouseUser user) {
             _userService.Create (user);

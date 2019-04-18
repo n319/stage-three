@@ -8,7 +8,6 @@ using System.Text;
 using AH.Api.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using MongoDbGenericRepository;
 using MongoDB.Driver;
 
 namespace AH.Api.Services {
@@ -21,7 +20,7 @@ namespace AH.Api.Services {
             
             _config = config; 
 
-            _users = agileHouse.database.GetCollection<AgileHouseUser>("AgileHouseUser");
+            _users = agileHouse.GetDatabase().GetCollection<AgileHouseUser>("AgileHouseUser");
         }
         #endregion
 

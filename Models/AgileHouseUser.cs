@@ -1,8 +1,5 @@
 using System.Runtime.Serialization;
 using System;
-using AspNetCore.Identity.MongoDbCore.Infrastructure;
-using AspNetCore.Identity.MongoDbCore.Models;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
@@ -31,8 +28,8 @@ namespace AH.Api.Models {
         [BsonElement ("Token")]
         public string Token { get; set; }
 
-        [BsonElement ("Pieces")]
-        public string[] Pieces { get; set; }
+        [BsonElement ("Projects")]
+        public string[] Projects { get; set; }
 
     }
 }
