@@ -15,7 +15,9 @@ import { AboutModule } from './about/about.module';
 import { LoginModule } from './login/login.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { ThemeModule } from './theme/theme.module';
+import { BacklogModule } from './backlog/backlog.module';
+import { MatGalleryModule } from './mat-gallery/mat-gallery.module';
+import { ProjectsModule } from './projects/projects.module';
 
 @NgModule({
   imports: [
@@ -29,6 +31,9 @@ import { ThemeModule } from './theme/theme.module';
     SharedModule,
     ShellModule,
     HomeModule,
+    BacklogModule,
+    ProjectsModule,
+    MatGalleryModule,
     AboutModule,
     LoginModule,
     AppRoutingModule // must be imported as the last module as it contains the fallback route

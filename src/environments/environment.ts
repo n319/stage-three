@@ -8,14 +8,30 @@ import env from './.env';
 export const environment = {
   production: false,
   version: env.npm_package_version + '-dev',
-  serverUrl: '/api',
   defaultLanguage: 'en-US',
-  supportedLanguages: ['en-US', 'fr-FR'],
+  supportedLanguages: ['en-US'],
   apiUrl: 'https://localhost:5001',
+  sessionKey: {
+    credentials : 'credentials'
+  },
   userApi: {
-    get: '/api/user',
-    getById: '/api/user/',
-    login: '/api/user/authenticate'
+    get: '/api/user/',
+    login: '/api/user/authenticate',
+    logout: '/api/user/logout'
+  },
+  postApi:{
+    postByUser: 'post/GetByUser?id=',
+    postByTag: 'post/GetByTag?id='
+  },
+  projectApi: {
+    get: '/api/project/',
+    getProjectPieces: 'api/project/pieces/',
+    create: '/api/project/',
+    update: '/api/project/'
+  },
+  pieceApi: {
+    create: '/api/piece/',
+    update: '/api/piece/'
   }
 };
 
