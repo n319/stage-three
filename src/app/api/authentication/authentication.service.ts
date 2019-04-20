@@ -4,9 +4,9 @@ import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '@env/environment';
+import { AgileHouseUserModel } from '../models/agileHouseUser.model';
 
 declare var Hashes: any;
-
 
 export interface Credentials {
   // Customize received credentials here
@@ -20,7 +20,7 @@ export interface LoginContext {
   remember?: boolean;
 }
 
-const credentialsKey = 'credentials';
+
 
 /**
  * Provides a base for authentication workflow.
@@ -28,15 +28,12 @@ const credentialsKey = 'credentials';
  */
 @Injectable()
 export class AuthenticationService {
-
   private _hasher: any;
 
   private _credentials: AgileHouseUserModel | null;
 
   constructor(private http: HttpClient) {
-    
-
-    const savedCredentials = sessionStorage.getItem(credentialsKey) || localStorage.getItem(credentialsKey);
+    const savedCredentials = sessionStorage.getItem(environment.sessionKey.credentials) || localStorage.getItem(environment.sessionKey.credentials);
     if (savedCredentials) {
       this._credentials = JSON.parse(savedCredentials);
     }
@@ -49,7 +46,7 @@ export class AuthenticationService {
    */
   login(username: string, password: string): Observable<AgileHouseUserModel> {
     var url = environment.apiUrl + environment.userApi.login;
-    
+
     var MD5 = new Hashes.MD5().hex(password);
 
     var passwordHash = password;
@@ -107,10 +104,10 @@ export class AuthenticationService {
 
     if (creds) {
       const storage = remember ? localStorage : sessionStorage;
-      storage.setItem(credentialsKey, JSON.stringify(creds));
+      storage.setItem(environment.sessionKey.credentials, JSON.stringify(creds));
     } else {
-      sessionStorage.removeItem(credentialsKey);
-      localStorage.removeItem(credentialsKey);
+      sessionStorage.removeItem(environment.sessionKey.credentials);
+      localStorage.removeItem(environment.sessionKey.credentials);
     }
   }
 }
