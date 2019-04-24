@@ -1,7 +1,6 @@
 import { Component, NgModule, OnInit } from '@angular/core';
 import { IList, ListModel } from '@app/api/models/list.model';
 import { ICardMovement } from '@app/api/models/card-movement.model';
-import { KanbanService } from '@app/api/kanban.service';
 
 @Component({
   selector: 'app-archive-board',
@@ -12,10 +11,10 @@ export class ArchiveBoardComponent implements OnInit {
 
   lists: IList[];
 
-  constructor(public kanbanSvc: KanbanService) {}
+  constructor() {}
 
   ngOnInit() {
-    const board = this.kanbanSvc.getBoardModel();
+    // const board = this.kanbanSvc.getBoardModel();
 
     // ideally retrieve and initialize from some storage.
   }

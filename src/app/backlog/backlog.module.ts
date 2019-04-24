@@ -10,6 +10,7 @@ import { ArchiveCardDetailComponent } from './archive-card-detail/archive-card-d
 import { ArchiveCardSummaryComponent } from './archive-card-summary/archive-card-summary.component';
 import { ArchiveContextMenuComponent } from './archive-context-menu/archive-context-menu.component';
 import { ArchiveListComponent } from './archive-list/archive-list.component';
+import { PinboardCreateMenuComponent } from './pinboard-create-menu/pinboard-create-menu.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ArchiveListComponent } from './archive-list/archive-list.component';
     ArchiveCardDetailComponent,
     ArchiveCardSummaryComponent,
     ArchiveContextMenuComponent,
-    ArchiveListComponent
+    ArchiveListComponent,
+    PinboardCreateMenuComponent
   ],
   imports: [CommonModule, SharedModule, BacklogRoutingModule]
 })

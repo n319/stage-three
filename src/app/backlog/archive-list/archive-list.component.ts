@@ -38,7 +38,7 @@ export class ArchiveListComponent implements OnInit {
   }
 
   delete(){
-    this.deleteList.emit(this.listIndex);
+    this.deleteList.emit(this.listIndex); 
   
   }
 
