@@ -11,6 +11,7 @@ import { ArchiveCardSummaryComponent } from './archive-card-summary/archive-card
 import { ArchiveContextMenuComponent } from './archive-context-menu/archive-context-menu.component';
 import { ArchiveListComponent } from './archive-list/archive-list.component';
 import { PinboardCreateMenuComponent } from './pinboard-create-menu/pinboard-create-menu.component';
+import { KanbanModule } from '@app/kanban/kanban.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,6 @@ import { PinboardCreateMenuComponent } from './pinboard-create-menu/pinboard-cre
     ArchiveListComponent,
     PinboardCreateMenuComponent
   ],
-  imports: [CommonModule, SharedModule, BacklogRoutingModule]
+  imports: [CommonModule, SharedModule, BacklogRoutingModule, KanbanModule]
 })
 export class BacklogModule {}
