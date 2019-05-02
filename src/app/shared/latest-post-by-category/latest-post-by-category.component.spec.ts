@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from './node_modules/@app/base/shared/latest-post-by-category/node_modules/@angular/core/testing';
 
 import { LatestPostByCategoryComponent } from './latest-post-by-category.component';
 

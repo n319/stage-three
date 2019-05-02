@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Injectable } from './node_modules/@app/base/api/authentication/node_modules/@angular/cores/@angular/cores/@angular/core';
+import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from './node_modules/@app/base/api/authentication/node_modules/@angular/router@angular/router@angular/router';
 
-import { Logger } from '../../core/logger.service';
+import { Logger } from '../../../core/logger.serviceice';
 import { AuthenticationService } from './authentication.service';
 
 const log = new Logger('AuthenticationGuard');

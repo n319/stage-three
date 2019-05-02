@@ -1,4 +1,4 @@
-import {CardModel, ICard} from './card.model';
+import {CardModel, ICard} from './card-detail.model';
 
 export interface IList {
   id: string;

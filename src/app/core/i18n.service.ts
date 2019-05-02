@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
-import { includes } from 'lodash';
+import { Injectable } from './node_modules/@app/base/core/node_modules/@angular/cores/@angular/core';
+import { TranslateService, LangChangeEvent } from './node_modules/@app/base/core/node_modules/@ngx-translate/core-translate/core';
+import { includes } from './node_modules/@app/base/core/node_modules/lodash_modules/lodash';
 
 import { Logger } from './logger.service';
 import enUS from '../../translations/en-US.json';

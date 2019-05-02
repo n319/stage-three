@@ -1,9 +1,9 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { environment } from '@env/environment';
-import { PostModel } from './models/post.model';
-import { AgileHouseUserModel } from './models/agileHouseUser.model';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "selenium-webdriver/http";
+import { Observable } from "rxjs";
+import { PostModel } from "./models/post.model";
+import { environment } from "@env/environment";
+import { AgileHouseUserModel } from "./models/agileHouseUser.model";
 
 @Injectable({
   providedIn: 'root'

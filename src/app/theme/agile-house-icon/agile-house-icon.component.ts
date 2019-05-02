@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from './node_modules/@app/base/theme/agile-house-icon/node_modules/@angular/cores/@angular/core';
 
 @Component({
   selector: 'app-agile-house-icon',

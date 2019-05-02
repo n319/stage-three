@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { PostService } from '@app/api/post.service';
+import { Component, OnInit } from './node_modules/@app/base/shared/latest-post-by-category/node_modules/@angular/core';
+import { PostService } from './node_modules/@app/base/api/post.service';
 
 @Component({
   selector: 'app-latest-post-by-category',

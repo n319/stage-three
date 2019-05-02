@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input } from './node_modules/@app/base/shared/loader/node_modules/@angular/core';
 
 @Component({
   selector: 'app-loader',

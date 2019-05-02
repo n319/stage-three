@@ -1,4 +1,4 @@
-import {ICard, CardModel} from '../models/card.model';
+import {ICard, CardModel} from '../models/card-detail.model';
 
 describe('BookModel', () => {
 

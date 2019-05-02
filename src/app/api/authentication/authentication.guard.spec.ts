@@ -1,5 +1,5 @@
-import { TestBed, inject } from '@angular/core/testing';
-import { Router, RouterStateSnapshot } from '@angular/router';
+import { TestBed, inject } from './node_modules/@app/base/api/authentication/node_modules/@angular/core/testingar/core/testingar/core/testing';
+import { Router, RouterStateSnapshot } from './node_modules/@app/base/api/authentication/node_modules/@angular/router@angular/router@angular/router';
 
 import { AuthenticationService } from './authentication.service';
 import { MockAuthenticationService } from './authentication.service.mock';

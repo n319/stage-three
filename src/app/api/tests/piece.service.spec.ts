@@ -1,4 +1,4 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from './node_modules/@app/base/api/tests/node_modules/@angular/core/testingar/core/testingar/core/testing';
 
 import { PieceService } from '../piece.service';
 

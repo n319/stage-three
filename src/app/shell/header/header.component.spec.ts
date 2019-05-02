@@ -1,9 +1,9 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { TranslateModule } from '@ngx-translate/core';
-import { RouterTestingModule } from '@angular/router/testing';
+import { async, ComponentFixture, TestBed } from './node_modules/@app/base/shell/header/node_modules/@angular/core/testing';
+import { NgbModule } from './node_modules/@app/base/shell/header/node_modules/@ng-bootstrap/ng-bootstrap';
+import { TranslateModule } from './node_modules/@app/base/shell/header/node_modules/@ngx-translate/core';
+import { RouterTestingModule } from './node_modules/@app/base/shell/header/node_modules/@angular/router/testing';
 
-import { AuthenticationService, I18nService, MockAuthenticationService } from '@app/core';
+import { AuthenticationService, I18nService, MockAuthenticationService } from './node_modules/@app/base/core';
 import { HeaderComponent } from './header.component';
 
 describe('HeaderComponent', () => {

@@ -1,5 +1,5 @@
-import { TestBed, inject } from '@angular/core/testing';
-import { HttpResponse } from '@angular/common/http';
+import { TestBed, inject } from './node_modules/@app/base/core/http/node_modules/@angular/core/testingar/core/testing';
+import { HttpResponse } from './node_modules/@app/base/core/http/node_modules/@angular/common/httplar/common/http';
 
 import { HttpCacheService, HttpCacheEntry } from './http-cache.service';
 

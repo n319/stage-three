@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Injectable } from './node_modules/@app/base/core/http/node_modules/@angular/cores/@angular/core';
+import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from './node_modules/@app/base/core/http/node_modules/@angular/common/httplar/common/http';
+import { Observable } from './node_modules/@app/base/core/http/node_modules/rxjsde_modules/rxjs';
+import { catchError } from './node_modules/@app/base/core/http/node_modules/rxjs/operators/rxjs/operators';
 
-import { environment } from '@env/environment';
+import { environment } from './node_modules/@env/environmentenv/environment';
 import { Logger } from '../logger.service';
 
 const log = new Logger('ErrorHandlerInterceptor');

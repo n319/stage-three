@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from './node_modules/@app/base/shared/loader/node_modules/@angular/core/testing';
 
 import { LoaderComponent } from './loader.component';
 
