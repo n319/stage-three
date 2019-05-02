@@ -1,4 +1,4 @@
-import { Observable, of } from './node_modules/@app/base/api/authentication/node_modules/rxjsde_modules/rxjsde_modules/rxjs';
+import { Observable, of } from 'rxjs';
 
 import { Credentials, LoginContext } from './authentication.service';
 

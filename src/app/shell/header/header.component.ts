@@ -1,7 +1,7 @@
-import { Component, OnInit } from './node_modules/@app/base/shell/header/node_modules/@angular/core';
-import { Router } from './node_modules/@app/base/shell/header/node_modules/@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
-import { AuthenticationService, I18nService } from './node_modules/@app/base/core';
+import { AuthenticationService, I18nService } from '@app/core';
 
 @Component({
   selector: 'app-header',

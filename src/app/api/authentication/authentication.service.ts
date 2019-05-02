@@ -1,10 +1,10 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "selenium-webdriver/http";
-import { environment } from "@env/environment";
-import { Observable, of } from "rxjs";
-import { map } from "rxjs/operators";
-import { AgileHouseUserModel } from "../models/agileHouseUser.model";
-
+import { AboutComponent } from './../../about/about.component';
+import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '@env/environment';
+import { AgileHouseUserModel } from '../models/agileHouseUser.model';
 
 declare var Hashes: any;
 

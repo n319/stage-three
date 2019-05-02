@@ -1,8 +1,8 @@
-import { Injectable } from './node_modules/@app/base/core/http/node_modules/@angular/cores/@angular/core';
-import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from './node_modules/@app/base/core/http/node_modules/@angular/common/httplar/common/http';
-import { Observable } from './node_modules/@app/base/core/http/node_modules/rxjsde_modules/rxjs';
+import { Injectable } from '@angular/core';
+import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
-import { environment } from './node_modules/@env/environmentenv/environment';
+import { environment } from '@env/environment';
 
 /**
  * Prefixes all requests with `environment.serverUrl`.

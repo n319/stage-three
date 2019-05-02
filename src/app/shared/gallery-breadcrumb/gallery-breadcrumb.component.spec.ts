@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from './node_modules/@app/base/shared/gallery-breadcrumb/node_modules/@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GalleryBreadcrumbComponent } from './gallery-breadcrumb.component';
 

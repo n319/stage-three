@@ -1,4 +1,4 @@
-import {CardModel, ICard} from './card-detail.model';
+import {CardModel, ICard} from './card.model';
 import {IList} from './list.model';
 
 export interface IBoard {

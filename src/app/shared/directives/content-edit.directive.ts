@@ -1,4 +1,4 @@
-import { Directive, HostListener, ElementRef, Renderer, Input, EventEmitter, Output, OnInit, Renderer2 } from './node_modules/@app/base/shared/directives/node_modules/@angular/core';
+import { Directive, HostListener, ElementRef, Renderer, Input, EventEmitter, Output, OnInit, Renderer2 } from '@angular/core';
 
 @Directive({
   selector: '[appContentEdit]'

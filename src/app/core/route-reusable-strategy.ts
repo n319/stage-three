@@ -1,4 +1,4 @@
-import { ActivatedRouteSnapshot, DetachedRouteHandle, RouteReuseStrategy } from './node_modules/@app/base/core/node_modules/@angular/router@angular/router';
+import { ActivatedRouteSnapshot, DetachedRouteHandle, RouteReuseStrategy } from '@angular/router';
 
 /**
  * A route strategy allowing for explicit route reuse.

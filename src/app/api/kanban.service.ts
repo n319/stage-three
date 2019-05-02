@@ -1,11 +1,11 @@
-import { Injectable } from "@angular/core";
-import { IList, ListModel } from "./models/list.model";
-import { PieceService } from "./piece.service";
-import { ProjectService } from "./project.service";
-import { BoardModel } from "./models/board.model";
-
-
-//export enum KanbanView {'Pinboard', 'Backlog', 'KanbanProject', 'Gallery' };
+import { Injectable } from '@angular/core';
+import { BoardModel } from './models/board.model';
+import { IList, ListModel } from './models/list.model';
+import { ICard, CardModel } from './models/card.model'
+import { PostModel } from './models/post.model';
+import { PostService } from './post.service';
+import { ProjectService } from './project.service';
+import { PieceService } from './piece.service';
 
 @Injectable({
   providedIn: 'root'

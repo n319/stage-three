@@ -1,6 +1,6 @@
-import { Injectable } from './node_modules/@app/base/core/http/node_modules/@angular/cores/@angular/core';
-import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse } from './node_modules/@app/base/core/http/node_modules/@angular/common/httplar/common/http';
-import { Observable, Subscriber } from './node_modules/@app/base/core/http/node_modules/rxjsde_modules/rxjs';
+import { Injectable } from '@angular/core';
+import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse } from '@angular/common/http';
+import { Observable, Subscriber } from 'rxjs';
 
 import { HttpCacheService } from './http-cache.service';
 

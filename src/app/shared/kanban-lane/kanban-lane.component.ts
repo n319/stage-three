@@ -1,4 +1,4 @@
-import { Component, OnInit } from './node_modules/@app/base/shared/kanban-lane/node_modules/@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-kanban-lane',

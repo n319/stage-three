@@ -1,5 +1,5 @@
 import {ListModel, IList} from '../models/list.model';
-import {CardModel, ICard} from '../models/card-detail.model';
+import {CardModel, ICard} from '../models/card.model';
 
 
 describe('List Interface Test Cases' , () => {

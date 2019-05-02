@@ -1,6 +1,6 @@
-import { Injectable } from './node_modules/@app/base/core/http/node_modules/@angular/cores/@angular/core';
-import { HttpResponse } from './node_modules/@app/base/core/http/node_modules/@angular/common/httplar/common/http';
-import { each } from './node_modules/@app/base/core/http/node_modules/lodash_modules/lodash';
+import { Injectable } from '@angular/core';
+import { HttpResponse } from '@angular/common/http';
+import { each } from 'lodash';
 
 import { Logger } from '../logger.service';
 

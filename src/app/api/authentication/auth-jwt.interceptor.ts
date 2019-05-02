@@ -1,7 +1,7 @@
-import { Injectable } from './node_modules/@app/base/api/authentication/node_modules/@angular/cores/@angular/cores/@angular/core';
-import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from './node_modules/@app/base/api/authentication/node_modules/@angular/common/httplar/common/httplar/common/http';
+import { Injectable } from '@angular/core';
+import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
 
-import { Observable } from './node_modules/@app/base/api/authentication/node_modules/rxjsde_modules/rxjsde_modules/rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class AuthJWTInterceptor implements HttpInterceptor {

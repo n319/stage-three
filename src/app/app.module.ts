@@ -7,6 +7,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { environment } from '@env/environment';
+import { CoreModule } from '@app/core';
+import { SharedModule } from '@app/shared';
 import { HomeModule } from './home/home.module';
 import { ShellModule } from './shell/shell.module';
 import { AboutModule } from './about/about.module';
@@ -16,9 +18,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { BacklogModule } from './backlog/backlog.module';
 import { MatGalleryModule } from './mat-gallery/mat-gallery.module';
 import { ProjectsModule } from './projects/projects.module';
-import { CoreModule } from './core/core.module';
-import { SharedModule } from './shared/shared.module';
-import { MaterialGalleryComponent } from './mat-gallery/material-gallery/material-gallery.component';
 
 @NgModule({
   imports: [
@@ -39,7 +38,7 @@ import { MaterialGalleryComponent } from './mat-gallery/material-gallery/materia
     LoginModule,
     AppRoutingModule // must be imported as the last module as it contains the fallback route
   ],
-  declarations: [AppComponent, MaterialGalleryComponent],
+  declarations: [AppComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

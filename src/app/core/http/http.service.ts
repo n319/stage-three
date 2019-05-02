@@ -1,6 +1,6 @@
-import { Inject, Injectable, InjectionToken, Injector, Optional } from './node_modules/@app/base/core/http/node_modules/@angular/cores/@angular/core';
-import { HttpClient, HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from './node_modules/@app/base/core/http/node_modules/@angular/common/httplar/common/http';
-import { Observable } from './node_modules/@app/base/core/http/node_modules/rxjsde_modules/rxjs';
+import { Inject, Injectable, InjectionToken, Injector, Optional } from '@angular/core';
+import { HttpClient, HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 import { ErrorHandlerInterceptor } from './error-handler.interceptor';
 import { CacheInterceptor } from './cache.interceptor';

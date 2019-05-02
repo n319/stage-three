@@ -1,6 +1,6 @@
-import { TestBed, inject } from './node_modules/@app/base/shell/node_modules/@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 
-import { AuthenticationGuard, AuthenticationService, MockAuthenticationService } from './node_modules/@app/base/core';
+import { AuthenticationGuard, AuthenticationService, MockAuthenticationService } from '@app/core';
 import { ShellComponent } from './shell.component';
 import { Shell } from './shell.service';
 

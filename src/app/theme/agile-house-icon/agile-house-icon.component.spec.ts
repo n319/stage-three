@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from './node_modules/@app/base/theme/agile-house-icon/node_modules/@angular/core/testingar/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AgileHouseIconComponent } from './agile-house-icon.component';
 

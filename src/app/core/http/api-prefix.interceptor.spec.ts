@@ -1,8 +1,8 @@
-import { TestBed, inject } from './node_modules/@app/base/core/http/node_modules/@angular/core/testingar/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from './node_modules/@app/base/core/http/node_modules/@angular/common/http/testingon/http/testing';
-import { HTTP_INTERCEPTORS, HttpClient } from './node_modules/@app/base/core/http/node_modules/@angular/common/httplar/common/http';
+import { TestBed, inject } from '@angular/core/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 
-import { environment } from './node_modules/@env/environmentenv/environment';
+import { environment } from '@env/environment';
 import { ApiPrefixInterceptor } from './api-prefix.interceptor';
 
 describe('ApiPrefixInterceptor', () => {

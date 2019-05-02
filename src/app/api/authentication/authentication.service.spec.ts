@@ -1,4 +1,4 @@
-import { TestBed, inject, fakeAsync, tick } from './node_modules/@app/base/api/authentication/node_modules/@angular/core/testingar/core/testingar/core/testing';
+import { TestBed, inject, fakeAsync, tick } from '@angular/core/testing';
 
 import { AuthenticationService, Credentials } from './authentication.service';
 

@@ -1,6 +1,6 @@
-import { TestBed, inject } from './node_modules/@app/base/core/http/node_modules/@angular/core/testingar/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from './node_modules/@app/base/core/http/node_modules/@angular/common/http/testingon/http/testing';
-import { HttpClient, HttpInterceptor } from './node_modules/@app/base/core/http/node_modules/@angular/common/httplar/common/http';
+import { TestBed, inject } from '@angular/core/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClient, HttpInterceptor } from '@angular/common/http';
 
 import { HttpService } from './http.service';
 import { HttpCacheService } from './http-cache.service';

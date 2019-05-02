@@ -1,6 +1,6 @@
-import { Routes, Route } from './node_modules/@app/base/shell/node_modules/@angular/router';
+import { Routes, Route } from '@angular/router';
 
-import { AuthenticationGuard } from './node_modules/@app/base/core';
+import { AuthenticationGuard } from '@app/core';
 import { ShellComponent } from './shell.component';
 
 /**
