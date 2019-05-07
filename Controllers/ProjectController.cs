@@ -51,7 +51,7 @@ namespace AH.Api.Controllers
             return CreatedAtRoute("GetProject", new { id = project.Id.ToString() }, project);
         }
 
-        [HttpPut("{id:length(24)}")]
+        [HttpPut]
         public IActionResult Update(string id, AgileHouseProject projectIn)
         {
             var project = _projectService.Get(id);
@@ -66,7 +66,7 @@ namespace AH.Api.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id:length(24)}")]
+        [HttpDelete]
         public IActionResult Delete(string id)
         {
             var project = _projectService.Get(id);

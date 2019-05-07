@@ -13,6 +13,9 @@ namespace AH.Api.Models {
         [BsonElement ("AuthorId")]
         public string AuthorId { get; set; }
 
+        [BsonElement ("ViewType")]
+        public string ViewType { get; set; }
+
         [BsonElement ("CreatedOn")]
         public string CreatedOn { get; set; }
 
