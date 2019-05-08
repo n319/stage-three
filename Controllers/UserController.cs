@@ -10,9 +10,11 @@ namespace AH.Api.Controllers {
     [ApiController]
     public class UserController : ControllerBase {
         private readonly UserService _userService;
+        private readonly ProjectService _projectService;
 
-        public UserController (UserService userService) {
+        public UserController (UserService userService, ProjectService projectService) {
             _userService = userService;
+            _projectService = projectService;
         }
 
         [AllowAnonymous]
@@ -27,6 +29,31 @@ namespace AH.Api.Controllers {
             return Ok(user);
         }
 
+        [HttpGet ("[action]")]
+        public ActionResult<UserProjectsResponse> GetUserProjectsSummary(string id)
+        {   
+
+            var user = _userService.Get (id);
+            UserProjectsResponse response = new UserProjectsResponse();
+
+            List<ProjectSummary> projects = new List<ProjectSummary>();
+
+            foreach(var i in user.Projects){
+                
+                var prj = _projectService.Get(i);
+                
+                var summary = new ProjectSummary();
+                summary.Id = i.ToString();
+                summary.Name = prj.Name;
+                summary.ViewType = prj.ViewType;
+
+                projects.Add(summary);
+            }
+            
+            response.Projects = projects.ToArray();
+
+            return response;
+        }
 
         [HttpGet]
         public ActionResult<List<AgileHouseUser>> Get () {

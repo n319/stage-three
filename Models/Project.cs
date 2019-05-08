@@ -25,4 +25,16 @@ namespace AH.Api.Models {
         [BsonElement ("Pieces")]
         public string[] Pieces { get; set; }
     }
+
+    public class ProjectSummary {
+        public string Id { get; set; }
+
+        public string Name { get; set; }
+
+        public string ViewType { get; set; }
+    }
+
+    public class UserProjectsResponse {
+        public ProjectSummary[] Projects { get; set; }
+    }
 }
