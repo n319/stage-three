@@ -20,8 +20,6 @@ export interface LoginContext {
   remember?: boolean;
 }
 
-
-
 /**
  * Provides a base for authentication workflow.
  * The Credentials interface as well as login/logout methods should be replaced with proper implementation.
@@ -33,7 +31,9 @@ export class AuthenticationService {
   private _credentials: AgileHouseUserModel | null;
 
   constructor(private http: HttpClient) {
-    const savedCredentials = sessionStorage.getItem(environment.sessionKey.credentials) || localStorage.getItem(environment.sessionKey.credentials);
+    const savedCredentials =
+      sessionStorage.getItem(environment.sessionKey.credentials) ||
+      localStorage.getItem(environment.sessionKey.credentials);
     if (savedCredentials) {
       this._credentials = JSON.parse(savedCredentials);
     }
@@ -45,12 +45,12 @@ export class AuthenticationService {
    * @return The user credentials.
    */
   login(username: string, password: string): Observable<AgileHouseUserModel> {
-    var url = environment.apiUrl + environment.userApi.login;
+    const url = environment.apiUrl + environment.userApi.login;
 
-    var MD5 = new Hashes.MD5().hex(password);
+    const MD5 = new Hashes.MD5().hex(password);
 
-    var passwordHash = password;
-    //TODO salt hash me
+    const passwordHash = password;
+    //!TODO salt hash me
 
     return this.http.post<AgileHouseUserModel>(url, { username, passwordHash }).pipe(
       map((user: AgileHouseUserModel) => {

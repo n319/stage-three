@@ -1,3 +1,5 @@
+import { ViewType } from "./project.model";
+
 export interface IAgileHouseUser{
   id: string;
   passwordHash: string | null;
@@ -6,7 +8,12 @@ export interface IAgileHouseUser{
   token: string | null;
   firstName: string | null;
   lastName: string | null;
-  projects: string[] | null;
+  projects: ProjectSummary[] | null;
+}
+
+export interface ProjectSummary{
+  id: string;
+  view: ViewType;
 }
 
 export class AgileHouseUserModel{

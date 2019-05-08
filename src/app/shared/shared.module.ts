@@ -14,7 +14,7 @@ import { KanbanLaneComponent } from './kanban-lane/kanban-lane.component';
 import { ContentEditDirective } from './directives/content-edit.directive';
 
 @NgModule({
-  imports: [CommonModule, ApiModule],
+  imports: [CommonModule],
   declarations: [
     LoaderComponent,
     LatestPostByCategoryComponent,

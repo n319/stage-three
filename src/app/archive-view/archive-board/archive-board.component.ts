@@ -9,6 +9,7 @@ import { PanelViewComponent } from '@app/base-view/panel-view.component';
 export class ArchiveBoardComponent extends PanelViewComponent implements OnInit {
 
   ngOnInit() {
+    
   }
 
 }

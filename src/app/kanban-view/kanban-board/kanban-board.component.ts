@@ -6,5 +6,11 @@ import { PanelViewComponent } from '@app/base-view/panel-view.component';
   templateUrl: './kanban-board.component.html',
   styleUrls: ['./kanban-board.component.scss']
 })
-export class KanbanBoardComponent extends PanelViewComponent{
+export class KanbanBoardComponent extends PanelViewComponent implements OnInit {
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
+
+
+
 }
