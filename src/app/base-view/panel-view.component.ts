@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, ElementRef, Inject } from '@angular/core';
-import { PanelViewService } from '@app/application/panel-view.service';
+import { PanelViewService } from '@app/ah-application/panel-view.service';
 import { ViewType } from '@app/api/models/project.model';
 
 @Component({

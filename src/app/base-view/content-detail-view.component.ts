@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ContentViewService } from '@app/application/content-view.service';
+import { ContentViewService } from '@app/ah-application/content-view.service';
 
 @Component({
   template: ''

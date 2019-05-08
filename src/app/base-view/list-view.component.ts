@@ -1,10 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter, ElementRef, Inject } from '@angular/core';
 
-import { ICardMovement, CardMovementModel } from '@app/application/models/card-movement.model';
-import { CardModel, ICard, CardDataModel } from '@app/application/models/card.model';
+import { ICardMovement, CardMovementModel } from '@app/ah-application/models/card-movement.model';
+import { CardModel, ICard, CardDataModel } from '@app/ah-application/models/card.model';
 import { DOCUMENT } from '@angular/platform-browser';
-import { ListViewService } from '@app/application/list-view.service';
-import { IList } from '@app/application/models/list.model';
+import { ListViewService } from '@app/ah-application/list-view.service';
+import { IList } from '@app/ah-application/models/list.model';
 
 @Component({
   template: ''
