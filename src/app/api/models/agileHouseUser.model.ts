@@ -8,11 +8,12 @@ export interface IAgileHouseUser{
   token: string | null;
   firstName: string | null;
   lastName: string | null;
-  projects: ProjectSummary[] | null;
+  projects: string[] | null;
 }
 
 export interface ProjectSummary{
   id: string;
+  name: string;
   view: ViewType;
 }
 
