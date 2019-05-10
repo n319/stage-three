@@ -35,6 +35,22 @@ namespace AH.Api.Controllers
             return project;
         }
 
+
+        
+        [HttpGet ("[action]")]
+        public ActionResult<List<AgileHouseProject>> GetList(List<ProjectSummary> projectSummaryList)
+        {
+            //! finish me!!!!
+            var project = _projectService.Get();
+
+            if (project == null)
+            {
+                return NotFound();
+            }
+
+            return project;
+        }
+
         [HttpPost("list")]
         public IActionResult Create(List<AgileHouseProject> projectList)
         {
