@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '@env/environment.prod';
 import { Observable } from 'rxjs';
 import { ProjectModel, IProject } from './models/project.model';
+import { PanelViewProjects } from '@app/ah-application/models/panel-view.model';
+import { ProjectSummary } from './models/agileHouseUser.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +16,14 @@ export class ProjectService {
 
   public getProject(id: string): Observable<IProject> {
     const url = environment.projectApi.get + id;
-    return this.http.get<IProject>(url);
+    return this.http.cache().get<IProject>(url);
   }
+
+  public getProjectList(prjs: ProjectSummary[]): Observable<PanelViewProjects>{
+    const url = environment.projectApi.getList;
+    return this.http.cache().post<PanelViewProjects>(url,prjs);
+  }
+
 
   public createProject(project: IProject): Observable<IProject> {
     const url = environment.projectApi.create;
@@ -26,4 +34,6 @@ export class ProjectService {
     const url = environment.projectApi.update;
     return this.http.post<IProject>(url, project);
   }
+
+  
 }

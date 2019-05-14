@@ -9,7 +9,7 @@ import { ContentViewService } from './content-view.service';
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule, ApiModule,
+    CommonModule, ApiModule
   ],
   providers: [KanbanService, ListViewService, PanelViewService, ContentViewService]
 })

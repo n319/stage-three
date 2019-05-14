@@ -13,7 +13,7 @@ export class PieceService {
 
   public getPiece(id: string): Observable<IPiece> {
     const url = environment.pieceApi.get + id;
-    return this.http.get<IPiece>(url);
+    return this.http.cache().get<IPiece>(url);
   }
 
   public createPiece(project: IPiece): Observable<IPiece> {

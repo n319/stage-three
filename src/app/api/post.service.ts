@@ -16,12 +16,12 @@ export class PostService {
 
     var url = environment.postApi.postByUser + userId;
 
-    return this.http.get<PostModel[]>(url);
+    return this.http.cache().get<PostModel[]>(url);
   }
 
   public getPostsByTag(tag: string): Observable<PostModel[]> {
     var url = environment.postApi.postByTag + tag;
 
-    return this.http.get<PostModel[]>(url);
+    return this.http.cache().get<PostModel[]>(url);
   }
 }

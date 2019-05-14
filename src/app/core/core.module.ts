@@ -17,6 +17,7 @@ import { ApiModule } from '@app/api/api.module';
   imports: [CommonModule, HttpClientModule, TranslateModule, RouterModule, ApiModule],
   providers: [
     I18nService,
+    HttpService,
     HttpCacheService,
     ApiPrefixInterceptor,
     ErrorHandlerInterceptor,

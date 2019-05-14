@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { finalize } from 'rxjs/operators';
-import { QuoteService } from './quote.service';
+
+import { ActivatedRouteSnapshot } from '@angular/router';
+
 
 @Component({
   selector: 'app-home',
@@ -8,17 +9,8 @@ import { QuoteService } from './quote.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  quote: string;
-  isLoading: boolean;
-
-  constructor(private quoteService: QuoteService) {}
+  constructor(private route: ActivatedRouteSnapshot) {}
 
   ngOnInit() {
-    this.isLoading = true;
-    
-  }
-
-  private doneLoading(): void{
-    this.isLoading = false;
   }
 }

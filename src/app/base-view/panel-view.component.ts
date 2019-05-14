@@ -6,8 +6,6 @@ import { ViewType } from '@app/api/models/project.model';
   template: ''
 })
 export class PanelViewComponent {
-
-  projectContent: any;
   
   view: ViewType;
 
@@ -15,8 +13,6 @@ export class PanelViewComponent {
   
   ngOnInit() {
     
-    this.projectContent = this.data.getUserProjectsByViewType(this.view);
-
   }
 
   addList() {

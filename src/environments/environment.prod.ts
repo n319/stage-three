@@ -21,11 +21,13 @@ export const environment = {
   },
   projectApi: {
     get: '/api/project/',
+    getList: '/api/project/getList',
     getProjectPieces: 'api/project/pieces/',
     create: '/api/project/',
     update: '/api/project/'
   },
   pieceApi: {
+    get: '/api/piece/',
     create: '/api/piece/',
     update: '/api/piece/'
   }

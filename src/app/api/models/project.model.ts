@@ -1,4 +1,4 @@
-import { AgileHouseUserModel } from "./agileHouseUser.model";
+import { AgileHouseUserModel, ProjectSummary } from "./agileHouseUser.model";
 
 export interface IProject {
   Id: string | null;
@@ -11,6 +11,7 @@ export interface IProject {
 }
 
 export enum ViewType {Pinboard, Kanban, Archive}
+export enum ViewPanel {Backlog, Kanban}
 
 export class ProjectModel implements IProject{
   Id: string | null;
@@ -22,8 +23,8 @@ export class ProjectModel implements IProject{
   Pieces: string[] | null;
 }
 
-export interface PanelViewContent{
+export interface UserProjectsSummaryResponse{
   User: AgileHouseUserModel | null;
   View: ViewType | null;
-  Results: ProjectModel[];
+  Results: ProjectSummary[];
 }
