@@ -14,7 +14,7 @@ import { CacheInterceptor } from './http/cache.interceptor';
 import { ApiModule } from '@app/api/api.module';
 
 @NgModule({
-  imports: [CommonModule, HttpClientModule, TranslateModule, RouterModule, ApiModule],
+  imports: [CommonModule, HttpClientModule, TranslateModule, RouterModule],
   providers: [
     I18nService,
     HttpService,
@@ -22,6 +22,10 @@ import { ApiModule } from '@app/api/api.module';
     ApiPrefixInterceptor,
     ErrorHandlerInterceptor,
     CacheInterceptor,
+    {
+      provide: HttpClient,
+      useClass: HttpService
+    },
     {
       provide: RouteReuseStrategy,
       useClass: RouteReusableStrategy

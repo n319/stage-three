@@ -92,7 +92,7 @@ export class HttpService extends HttpClient {
     return new HttpClient(handler).request(method, url, options);
   }
 
-  private removeInterceptor(interceptorType: Function): HttpService {
+  private removeInterceptor(interceptorType: Function): HttpClient {
     return new HttpService(
       this.httpHandler,
       this.injector,
@@ -100,7 +100,7 @@ export class HttpService extends HttpClient {
     );
   }
 
-  private addInterceptor(interceptor: HttpInterceptor): HttpService {
+  private addInterceptor(interceptor: HttpInterceptor): HttpClient {
     return new HttpService(this.httpHandler, this.injector, this.interceptors.concat([interceptor]));
   }
 }

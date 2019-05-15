@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { AgileHouseUserModel, ProjectSummary } from './models/agileHouseUser.model';
+import { AgileHouseUserModel } from './models/agileHouseUser.model';
 import { environment } from '@env/environment';
 import { map } from 'lodash';
 import { UserProjectsSummaryResponse } from './models/project.model';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'

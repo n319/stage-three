@@ -9,10 +9,11 @@ import { UserService } from './user.service';
 import { ProjectService } from './project.service';
 import { PostService } from './post.service';
 import { PieceService } from './piece.service';
+import { CoreModule } from '@app/core';
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule],
+  imports: [CommonModule, CoreModule],
   providers: [
     AuthenticationService,
     AuthenticationGuard,

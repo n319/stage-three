@@ -23,7 +23,7 @@ describe('HttpService', () => {
         HttpCacheService,
         {
           provide: HttpClient,
-          useClass: HttpService
+          useClass: HttpClient
         }
       ]
     });

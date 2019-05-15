@@ -21,13 +21,12 @@ import { ProjectsModule } from './projects/projects.module';
 
 @NgModule({
   imports: [
+    CoreModule,
     BrowserModule,
     ServiceWorkerModule.register('./ngsw-worker.js', { enabled: environment.production }),
     FormsModule,
-    HttpClientModule,
     TranslateModule.forRoot(),
     NgbModule,
-    CoreModule,
     SharedModule,
     ShellModule,
     HomeModule,
