@@ -33,7 +33,7 @@ namespace AH.Api.Controllers {
         public ActionResult<UserProjectsResponse> GetUserProjectsSummary(string id)
         {   
 
-            var user = _userService.Get (id);
+            var user = _userService.Get(id);
             UserProjectsResponse response = new UserProjectsResponse();
 
             List<ProjectSummary> projects = new List<ProjectSummary>();

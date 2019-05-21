@@ -8,6 +8,7 @@ using System.Text;
 using AH.Api.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace AH.Api.Services {
@@ -20,7 +21,8 @@ namespace AH.Api.Services {
             
             _config = config; 
 
-            _users = agileHouse.GetDatabase().GetCollection<AgileHouseUser>("AgileHouseUser");
+            _users = (agileHouse.GetDatabase().GetCollection<AgileHouseUser>("AgileHouseUser"));
+            
         }
         #endregion
 
@@ -51,13 +53,19 @@ namespace AH.Api.Services {
 
             return user;
         }
-
+ 
         public List<AgileHouseUser> Get () {
             return _users.Find (user => true).ToList ();
         }
 
         public AgileHouseUser Get (string id) {
-            return _users.Find<AgileHouseUser> (user => user.Id.ToString ().CompareTo (id) == 0).FirstOrDefault ();
+            ObjectId objectId;
+            ObjectId.TryParse(id, out objectId);
+
+            var filter = new BsonDocumentFilterDefinition<AgileHouseUser>(new BsonDocument(new BsonElement("_id",objectId)));
+            return _users.Find(filter).FirstOrDefault();
+
+            //return _users.Find<AgileHouseUser>().First();
         }
 
         public AgileHouseUser Create (AgileHouseUser user) {
