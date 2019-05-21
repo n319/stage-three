@@ -54,15 +54,16 @@ export class AuthenticationService {
     //!TODO salt hash me
 
     return this.http.post<AgileHouseUserModel>(url, { username, passwordHash }).pipe(
-      map((user: AgileHouseUserModel) => {
+      map(body => {
         // login successful if there's a jwt token in the response
-        if (user && user.token) {
-          // store user details and jwt token in local storage to keep user logged in between page refreshes
-          this.setCredentials(user);
-          //localStorage.setItem('currentUser', JSON.stringify(user));
+        
+        if (body && body.token) {
+          // store body details and jwt token in local storage to keep body logged in between page refreshes
+          this.setCredentials(body);
+          //localStorage.setItem('currentbody', JSON.stringify(body));
         }
 
-        return user;
+        return body;
       })
     );
   }
@@ -103,9 +104,11 @@ export class AuthenticationService {
   private setCredentials(creds?: AgileHouseUserModel, remember?: boolean) {
     this._credentials = creds || null;
 
+    
+
     if (creds) {
-      const storage = remember ? localStorage : sessionStorage;
-      storage.setItem(environment.sessionKey.credentials, JSON.stringify(creds));
+      //const storage = remember ? localStorage : sessionStorage;
+      sessionStorage.setItem(environment.sessionKey.credentials, JSON.stringify(creds));
     } else {
       sessionStorage.removeItem(environment.sessionKey.credentials);
       localStorage.removeItem(environment.sessionKey.credentials);

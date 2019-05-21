@@ -19,11 +19,11 @@ export class KanbanService {
   
 
   public saveBoardModel(board: BoardModel) {
-    localStorage.setItem(`board`, JSON.stringify(board));
+    sessionStorage.setItem(`board`, JSON.stringify(board));
   }
 
   public getBoardModel(): BoardModel {
-    const item = localStorage.getItem(`board`);
+    const item = sessionStorage.getItem(`board`);
     return JSON.parse(item || '{}');
   }
 

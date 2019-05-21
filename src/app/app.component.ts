@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     // Setup logger
-    debugger;
+    // 
     if (environment.production) {
       Logger.enableProductionMode();
     }

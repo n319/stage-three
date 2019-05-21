@@ -18,7 +18,7 @@ export const environment = {
     get: '/api/user/',
     login: '/api/user/authenticate',
     logout: '/api/user/logout',
-    projectsSummary: '/api/user/userProjectsSummary'
+    projectsSummary: '/api/user/GetUserProjectsSummary'
   },
   postApi:{
     postByUser: 'post/GetByUser?id=',

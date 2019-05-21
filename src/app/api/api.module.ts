@@ -17,7 +17,6 @@ import { CoreModule } from '@app/core';
   providers: [
     AuthenticationService,
     AuthenticationGuard,
-    AuthJWTInterceptor,
     PostService,
     UserService,
     ProjectService,
