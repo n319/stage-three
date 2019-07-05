@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ActivatedRouteSnapshot } from '@angular/router';
-
 
 @Component({
   selector: 'app-home',
@@ -9,7 +7,7 @@ import { ActivatedRouteSnapshot } from '@angular/router';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  constructor(private route: ActivatedRouteSnapshot) {}
+  constructor() {}
 
   ngOnInit() {
   }
