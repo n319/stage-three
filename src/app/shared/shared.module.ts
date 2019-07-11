@@ -12,6 +12,7 @@ import { GalleryBreadcrumbComponent } from './gallery-breadcrumb/gallery-breadcr
 import { KanbanLaneComponent } from './kanban-lane/kanban-lane.component';
 
 import { ContentEditDirective } from './directives/content-edit.directive';
+import { ContentSliderComponent } from './content-slider/content-slider.component';
 
 @NgModule({
   imports: [CommonModule],
@@ -20,7 +21,8 @@ import { ContentEditDirective } from './directives/content-edit.directive';
     LatestPostByCategoryComponent,
     KanbanLaneComponent,
     GalleryBreadcrumbComponent,
-    ContentEditDirective
+    ContentEditDirective,
+    ContentSliderComponent
   ],
   exports: [
     LoaderComponent,

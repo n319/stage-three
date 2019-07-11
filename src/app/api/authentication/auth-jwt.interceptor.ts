@@ -4,7 +4,9 @@ import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/c
 import { Observable } from 'rxjs';
 import { environment } from '@env/environment';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthJWTInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     // add authorization header with jwt token if available

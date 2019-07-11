@@ -25,7 +25,9 @@ export interface LoginContext {
  * Provides a base for authentication workflow.
  * The Credentials interface as well as login/logout methods should be replaced with proper implementation.
  */
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthenticationService {
   private _hasher: any;
 
