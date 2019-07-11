@@ -3,7 +3,6 @@ import { ProjectService } from '../api/project.service';
 import { ViewType, UserProjectsSummaryResponse, ProjectModel, IProject, ViewPanel } from '../api/models/project.model';
 import { Observable } from 'rxjs';
 import { PanelViewProjects } from './models/panel-view.model';
-import { PieceService } from '@app/api/piece.service';
 import { ProjectSummary } from '@app/api/models/agileHouseUser.model';
 import { UserService } from '@app/api/user.service';
 
@@ -14,7 +13,6 @@ export class PanelViewService {
   constructor(
     private projectService: ProjectService,
     private userService: UserService,
-    private pieceService: PieceService
   ) {}
 
   public getUserProjectsByViewPanel(panel: ViewPanel): Observable<PanelViewProjects> {
