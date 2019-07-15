@@ -1,7 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthenticationService, I18nService } from '@app/core';
+import { ProjectService } from '@app/api/project.service';
+import { ProjectModel, UserProjectsSummaryResponse } from '@app/api/models/project.model';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { UserService } from '@app/api/user.service';
+import { share, shareReplay, map, takeUntil } from 'rxjs/operators';
+import { ProjectSummary } from '@app/api/models/agileHouseUser.model';
 
 @Component({
   selector: 'app-header',
@@ -10,14 +16,22 @@ import { AuthenticationService, I18nService } from '@app/core';
 })
 export class HeaderComponent implements OnInit {
   menuHidden = true;
+  projectSummary: Observable<ProjectSummary[]>;
 
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService,
-    private i18nService: I18nService
+    private i18nService: I18nService,
+    private projectSvc: ProjectService,
+    private userSvc: UserService
   ) {}
 
-  ngOnInit() {}
+
+  ngOnInit() {
+
+    this.projectSummary = this.userSvc.GetUserProjectsSummary().pipe(share(), map(summary => summary.projects));
+
+  }
 
   toggleMenu() {
     this.menuHidden = !this.menuHidden;
@@ -26,6 +40,8 @@ export class HeaderComponent implements OnInit {
   setLanguage(language: string) {
     this.i18nService.language = language;
   }
+
+  selectProject() {}
 
   logout() {
     this.authenticationService.logout().subscribe(() => this.router.navigate(['/login'], { replaceUrl: true }));

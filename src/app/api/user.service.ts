@@ -3,7 +3,7 @@ import { Observable, of } from 'rxjs';
 import { AgileHouseUserModel } from './models/agileHouseUser.model';
 import { environment } from '@env/environment';
 import { map } from 'lodash';
-import { UserProjectsSummaryResponse } from './models/project.model';
+import { UserProjectsSummaryResponse, ProjectModel } from './models/project.model';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -25,4 +25,5 @@ export class UserService {
 
     return this.http.cache().get<UserProjectsSummaryResponse>(url);
   }
+
 }

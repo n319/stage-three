@@ -19,9 +19,9 @@ export class PanelViewService {
     this.userService.GetUserProjectsSummary().subscribe((prjSum: UserProjectsSummaryResponse) => {
       const projectSummaryList: ProjectSummary[] = [];
 
-      if (prjSum.Results) {
+      if (prjSum.projects) {
         if (panel === ViewPanel.Backlog) {
-          prjSum.Results.forEach(summary => {
+          prjSum.projects.forEach(summary => {
             if (summary.view === ViewType.Archive || summary.view === ViewType.Pinboard) {
               projectSummaryList.concat(summary);
             }

@@ -46,7 +46,5 @@ export class ProjectModel implements IProject{
 }
 
 export interface UserProjectsSummaryResponse{
-  User: AgileHouseUserModel | null;
-  View: ViewType | null;
-  Results: ProjectSummary[];
+  projects: ProjectSummary[];
 }
