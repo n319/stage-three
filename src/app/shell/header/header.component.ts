@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import { AuthenticationService, I18nService } from '@app/core';
 import { ProjectService } from '@app/api/project.service';
-import { ProjectModel, UserProjectsSummaryResponse } from '@app/api/models/project.model';
+import { ProjectModel, UserProjectsSummaryResponse, ViewType } from '@app/api/models/project.model';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { UserService } from '@app/api/user.service';
 import { share, shareReplay, map, takeUntil } from 'rxjs/operators';
@@ -41,7 +41,32 @@ export class HeaderComponent implements OnInit {
     this.i18nService.language = language;
   }
 
-  selectProject() {}
+  selectProject(projectSummaryId: string) {
+
+    //TODO: pull out routing details
+    this.projectSummary.subscribe(summary => {
+      const selected = summary.filter(prj => prj.id === projectSummaryId)[0];
+      let routerDestination = '';
+
+      if(selected.viewType === ViewType.Archive ||
+        selected.viewType === ViewType.Backlog ||
+        selected.viewType === ViewType.Pinboard ) {
+          routerDestination = '/backlog';
+      }
+      else if(selected.viewType === ViewType.Kanban){
+        routerDestination = '/projects';
+      }else if(selected.viewType === ViewType.Gallery){
+        routerDestination = '/matgallery';
+      }
+
+      sessionStorage.setItem('currentProject', JSON.stringify(selected));
+
+      this.router.navigate([routerDestination], {
+        queryParams: { currentProject: JSON.stringify(selected) }, replaceUrl: false
+      });
+
+    });
+  }
 
   logout() {
     this.authenticationService.logout().subscribe(() => this.router.navigate(['/login'], { replaceUrl: true }));

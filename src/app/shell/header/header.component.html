@@ -43,7 +43,10 @@
           </a>
           <div ngbDropdownMenu aria-labelledby="project-dropdown">
 
-                <button *ngFor="let project of projectSummary | async" class="dropdown-item" (click)="selectProject()" translate>
+                <button *ngFor="let project of projectSummary | async" class="dropdown-item" 
+                (click)="selectProject(project.id)" 
+                [attr.data-project-id]="project.id"
+                translate>
                     {{project.name}}
                   </button>
                   <!-- <button class="dropdown-item" (click)="logout()" translate>Logout</button> -->

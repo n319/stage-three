@@ -21,8 +21,11 @@ export interface IProject extends ISliderContentModel{
   Pieces: string[] | null;
 }
 
-export enum ViewType {Pinboard, Kanban, Archive}
-export enum ViewPanel {Backlog, Kanban}
+export enum ViewType {Pinboard = 'Pinboard', Backlog = 'Backlog',
+                      Archive = 'Archive', Kanban = 'Kanban',
+                      Gallery = 'Gallery'}
+
+export enum UIViewPanel {Backlog, Kanban}
 
 export class ProjectModel implements IProject{
   

@@ -14,7 +14,7 @@ export interface IAgileHouseUser{
 export interface ProjectSummary{
   id: string;
   name: string;
-  view: ViewType;
+  viewType: ViewType;
 }
 
 export class AgileHouseUserModel{

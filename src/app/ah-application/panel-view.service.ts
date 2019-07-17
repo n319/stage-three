@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ProjectService } from '../api/project.service';
-import { ViewType, UserProjectsSummaryResponse, ProjectModel, IProject, ViewPanel } from '../api/models/project.model';
+import { ViewType, UserProjectsSummaryResponse, ProjectModel, IProject, UIViewPanel } from '../api/models/project.model';
 import { Observable } from 'rxjs';
 import { PanelViewProjects } from './models/panel-view.model';
 import { ProjectSummary } from '@app/api/models/agileHouseUser.model';
@@ -15,14 +15,14 @@ export class PanelViewService {
     private userService: UserService,
   ) {}
 
-  public getUserProjectsByViewPanel(panel: ViewPanel): Observable<PanelViewProjects> {
+  public getUserProjectsByViewPanel(panel: UIViewPanel): Observable<PanelViewProjects> {
     this.userService.GetUserProjectsSummary().subscribe((prjSum: UserProjectsSummaryResponse) => {
       const projectSummaryList: ProjectSummary[] = [];
 
       if (prjSum.projects) {
-        if (panel === ViewPanel.Backlog) {
+        if (panel === UIViewPanel.Backlog) {
           prjSum.projects.forEach(summary => {
-            if (summary.view === ViewType.Archive || summary.view === ViewType.Pinboard) {
+            if (summary.viewType === ViewType.Archive || summary.viewType === ViewType.Pinboard) {
               projectSummaryList.concat(summary);
             }
           });
