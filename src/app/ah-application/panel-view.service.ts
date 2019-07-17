@@ -22,12 +22,14 @@ export class PanelViewService {
       if (prjSum.projects) {
         if (panel === UIViewPanel.Backlog) {
           prjSum.projects.forEach(summary => {
-            if (summary.viewType === ViewType.Archive || summary.viewType === ViewType.Pinboard) {
-              projectSummaryList.concat(summary);
+            if (summary.viewType === ViewType.Archive
+              || summary.viewType === ViewType.Pinboard
+              || summary.viewType === ViewType.Backlog) {
+              projectSummaryList.push(summary);
             }
           });
         }
-
+        debugger;
         return this.projectService.getProjectList(projectSummaryList);
       }
     });

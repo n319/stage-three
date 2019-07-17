@@ -15,7 +15,7 @@ export interface IProject extends ISliderContentModel{
   Id: string | null;
   Name: string | null;
   AuthorId: string | null;
-  ProjectView: ViewType;
+  ViewType: ViewType;
   CreatedOn: string | null;
   CompletedOn: string | null;
   Pieces: string[] | null;
@@ -42,7 +42,7 @@ export class ProjectModel implements IProject{
   Id: string | null;
   Name: string | null;
   AuthorId: string | null;
-  ProjectView: ViewType;
+  ViewType: ViewType;
   CreatedOn: string | null;
   CompletedOn: string | null;
   Pieces: string[] | null;

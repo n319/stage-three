@@ -25,7 +25,7 @@ export const environment = {
     postByTag: 'post/GetByTag?id='
   },
   projectApi: {
-    get: '/api/project/',
+    get: '/api/project/getProjectById',
     getList: '/api/project/getList',
     getProjectPieces: 'api/project/pieces/',
     create: '/api/project/',

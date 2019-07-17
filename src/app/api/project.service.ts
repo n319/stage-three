@@ -12,23 +12,9 @@ import { HttpClient } from '@angular/common/http';
 export class ProjectService {
   constructor(private http: HttpClient) {}
 
-  public getCurrentProject(projects: ProjectSummary[]): Observable<ProjectModel> {
-    //TODO: later - local storage persistance?
-    const curr = JSON.parse(sessionStorage.getItem('currentProject')) as ProjectModel;
-    if (curr !== null) {
-      return of(curr);
-    } else {
-      // this.GetUserProjectsSummary().subscribe(summary => {
-      //   if (summary.Results.length > 0) {
-      //     return of();
-      //   }
-      // });
-    }
-  }
-
-  public getProject(id: string): Observable<IProject> {
-    const url = environment.projectApi.get + id;
-    return this.http.cache().get<IProject>(url);
+  public getProject(id: string): Observable<ProjectModel> {
+    const url = environment.apiUrl + environment.projectApi.get + '?id=' + id;
+    return this.http.cache().get<ProjectModel>(url);
   }
 
   public getProjectList(prjs: ProjectSummary[]): Observable<PanelViewProjects> {

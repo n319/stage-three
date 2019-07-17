@@ -6,7 +6,7 @@ export const environment = {
   version: env.npm_package_version,
   defaultLanguage: 'en-US',
   supportedLanguages: ['en-US', 'fr-FR'],
-  apiUrl: 'http://localhost:5001',
+  apiUrl: 'https://localhost:5001',
   sessionKey: {
     credentials : 'credentials'
   },
@@ -20,7 +20,7 @@ export const environment = {
     postByTag: 'post/GetByTag?id='
   },
   projectApi: {
-    get: '/api/project/',
+    get: '/api/project/getProjectById',
     getList: '/api/project/getList',
     getProjectPieces: 'api/project/pieces/',
     create: '/api/project/',
