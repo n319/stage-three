@@ -1,5 +1,5 @@
 <div class="row">
-  <app-pin-board></app-pin-board>
+  <app-pin-board [currentProjectId]='this.route.snapshot.queryParams["currentProjectId"]'></app-pin-board>
 </div>
 <div class="row">
   <app-archive-board></app-archive-board>

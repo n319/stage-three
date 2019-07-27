@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '@env/environment';
-import { IPiece } from './models/piece.model';
+import {  PieceModel } from './models/piece.model';
 import { HttpClient } from '@angular/common/http';
 
 
@@ -11,18 +11,23 @@ import { HttpClient } from '@angular/common/http';
 export class PieceService {
   constructor(private http: HttpClient) {}
 
-  public getPiece(id: string): Observable<IPiece> {
+  public getPiecesListById(projId: string): Observable<PieceModel[]>{
+    const url = environment.apiUrl + environment.pieceApi.getList + "?id=" + projId;
+    return this.http.cache().get<PieceModel[]>(url);
+  }
+
+  public getPiece(id: string): Observable<PieceModel> {
     const url = environment.pieceApi.get + id;
-    return this.http.cache().get<IPiece>(url);
+    return this.http.cache().get<PieceModel>(url);
   }
 
-  public createPiece(project: IPiece): Observable<IPiece> {
+  public createPiece(project: PieceModel): Observable<PieceModel> {
     const url = environment.pieceApi.create;
-    return this.http.put<IPiece>(url, project);
+    return this.http.put<PieceModel>(url, project);
   }
 
-  public updatePiece(project: IPiece): Observable<IPiece> {
+  public updatePiece(project: PieceModel): Observable<PieceModel> {
     const url = environment.pieceApi.update;
-    return this.http.post<IPiece>(url, project);
+    return this.http.post<PieceModel>(url, project);
   }
 }

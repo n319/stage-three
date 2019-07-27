@@ -1,30 +1,27 @@
 import { ISliderContentModel, UISliderContentModel } from "./project.model";
 
-export interface IPiece extends ISliderContentModel {
-  Id: string | null;
-  Name: string | null;
-  AuthorId: string | null;
-  CreatedOn: string | null;
-  CompletedOn: string | null;
-  Pieces: string[] | null;
-}
 
-export class PieceModel implements IPiece {
+
+export class PieceModel {
 
   getContent() : UISliderContentModel {
     const model: UISliderContentModel = {
       thumbnail: '',
-      title: this.Name,
+      title: this.name,
       subtext: '',
       link: ''
     };
     return model;
   };
   
-  Id: string | null;
-  Name: string | null;
-  AuthorId: string | null;
-  CreatedOn: string | null;
-  CompletedOn: string | null;
-  Pieces: string[] | null;
+  id: string | null;
+  name: string | null;
+  authorId: string | null;
+  projectId: string | null;
+  status: string | null;
+  description: string | null;
+  createdOn: string | null;
+  completedOn: string | null;
+  tags: string[] | null;
+  checklist: string[] | null;
 }

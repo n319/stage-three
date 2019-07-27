@@ -9,13 +9,20 @@ import { ProjectModel } from '@app/api/models/project.model';
 })
 export class BacklogHomeComponent implements OnInit {
 
-  currentProject: ProjectModel[];
+  currentProjectId: string;
+  
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(public route: ActivatedRoute) { }
   
 
   ngOnInit() {
+  //this.route.snapshot.data.viewData
+    if(this.currentProjectId === null){
+      this.currentProjectId = '';
+      
+    }
     
+
   }
 
 }

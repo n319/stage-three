@@ -1,3 +1,3 @@
 <div class="Pinboard col-12">
-    
+    <app-pin-note *ngFor="let pieceId of currentProjectPieces | async" [pieceId]=pieceId></app-pin-note>
 </div>

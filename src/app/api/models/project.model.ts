@@ -12,13 +12,13 @@ export interface UISliderContentModel{
 }
 
 export interface IProject extends ISliderContentModel{
-  Id: string | null;
-  Name: string | null;
-  AuthorId: string | null;
-  ViewType: ViewType;
-  CreatedOn: string | null;
-  CompletedOn: string | null;
-  Pieces: string[] | null;
+  id: string | null;
+  name: string | null;
+  authorId: string | null;
+  viewType: ViewType;
+  createdOn: string | null;
+  completedOn: string | null;
+  pieces: string[] | null;
 }
 
 export enum ViewType {Pinboard = 'Pinboard', Backlog = 'Backlog',
@@ -32,20 +32,20 @@ export class ProjectModel implements IProject{
   getContent() : UISliderContentModel {
     const model: UISliderContentModel = {
       thumbnail: '',
-      title: this.Name,
-      subtext: this.Pieces.length.toString(),
+      title: this.name,
+      subtext: this.pieces.length.toString(),
       link: ''
     };
     return model;
   };
 
-  Id: string | null;
-  Name: string | null;
-  AuthorId: string | null;
-  ViewType: ViewType;
-  CreatedOn: string | null;
-  CompletedOn: string | null;
-  Pieces: string[] | null;
+  id: string | null;
+  name: string | null;
+  authorId: string | null;
+  viewType: ViewType;
+  createdOn: string | null;
+  completedOn: string | null;
+  pieces: string[] | null;
 }
 
 export interface UserProjectsSummaryResponse{

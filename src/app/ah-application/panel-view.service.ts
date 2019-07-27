@@ -1,18 +1,20 @@
 import { Injectable } from '@angular/core';
 import { ProjectService } from '../api/project.service';
-import { ViewType, UserProjectsSummaryResponse, ProjectModel, IProject, UIViewPanel } from '../api/models/project.model';
-import { Observable } from 'rxjs';
+import { ViewType, UserProjectsSummaryResponse, UIViewPanel, ProjectModel } from '../api/models/project.model';
+import { Observable, of } from 'rxjs';
 import { PanelViewProjects } from './models/panel-view.model';
 import { ProjectSummary } from '@app/api/models/agileHouseUser.model';
 import { UserService } from '@app/api/user.service';
+import { PieceService } from '@app/api/piece.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PanelViewService {
   constructor(
-    private projectService: ProjectService,
-    private userService: UserService,
+    public pieceService: PieceService,
+    public projectService: ProjectService,
+    public userService: UserService,
   ) {}
 
   public getUserProjectsByViewPanel(panel: UIViewPanel): Observable<PanelViewProjects> {
@@ -29,7 +31,6 @@ export class PanelViewService {
             }
           });
         }
-        debugger;
         return this.projectService.getProjectList(projectSummaryList);
       }
     });

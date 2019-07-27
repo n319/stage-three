@@ -8,9 +8,11 @@ import { LinkNoteComponent } from './link-note/link-note.component';
 import { BaseViewModule } from '@app/base-view/base-view.module';
 import { SharedModule } from '@app/shared';
 import { ProjectGroupComponent } from './project-group/project-group.component';
+import { PinNoteComponent } from './pin-note/pin-note.component';
 
 @NgModule({
-  declarations: [PinBoardComponent, StickyNoteComponent, ListNoteComponent, StickerComponent, LinkNoteComponent, ProjectGroupComponent],
+  declarations: [PinBoardComponent, StickyNoteComponent, ListNoteComponent, 
+    StickerComponent, LinkNoteComponent, ProjectGroupComponent, PinNoteComponent],
   imports: [
     CommonModule,
     BaseViewModule,
