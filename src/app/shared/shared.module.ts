@@ -13,6 +13,8 @@ import { KanbanLaneComponent } from './kanban-lane/kanban-lane.component';
 
 import { ContentEditDirective } from './directives/content-edit.directive';
 import { ContentSliderComponent } from './content-slider/content-slider.component';
+import {ReactiveFormsModule} from '@angular/forms';
+
 
 @NgModule({
   imports: [CommonModule],
@@ -28,7 +30,8 @@ import { ContentSliderComponent } from './content-slider/content-slider.componen
     LoaderComponent,
     LatestPostByCategoryComponent,
     KanbanLaneComponent,
-    ContentEditDirective
+    ContentEditDirective,
+    ReactiveFormsModule
   ]
 })
 export class SharedModule {}
