@@ -9,10 +9,7 @@ import { ISliderContentModel } from '@app/api/models/project.model';
 export class ContentSliderComponent<T extends ISliderContentModel[]> implements OnInit {
   @Input() contentList: T;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
-
+  ngOnInit(): void {}
 }

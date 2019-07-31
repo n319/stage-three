@@ -1,6 +1,6 @@
-import { ViewType } from "./project.model";
+import { ViewType } from './project.model';
 
-export interface IAgileHouseUser{
+export interface IAgileHouseUser {
   id: string;
   passwordHash: string | null;
   username: string | null;
@@ -11,13 +11,13 @@ export interface IAgileHouseUser{
   projects: string[] | null;
 }
 
-export interface ProjectSummary{
+export interface ProjectSummary {
   id: string;
   name: string;
   viewType: ViewType;
 }
 
-export class AgileHouseUserModel{
+export class AgileHouseUserModel {
   id: string;
   passwordHash: string | null;
   username: string | null;

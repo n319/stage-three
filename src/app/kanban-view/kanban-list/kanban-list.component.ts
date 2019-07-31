@@ -6,8 +6,4 @@ import { ListViewComponent } from '@app/base-view/list-view.component';
   templateUrl: './kanban-list.component.html',
   styleUrls: ['./kanban-list.component.scss']
 })
-export class KanbanListComponent extends ListViewComponent {
-
-
-
-}
+export class KanbanListComponent extends ListViewComponent {}

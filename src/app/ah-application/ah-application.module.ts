@@ -9,9 +9,7 @@ import { CoreModule } from '@app/core';
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule, ApiModule
-  ],
+  imports: [CommonModule, ApiModule],
   providers: [KanbanService, ListViewService, PanelViewService, ContentViewService]
 })
-export class AHApplicationModule { }
+export class AHApplicationModule {}

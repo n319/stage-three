@@ -9,11 +9,13 @@ import { BaseViewModule } from '@app/base-view/base-view.module';
 import { SharedModule } from '@app/shared';
 
 @NgModule({
-  declarations: [KanbanBoardComponent, CardDetailComponent, CardSummaryComponent, ContextMenuComponent, KanbanListComponent],
-  imports: [
-    CommonModule,
-    BaseViewModule,
-    SharedModule
-  ]
+  declarations: [
+    KanbanBoardComponent,
+    CardDetailComponent,
+    CardSummaryComponent,
+    ContextMenuComponent,
+    KanbanListComponent
+  ],
+  imports: [CommonModule, BaseViewModule, SharedModule]
 })
-export class KanbanViewModule { }
+export class KanbanViewModule {}

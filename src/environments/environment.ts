@@ -12,7 +12,7 @@ export const environment = {
   supportedLanguages: ['en-US'],
   apiUrl: 'https://localhost:5001',
   sessionKey: {
-    credentials : 'credentials'
+    credentials: 'credentials'
   },
   userApi: {
     get: '/api/user/',
@@ -20,7 +20,7 @@ export const environment = {
     logout: '/api/user/logout',
     projectsSummary: '/api/user/GetUserProjectsSummary'
   },
-  postApi:{
+  postApi: {
     postByUser: 'post/GetByUser?id=',
     postByTag: 'post/GetByTag?id='
   },

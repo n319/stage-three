@@ -8,13 +8,11 @@ import { LatestPostByCategoryComponent } from './latest-post-by-category/latest-
 
 import { GalleryBreadcrumbComponent } from './gallery-breadcrumb/gallery-breadcrumb.component';
 
-
 import { KanbanLaneComponent } from './kanban-lane/kanban-lane.component';
 
 import { ContentEditDirective } from './directives/content-edit.directive';
 import { ContentSliderComponent } from './content-slider/content-slider.component';
-import {ReactiveFormsModule} from '@angular/forms';
-
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [CommonModule],
@@ -31,7 +29,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     LatestPostByCategoryComponent,
     KanbanLaneComponent,
     ContentEditDirective,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class SharedModule {}

@@ -12,10 +12,9 @@ import { PieceModel } from '@app/api/models/piece.model';
   providedIn: 'root'
 })
 export class BacklogResolverService implements Resolve<PieceModel[]> {
-  constructor(private router: Router, private data: PanelViewService ) {}
+  constructor(private router: Router, private data: PanelViewService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<PieceModel[] | null> {
-
     if (route.queryParamMap.has('currentProjectId')) {
       return this.data.pieceService.getPiecesListById(route.queryParams['currentProjectId']);
     } else {

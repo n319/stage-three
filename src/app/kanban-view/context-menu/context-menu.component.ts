@@ -6,5 +6,4 @@ import { ContextMenuViewComponent } from '@app/base-view/context-menu-view.compo
   templateUrl: './context-menu.component.html',
   styleUrls: ['./context-menu.component.scss']
 })
-export class ContextMenuComponent extends ContextMenuViewComponent{
-}
+export class ContextMenuComponent extends ContextMenuViewComponent {}

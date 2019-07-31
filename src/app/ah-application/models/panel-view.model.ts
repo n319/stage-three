@@ -1,5 +1,5 @@
-import { ProjectModel } from "@app/api/models/project.model";
+import { ProjectModel } from '@app/api/models/project.model';
 
-export interface PanelViewProjects{
-    Projects: ProjectModel[];
+export interface PanelViewProjects {
+  Projects: ProjectModel[];
 }

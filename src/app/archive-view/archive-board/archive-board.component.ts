@@ -7,9 +7,5 @@ import { PanelViewComponent } from '@app/base-view/panel-view.component';
   styleUrls: ['./archive-board.component.scss']
 })
 export class ArchiveBoardComponent extends PanelViewComponent implements OnInit {
-
-  ngOnInit() {
-    
-  }
-
+  ngOnInit() {}
 }

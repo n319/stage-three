@@ -6,14 +6,11 @@ import { ViewType } from '@app/api/models/project.model';
   template: ''
 })
 export class PanelViewComponent {
-  
   view: ViewType;
 
-  constructor(public data: PanelViewService) { }
-  
-  ngOnInit() {
-    
-  }
+  constructor(public data: PanelViewService) {}
+
+  ngOnInit() {}
 
   addList() {
     // const newList: ListInterface = new List();
@@ -36,7 +33,7 @@ export class PanelViewComponent {
     // this.localService.saveBoard(boardModel);
   }
 
-  deleteList(listIndex: number){
-      // this.lists.splice(listIndex,1);
+  deleteList(listIndex: number) {
+    // this.lists.splice(listIndex,1);
   }
 }

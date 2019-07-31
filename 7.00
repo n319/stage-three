@@ -1,0 +1,4 @@
++ @angular/material@8.1.1
+added 1 package and audited 42077 packages in 44.331s
+found 3 vulnerabilities (1 low, 2 high)
+  run `npm audit fix` to fix them, or `npm audit` for details

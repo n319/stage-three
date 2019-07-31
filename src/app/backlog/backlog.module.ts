@@ -7,11 +7,15 @@ import { PinboardViewModule } from '@app/pinboard-view/pinboard-view.module';
 import { ArchiveViewModule } from '@app/archive-view/archive-view.module';
 import { AHApplicationModule } from '@app/ah-application/ah-application.module';
 
-
 @NgModule({
-  declarations: [
-    BacklogHomeComponent
-  ],
-  imports: [CommonModule, SharedModule, BacklogRoutingModule, PinboardViewModule, ArchiveViewModule, AHApplicationModule]
+  declarations: [BacklogHomeComponent],
+  imports: [
+    CommonModule,
+    SharedModule,
+    BacklogRoutingModule,
+    PinboardViewModule,
+    ArchiveViewModule,
+    AHApplicationModule
+  ]
 })
 export class BacklogModule {}

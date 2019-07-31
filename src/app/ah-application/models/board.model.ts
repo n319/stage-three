@@ -1,25 +1,18 @@
-import {CardModel, ICard} from './card.model';
-import {IList} from './list.model';
+import { CardModel, ICard } from './card.model';
+import { IList } from './list.model';
 
 export interface IBoard {
   id: string;
   name: string;
   lists: IList[];
-
 }
 
-
 export class BoardModel implements IBoard {
-
   id: string;
   name: string;
   lists: IList[];
 
-
-  constructor() {
-  }
-
-
+  constructor() {}
 
   // addCard(card: CardInterface) {
   //   if (this.isCardEmpty()) {
@@ -45,6 +38,4 @@ export class BoardModel implements IBoard {
   // private isCardEmpty() {
   //   return this.cards === undefined || this.cards === null;
   // }
-
-
 }

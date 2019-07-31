@@ -10,14 +10,30 @@ import { SharedModule } from '@app/shared';
 import { ProjectGroupComponent } from './project-group/project-group.component';
 import { PinNoteComponent } from './pin-note/pin-note.component';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormlyModule } from '@ngx-formly/core';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 @NgModule({
-  declarations: [PinBoardComponent, StickyNoteComponent, ListNoteComponent, 
-    StickerComponent, LinkNoteComponent, ProjectGroupComponent, PinNoteComponent],
+  declarations: [
+    PinBoardComponent,
+    StickyNoteComponent,
+    ListNoteComponent,
+    StickerComponent,
+    LinkNoteComponent,
+    ProjectGroupComponent,
+    PinNoteComponent
+  ],
   imports: [
     CommonModule,
     BaseViewModule,
-    SharedModule
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
+    FormlyModule,
+    BrowserAnimationsModule
   ],
   exports: [PinBoardComponent]
 })
-export class PinboardViewModule { }
+export class PinboardViewModule {}

@@ -8,9 +8,8 @@ describe('BacklogHomeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BacklogHomeComponent ]
-    })
-    .compileComponents();
+      declarations: [BacklogHomeComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

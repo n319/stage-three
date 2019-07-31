@@ -1,10 +1,7 @@
-import { ISliderContentModel, UISliderContentModel } from "./project.model";
-
-
+import { ISliderContentModel, UISliderContentModel } from './project.model';
 
 export class PieceModel {
-
-  getContent() : UISliderContentModel {
+  getContent(): UISliderContentModel {
     const model: UISliderContentModel = {
       thumbnail: '',
       title: this.name,
@@ -12,8 +9,8 @@ export class PieceModel {
       link: ''
     };
     return model;
-  };
-  
+  }
+
   id: string | null;
   name: string | null;
   authorId: string | null;

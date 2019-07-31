@@ -8,9 +8,8 @@ describe('ArchiveBoardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ArchiveBoardComponent ]
-    })
-    .compileComponents();
+      declarations: [ArchiveBoardComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

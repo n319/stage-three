@@ -1,26 +1,19 @@
-import {CardModel, ICard} from './card.model';
+import { CardModel, ICard } from './card.model';
 
 export interface IList {
   id: string;
   name: string;
   position: number;
   cards: ICard[];
-
 }
 
-
 export class ListModel implements IList {
-
   cards: ICard[] = [];
   id: string;
   name: string;
   position: number;
 
-
-  constructor() {
-  }
-
-
+  constructor() {}
 
   addCard(card: ICard) {
     if (this.isCardEmpty()) {
@@ -34,18 +27,15 @@ export class ListModel implements IList {
       return null;
     }
     const cardIndex = this.cards.findIndex(x => x.id === id);
-    if ( cardIndex > -1 ) {
+    if (cardIndex > -1) {
       const cardInterfaces = this.cards.splice(cardIndex, 1);
       return cardInterfaces[0];
     }
 
     return null;
-
   }
 
   private isCardEmpty() {
     return this.cards === undefined || this.cards === null;
   }
-
-
 }

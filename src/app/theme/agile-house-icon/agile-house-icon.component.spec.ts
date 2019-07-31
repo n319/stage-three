@@ -8,9 +8,8 @@ describe('AgileHouseIconComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AgileHouseIconComponent ]
-    })
-    .compileComponents();
+      declarations: [AgileHouseIconComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

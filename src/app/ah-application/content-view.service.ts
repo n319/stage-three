@@ -5,6 +5,5 @@ import { PieceService } from '../api/piece.service';
   providedIn: 'root'
 })
 export class ContentViewService {
-
-  constructor(public pieceService: PieceService) { }
+  constructor(public pieceService: PieceService) {}
 }

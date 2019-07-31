@@ -8,14 +8,14 @@ export const environment = {
   supportedLanguages: ['en-US', 'fr-FR'],
   apiUrl: 'https://localhost:5001',
   sessionKey: {
-    credentials : 'credentials'
+    credentials: 'credentials'
   },
   userApi: {
     get: '/api/user/',
     login: '/api/user/authenticate',
-    logout: '/api/user/logout',
+    logout: '/api/user/logout'
   },
-  postApi:{
+  postApi: {
     postByUser: 'post/GetByUser?id=',
     postByTag: 'post/GetByTag?id='
   },

@@ -7,10 +7,6 @@ import { BreadCrumbTrailComponent } from './bread-crumb-trail/bread-crumb-trail.
 
 @NgModule({
   declarations: [MaterialGalleryComponent, BreadCrumbTrailComponent],
-  imports: [
-    CommonModule,
-    SharedModule,
-    MaterialGalleryRoutingModule
-  ]
+  imports: [CommonModule, SharedModule, MaterialGalleryRoutingModule]
 })
-export class MatGalleryModule { }
+export class MatGalleryModule {}

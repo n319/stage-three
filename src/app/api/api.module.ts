@@ -14,14 +14,7 @@ import { CoreModule } from '@app/core';
 @NgModule({
   declarations: [],
   imports: [CommonModule, CoreModule],
-  providers: [
-    AuthenticationService,
-    AuthenticationGuard,
-    PostService,
-    UserService,
-    ProjectService,
-    PieceService
-  ],
+  providers: [AuthenticationService, AuthenticationGuard, PostService, UserService, ProjectService, PieceService],
   exports: []
 })
 export class ApiModule {}

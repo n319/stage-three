@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '@env/environment';
-import {  PieceModel } from './models/piece.model';
+import { PieceModel } from './models/piece.model';
 import { HttpClient } from '@angular/common/http';
-
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +10,8 @@ import { HttpClient } from '@angular/common/http';
 export class PieceService {
   constructor(private http: HttpClient) {}
 
-  public getPiecesListById(projId: string): Observable<PieceModel[]>{
-    const url = environment.apiUrl + environment.pieceApi.getList + "?id=" + projId;
+  public getPiecesListById(projId: string): Observable<PieceModel[]> {
+    const url = environment.apiUrl + environment.pieceApi.getList + '?id=' + projId;
     return this.http.cache().get<PieceModel[]>(url);
   }
 

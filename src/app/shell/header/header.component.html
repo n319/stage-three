@@ -1,6 +1,6 @@
 <header>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <app-agile-house-icon></app-agile-house-icon>
+    <!-- <app-agile-house-icon></app-agile-house-icon> -->
     <button
       class="navbar-toggler"
       type="button"
@@ -35,21 +35,22 @@
         </a>
       </div>
       <div class="navbar-nav ml-auto">
-
         <div class="nav-item" ngbDropdown>
           <a id="project-dropdown" class="nav-link" ngbDropdownToggle>
             Projects
             <!-- TODO add ngIf with current project name -->
           </a>
           <div ngbDropdownMenu aria-labelledby="project-dropdown">
-
-                <button *ngFor="let project of projectSummary | async" class="dropdown-item" 
-                (click)="selectProject(project.id)" 
-                [attr.data-project-id]="project.id"
-                translate>
-                    {{project.name}}
-                  </button>
-                  <!-- <button class="dropdown-item" (click)="logout()" translate>Logout</button> -->
+            <button
+              *ngFor="let project of projectSummary | async"
+              class="dropdown-item"
+              (click)="selectProject(project.id)"
+              [attr.data-project-id]="project.id"
+              translate
+            >
+              {{ project.name }}
+            </button>
+            <!-- <button class="dropdown-item" (click)="logout()" translate>Logout</button> -->
           </div>
         </div>
 

@@ -1,6 +1,6 @@
-import { ISliderContentModel, UISliderContentModel } from "./project.model";
+import { ISliderContentModel, UISliderContentModel } from './project.model';
 
-export interface IPost extends ISliderContentModel{
+export interface IPost extends ISliderContentModel {
   id: string;
   type: string;
   name: string;
@@ -8,8 +8,7 @@ export interface IPost extends ISliderContentModel{
 }
 
 export class PostModel implements IPost {
-  
-  getContent() : UISliderContentModel {
+  getContent(): UISliderContentModel {
     const model: UISliderContentModel = {
       thumbnail: '',
       title: this.name,
@@ -17,8 +16,8 @@ export class PostModel implements IPost {
       link: ''
     };
     return model;
-  };
-  
+  }
+
   id: string;
   type: string;
   name: string;

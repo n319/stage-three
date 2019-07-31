@@ -14,7 +14,7 @@ export class PanelViewService {
   constructor(
     public pieceService: PieceService,
     public projectService: ProjectService,
-    public userService: UserService,
+    public userService: UserService
   ) {}
 
   public getUserProjectsByViewPanel(panel: UIViewPanel): Observable<PanelViewProjects> {
@@ -24,9 +24,11 @@ export class PanelViewService {
       if (prjSum.projects) {
         if (panel === UIViewPanel.Backlog) {
           prjSum.projects.forEach(summary => {
-            if (summary.viewType === ViewType.Archive
-              || summary.viewType === ViewType.Pinboard
-              || summary.viewType === ViewType.Backlog) {
+            if (
+              summary.viewType === ViewType.Archive ||
+              summary.viewType === ViewType.Pinboard ||
+              summary.viewType === ViewType.Backlog
+            ) {
               projectSummaryList.push(summary);
             }
           });

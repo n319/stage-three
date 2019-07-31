@@ -8,9 +8,8 @@ describe('LinkNoteComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LinkNoteComponent ]
-    })
-    .compileComponents();
+      declarations: [LinkNoteComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

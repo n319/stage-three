@@ -8,9 +8,8 @@ describe('StickerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StickerComponent ]
-    })
-    .compileComponents();
+      declarations: [StickerComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

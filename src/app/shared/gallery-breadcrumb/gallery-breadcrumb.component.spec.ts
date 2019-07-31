@@ -8,9 +8,8 @@ describe('GalleryBreadcrumbComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GalleryBreadcrumbComponent ]
-    })
-    .compileComponents();
+      declarations: [GalleryBreadcrumbComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

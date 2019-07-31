@@ -1,17 +1,8 @@
+<form [formGroup]="form" (ngSubmit)="submit(model)">
+  <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
 
-
-<div formArrayName="pinNoteFormControls">
-    <!-- <h3>Aliases</h3> <button (click)="addAlias()">Add Alias</button> -->
-  
-    <div *ngFor="let model of pinNoteFormControls.controls; let i=index">
-      <!-- The repeated alias template -->
-      <label>
-        {{i.name}}
-        <input type="text" [formControlName]="i">
-      </label>
-    </div>
-  </div>
-
-<div *ngIf="dataModel.value as test">
+<!-- <div *ngIf="dataModel as test">
   {{ test.name }}
-</div>
+</div> -->

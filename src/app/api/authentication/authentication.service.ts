@@ -58,7 +58,7 @@ export class AuthenticationService {
     return this.http.post<AgileHouseUserModel>(url, { username, passwordHash }).pipe(
       map(body => {
         // login successful if there's a jwt token in the response
-        
+
         if (body && body.token) {
           // store body details and jwt token in local storage to keep body logged in between page refreshes
           this.setCredentials(body);
@@ -105,8 +105,6 @@ export class AuthenticationService {
    */
   private setCredentials(creds?: AgileHouseUserModel, remember?: boolean) {
     this._credentials = creds || null;
-
-    
 
     if (creds) {
       //const storage = remember ? localStorage : sessionStorage;

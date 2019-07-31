@@ -8,21 +8,14 @@ import { ProjectModel } from '@app/api/models/project.model';
   styleUrls: ['./backlog-home.component.scss']
 })
 export class BacklogHomeComponent implements OnInit {
-
   currentProjectId: string;
-  
 
-  constructor(public route: ActivatedRoute) { }
-  
+  constructor(public route: ActivatedRoute) {}
 
   ngOnInit() {
-  //this.route.snapshot.data.viewData
-    if(this.currentProjectId === null){
+    //this.route.snapshot.data.viewData
+    if (this.currentProjectId === null) {
       this.currentProjectId = '';
-      
     }
-    
-
   }
-
 }

@@ -26,11 +26,11 @@ export class HeaderComponent implements OnInit {
     private userSvc: UserService
   ) {}
 
-
   ngOnInit() {
-
-    this.projectSummary = this.userSvc.GetUserProjectsSummary().pipe(share(), map(summary => summary.projects));
-
+    this.projectSummary = this.userSvc.GetUserProjectsSummary().pipe(
+      share(),
+      map(summary => summary.projects)
+    );
   }
 
   toggleMenu() {
@@ -42,20 +42,20 @@ export class HeaderComponent implements OnInit {
   }
 
   selectProject(projectSummaryId: string) {
-
     //TODO: pull out routing details
     this.projectSummary.subscribe(summary => {
       const selected = summary.filter(prj => prj.id === projectSummaryId)[0];
       let routerDestination = '';
 
-      if(selected.viewType === ViewType.Archive ||
+      if (
+        selected.viewType === ViewType.Archive ||
         selected.viewType === ViewType.Backlog ||
-        selected.viewType === ViewType.Pinboard ) {
-          routerDestination = '/backlog';
-      }
-      else if(selected.viewType === ViewType.Kanban){
+        selected.viewType === ViewType.Pinboard
+      ) {
+        routerDestination = '/backlog';
+      } else if (selected.viewType === ViewType.Kanban) {
         routerDestination = '/projects';
-      }else if(selected.viewType === ViewType.Gallery){
+      } else if (selected.viewType === ViewType.Gallery) {
         routerDestination = '/matgallery';
       }
 
@@ -64,7 +64,6 @@ export class HeaderComponent implements OnInit {
       this.router.navigate([routerDestination], {
         queryParams: { currentProjectId: selected.id }
       });
-
     });
   }
 

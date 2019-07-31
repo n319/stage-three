@@ -8,9 +8,8 @@ describe('KanbanLaneComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ KanbanLaneComponent ]
-    })
-    .compileComponents();
+      declarations: [KanbanLaneComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

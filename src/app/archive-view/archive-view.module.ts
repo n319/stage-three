@@ -6,11 +6,7 @@ import { SharedModule } from '@app/shared';
 
 @NgModule({
   declarations: [ArchiveBoardComponent],
-  imports: [
-    CommonModule,
-    BaseViewModule,
-    SharedModule
-  ],
+  imports: [CommonModule, BaseViewModule, SharedModule],
   exports: [ArchiveBoardComponent]
 })
-export class ArchiveViewModule { }
+export class ArchiveViewModule {}

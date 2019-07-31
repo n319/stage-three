@@ -5,10 +5,7 @@ import { PieceService } from '../api/piece.service';
   providedIn: 'root'
 })
 export class ListViewService {
+  constructor(public pieceService: PieceService) {}
 
-  constructor(public pieceService: PieceService) { }
-
-  public getPieceSummariesForList(listId: string){
-    
-  }
+  public getPieceSummariesForList(listId: string) {}
 }

@@ -30,7 +30,7 @@ import { ApiModule } from '@app/api/api.module';
       provide: RouteReuseStrategy,
       useClass: RouteReusableStrategy
     }
-  ],
+  ]
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {

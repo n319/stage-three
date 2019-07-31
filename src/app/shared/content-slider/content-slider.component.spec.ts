@@ -8,9 +8,8 @@ describe('ContentSliderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ContentSliderComponent ]
-    })
-    .compileComponents();
+      declarations: [ContentSliderComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

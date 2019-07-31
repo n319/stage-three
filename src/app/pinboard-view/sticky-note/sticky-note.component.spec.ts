@@ -8,9 +8,8 @@ describe('StickyNoteComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StickyNoteComponent ]
-    })
-    .compileComponents();
+      declarations: [StickyNoteComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

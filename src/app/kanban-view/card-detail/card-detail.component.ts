@@ -6,5 +6,4 @@ import { ContentDetailViewComponent } from '@app/base-view/content-detail-view.c
   templateUrl: './card-detail.component.html',
   styleUrls: ['./card-detail.component.scss']
 })
-export class CardDetailComponent extends ContentDetailViewComponent{
-}
+export class CardDetailComponent extends ContentDetailViewComponent {}

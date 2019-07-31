@@ -11,9 +11,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ProjectService {
   constructor(private http: HttpClient) {}
-  
-  
-  
+
   public getProject(id: string): Observable<ProjectModel> {
     const url = environment.apiUrl + environment.projectApi.get + '?id=' + id;
     return this.http.cache().get<ProjectModel>(url);

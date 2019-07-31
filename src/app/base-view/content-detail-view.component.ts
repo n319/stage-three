@@ -5,8 +5,5 @@ import { ContentViewService } from '@app/ah-application/content-view.service';
   template: ''
 })
 export class ContentDetailViewComponent {
-
-  constructor(public data: ContentViewService) { }
-
-
+  constructor(public data: ContentViewService) {}
 }

@@ -4,9 +4,5 @@ import { Component, OnInit } from '@angular/core';
   template: ''
 })
 export class ContextMenuViewComponent {
-
-  constructor() { }
-
-
-
+  constructor() {}
 }

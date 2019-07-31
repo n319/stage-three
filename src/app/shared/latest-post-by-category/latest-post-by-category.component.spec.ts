@@ -8,9 +8,8 @@ describe('LatestPostByCategoryComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LatestPostByCategoryComponent ]
-    })
-    .compileComponents();
+      declarations: [LatestPostByCategoryComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

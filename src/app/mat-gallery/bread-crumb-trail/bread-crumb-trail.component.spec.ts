@@ -8,9 +8,8 @@ describe('BreadCrumbTrailComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BreadCrumbTrailComponent ]
-    })
-    .compileComponents();
+      declarations: [BreadCrumbTrailComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

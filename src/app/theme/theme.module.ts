@@ -4,9 +4,7 @@ import { AgileHouseIconComponent } from './agile-house-icon/agile-house-icon.com
 
 @NgModule({
   declarations: [AgileHouseIconComponent],
-  imports: [
-    CommonModule
-  ],
+  imports: [CommonModule],
   exports: [AgileHouseIconComponent]
 })
-export class ThemeModule { }
+export class ThemeModule {}

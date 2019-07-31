@@ -1,17 +1,17 @@
-import { AgileHouseUserModel, ProjectSummary } from "./agileHouseUser.model";
+import { AgileHouseUserModel, ProjectSummary } from './agileHouseUser.model';
 
-export interface ISliderContentModel{
+export interface ISliderContentModel {
   getContent(): UISliderContentModel;
 }
 
-export interface UISliderContentModel{
+export interface UISliderContentModel {
   thumbnail: string;
   title: string;
   subtext: string;
   link: string;
 }
 
-export interface IProject extends ISliderContentModel{
+export interface IProject extends ISliderContentModel {
   id: string | null;
   name: string | null;
   authorId: string | null;
@@ -21,15 +21,21 @@ export interface IProject extends ISliderContentModel{
   pieces: string[] | null;
 }
 
-export enum ViewType {Pinboard = 'Pinboard', Backlog = 'Backlog',
-                      Archive = 'Archive', Kanban = 'Kanban',
-                      Gallery = 'Gallery'}
+export enum ViewType {
+  Pinboard = 'Pinboard',
+  Backlog = 'Backlog',
+  Archive = 'Archive',
+  Kanban = 'Kanban',
+  Gallery = 'Gallery'
+}
 
-export enum UIViewPanel {Backlog, Kanban}
+export enum UIViewPanel {
+  Backlog,
+  Kanban
+}
 
-export class ProjectModel implements IProject{
-  
-  getContent() : UISliderContentModel {
+export class ProjectModel implements IProject {
+  getContent(): UISliderContentModel {
     const model: UISliderContentModel = {
       thumbnail: '',
       title: this.name,
@@ -37,7 +43,7 @@ export class ProjectModel implements IProject{
       link: ''
     };
     return model;
-  };
+  }
 
   id: string | null;
   name: string | null;
@@ -48,6 +54,6 @@ export class ProjectModel implements IProject{
   pieces: string[] | null;
 }
 
-export interface UserProjectsSummaryResponse{
+export interface UserProjectsSummaryResponse {
   projects: ProjectSummary[];
 }

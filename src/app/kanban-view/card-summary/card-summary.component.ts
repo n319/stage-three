@@ -6,5 +6,4 @@ import { ContentSummaryViewComponent } from '@app/base-view/content-summary-view
   templateUrl: './card-summary.component.html',
   styleUrls: ['./card-summary.component.scss']
 })
-export class CardSummaryComponent extends ContentSummaryViewComponent{
-}
+export class CardSummaryComponent extends ContentSummaryViewComponent {}

@@ -8,9 +8,8 @@ describe('MaterialGalleryComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MaterialGalleryComponent ]
-    })
-    .compileComponents();
+      declarations: [MaterialGalleryComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

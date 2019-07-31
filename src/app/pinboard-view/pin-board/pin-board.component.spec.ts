@@ -8,9 +8,8 @@ describe('PinBoardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PinBoardComponent ]
-    })
-    .compileComponents();
+      declarations: [PinBoardComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

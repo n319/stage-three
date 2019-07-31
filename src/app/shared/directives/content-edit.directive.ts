@@ -1,20 +1,25 @@
-import { Directive, HostListener, ElementRef, Renderer, Input, EventEmitter, Output, OnInit, Renderer2 } from '@angular/core';
+import {
+  Directive,
+  HostListener,
+  ElementRef,
+  Renderer,
+  Input,
+  EventEmitter,
+  Output,
+  OnInit,
+  Renderer2
+} from '@angular/core';
 
 @Directive({
   selector: '[appContentEdit]'
 })
 export class ContentEditDirective implements OnInit {
-
-
-
   @Input() appContentEdit: string;
   @Output() appContentEditChange: EventEmitter<string> = new EventEmitter<string>();
 
   private ignoreChange = false;
 
-  constructor(private el: ElementRef, private renderer2: Renderer2) {
-  }
-
+  constructor(private el: ElementRef, private renderer2: Renderer2) {}
 
   ngOnInit(): void {
     this.makeContentEditable();
@@ -22,19 +27,18 @@ export class ContentEditDirective implements OnInit {
 
   // if you press enter then move out of editable mode
 
-  @HostListener('keydown.enter', [] )
-  exitContentEditable($event : any) {
+  @HostListener('keydown.enter', [])
+  exitContentEditable($event: any) {
     this.el.nativeElement.blur();
     return false;
   }
 
-  @HostListener('keydown.escape', [] )
-  exitContentEditableWithoutChanges($event : any) {
+  @HostListener('keydown.escape', [])
+  exitContentEditableWithoutChanges($event: any) {
     this.ignoreChange = true;
     this.el.nativeElement.blur();
     return false;
   }
-
 
   @HostListener('blur', [])
   propagateChange() {
@@ -52,18 +56,12 @@ export class ContentEditDirective implements OnInit {
     this.renderer2.removeClass(this.el.nativeElement, 'inline-edit');
   }
 
-
-
-
   makeContentEditable() {
-      this.renderer2.appendChild( this.el.nativeElement, this.renderer2.createText(this.appContentEdit));
-      this.renderer2.listen(this.el.nativeElement, 'dblclick', () => {
-        this.renderer2.setAttribute(this.el.nativeElement, 'contenteditable', 'true');
-        this.renderer2.addClass(this.el.nativeElement, 'inline-edit');
-        this.el.nativeElement.focus();
-      });
-
+    this.renderer2.appendChild(this.el.nativeElement, this.renderer2.createText(this.appContentEdit));
+    this.renderer2.listen(this.el.nativeElement, 'dblclick', () => {
+      this.renderer2.setAttribute(this.el.nativeElement, 'contenteditable', 'true');
+      this.renderer2.addClass(this.el.nativeElement, 'inline-edit');
+      this.el.nativeElement.focus();
+    });
   }
-
-
 }
