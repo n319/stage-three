@@ -1,0 +1,8 @@
+<form [formGroup]="form" (ngSubmit)="submit(model)">
+  <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+
+<!-- <div *ngIf="dataModel as test">
+  {{ test.name }}
+</div> -->

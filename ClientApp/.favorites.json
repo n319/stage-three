@@ -1,0 +1,28 @@
+[
+    {
+        "type": "Group",
+        "name": "Pinboard",
+        "parent_id": null,
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "1AaRWH5Vp6umxI2w"
+    },
+    {
+        "type": "File",
+        "name": "c:\\Users\\nick\\Documents\\GitHub\\AgileHouse\\Phase Three\\AH Tech Stack\\client\\src\\app\\pinboard-view\\pin-board\\pin-board.component.html",
+        "parent_id": "1AaRWH5Vp6umxI2w",
+        "fsPath": "c:\\Users\\nick\\Documents\\GitHub\\AgileHouse\\Phase Three\\AH Tech Stack\\client\\src\\app\\pinboard-view\\pin-board\\pin-board.component.html",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "bgmfwTxu8UcpPCYo"
+    },
+    {
+        "type": "File",
+        "name": "c:\\Users\\nick\\Documents\\GitHub\\AgileHouse\\Phase Three\\AH Tech Stack\\client\\src\\app\\pinboard-view\\pin-board\\pin-board.component.scss",
+        "parent_id": "1AaRWH5Vp6umxI2w",
+        "fsPath": "c:\\Users\\nick\\Documents\\GitHub\\AgileHouse\\Phase Three\\AH Tech Stack\\client\\src\\app\\pinboard-view\\pin-board\\pin-board.component.scss",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "q25FkvexnjKyGR8w"
+    }
+]

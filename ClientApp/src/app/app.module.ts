@@ -1,34 +1,60 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormlyModule } from '@ngx-formly/core';
+import { FormlyMaterialModule } from '@ngx-formly/material';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { TranslateModule } from '@ngx-translate/core';
+import { AppRoutingModule } from './app-routing.module';
+import { AuthJWTInterceptor } from './api/authentication/auth-jwt.interceptor';
+import { environment } from '@env/environment';
 
 import { AppComponent } from './app.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
+
+import { CoreModule } from '@app/core';
+import { SharedModule } from '@app/shared';
+import { ApiModule } from './api/api.module';
+
+import { LoginModule } from './login/login.module';
+import { ShellModule } from './shell/shell.module';
+
+import { HomeModule } from './home/home.module';
+import { AboutModule } from './about/about.module';
+import { BacklogModule } from './backlog/backlog.module';
+import { MatGalleryModule } from './mat-gallery/mat-gallery.module';
+import { ProjectsModule } from './projects/projects.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavMenuComponent,
-    HomeComponent,
-    CounterComponent,
-    FetchDataComponent
-  ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
-    HttpClientModule,
+    CoreModule,
+    BrowserModule,
+    ApiModule,
+    ServiceWorkerModule.register('./ngsw-worker.js', { enabled: environment.production }),
     FormsModule,
-    RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
-    ])
+    ReactiveFormsModule,
+    FormlyModule.forRoot(),
+    FormlyMaterialModule,
+    TranslateModule.forRoot(),
+    BrowserAnimationsModule,
+    NgbModule,
+    SharedModule,
+    ShellModule,
+    HomeModule,
+    BacklogModule,
+    ProjectsModule,
+    MatGalleryModule,
+    AboutModule,
+    LoginModule,
+    AppRoutingModule // must be imported as the last module as it contains the fallback route
   ],
-  providers: [],
+  declarations: [AppComponent],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthJWTInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

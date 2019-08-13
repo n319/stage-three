@@ -1,76 +1,90 @@
+using System;
 using System.Collections.Generic;
-using ProjectApi.Models;
-using ProjectApi.Services;
+using System.Linq;
+using AH.Api.Models;
+using AH.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ProjectApi.Controllers
-{
-    [Route("api/[controller]")]
+namespace AH.Api.Controllers {
+    [Route ("api/[controller]")]
     [ApiController]
-    public class ProjectController : ControllerBase
-    {
+    public class ProjectPieceController : ControllerBase {
+        private readonly ProjectPieceService _projectPieceService;
         private readonly ProjectService _projectService;
 
-        public ProjectController(ProjectService projectService)
-        {
+        public ProjectPieceController (ProjectPieceService projectPieceService, ProjectService projectService) {
+            _projectPieceService = projectPieceService;
             _projectService = projectService;
         }
 
-        [HttpGet]
-        public ActionResult<List<AgileHouseProject>> Get()
-        {
-            return _projectService.Get();
-        }
+        [HttpGet ("[action]")]
+        public ActionResult<AgileHouseProjectPiece> GetProjectPiece (string id) {
+            var projectPiece = _projectPieceService.Get (id);
 
-        [HttpGet("{id:length(24)}", Name = "GetProject")]
-        public ActionResult<AgileHouseProject> Get(string id)
-        {
-            var project = _projectService.Get(id);
-
-            if (project == null)
-            {
-                return NotFound();
+            if (projectPiece == null) {
+                return NotFound ();
             }
 
-            return project;
+            return projectPiece;
+        }
+
+        [HttpGet ("[action]")]
+        public ActionResult<AgileHouseProjectPiece[]> GetPiecesListById (string id) {
+            List<AgileHouseProjectPiece> returnedPieces = new List<AgileHouseProjectPiece> ();
+
+            var piecesIdList = _projectService.Get (id).Pieces;
+
+            AgileHouseProjectPiece projectPiece;
+
+            foreach (string val in piecesIdList) {
+                projectPiece = _projectPieceService.Get (val);
+
+                if (projectPiece != null) {
+                    returnedPieces.Add (projectPiece);
+                }
+            }
+
+            return returnedPieces.ToArray ();
+        }
+
+        [HttpPost ("list")]
+        public IActionResult CreateList (List<AgileHouseProjectPiece> projectPieceList) {
+            _projectPieceService.CreateList (projectPieceList);
+
+            return NoContent ();
         }
 
         [HttpPost]
-        public ActionResult<AgileHouseProject> Create(AgileHouseProject project)
-        {
-            _projectService.Create(project);
+        public ActionResult<AgileHouseProjectPiece> Create (AgileHouseProjectPiece projectPiece) {
+            _projectPieceService.Create (projectPiece);
 
-            return CreatedAtRoute("GetProject", new { id = project.Id.ToString() }, project);
+            return CreatedAtRoute ("GetProjectPiece", new { id = projectPiece.Id.ToString () }, projectPiece);
         }
 
-        [HttpPut("{id:length(24)}")]
-        public IActionResult Update(string id, AgileHouseProject projectIn)
-        {
-            var project = _projectService.Get(id);
+        [HttpPut ("{id:length(24)}")]
+        public IActionResult Update (string id, AgileHouseProjectPiece projectPieceIn) {
+            var projectPiece = _projectPieceService.Get (id);
 
-            if (project == null)
-            {
-                return NotFound();
+            if (projectPiece == null) {
+                return NotFound ();
             }
 
-            _projectService.Update(id, projectIn);
+            _projectPieceService.Update (id, projectPieceIn);
 
-            return NoContent();
+            return NoContent ();
         }
 
-        [HttpDelete("{id:length(24)}")]
-        public IActionResult Delete(string id)
-        {
-            var project = _projectService.Get(id);
+        [HttpDelete ("{id:length(24)}")]
+        public IActionResult Delete (string id) {
+            var projectPiece = _projectPieceService.Get (id);
 
-            if (project == null)
-            {
-                return NotFound();
+            if (projectPiece == null) {
+                return NotFound ();
             }
 
-            _projectService.Remove(project.Id);
+            _projectPieceService.Remove (projectPiece.Id);
 
-            return NoContent();
+            return NoContent ();
         }
     }
 }
