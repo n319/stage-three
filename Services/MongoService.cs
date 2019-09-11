@@ -35,6 +35,7 @@ namespace AH.Api.Services {
             };
 
             var client = new MongoClient (settings);
+            //var client = new MongoClient("mongodb://AgileHouseRW:DigitalAlchemy319!@10.1.10.242");
 
             database = client.GetDatabase("AgileHouse");
         }

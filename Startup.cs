@@ -8,13 +8,13 @@ using AH.Api.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
 namespace server {
@@ -24,21 +24,17 @@ namespace server {
         }
 
         public IConfiguration Configuration { get; }
-        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices (IServiceCollection services) {
-            
-            
 
-            services.AddCors (options => {
-                options.AddPolicy (MyAllowSpecificOrigins,
-                    builder => {
-                        builder.WithOrigins (Configuration.GetValue<string>("ClientEndpoint"))
-                        .AllowAnyHeader()
-                        .AllowAnyMethod();
-                    });
-            });
+            // services.AddCors (options => {
+            //     options.AddPolicy (MyAllowSpecificOrigins,
+            //         builder => {
+            //             builder.WithOrigins (new string[] { Configuration.GetValue<string> ("ClientEndpoint") })
+            //                 .AllowAnyHeader ()
+            //                 .AllowAnyMethod ();
+            //         });
+            // });
 
             //TODO: add interfaces 
             services.AddScoped<IMongoService, AgileHouseMongoService> ();
@@ -67,7 +63,7 @@ namespace server {
                     };
                 });
 
-            services.AddMvc ().SetCompatibilityVersion (CompatibilityVersion.Version_2_2);
+            services.AddMvc ().SetCompatibilityVersion (CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -78,9 +74,9 @@ namespace server {
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts ();
             }
+            app.UseHttpsRedirection ();
 
-
-            app.UseCors(MyAllowSpecificOrigins); 
+            //app.UseCors (MyAllowSpecificOrigins);
 
             //!DEBUG ONLY - SECURITY RISK        
             // global cors policy
@@ -89,10 +85,14 @@ namespace server {
             //     .AllowAnyMethod()
             //     .AllowAnyHeader());
 
-            app.UseAuthentication ();
+            //from https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/linux-nginx?view=aspnetcore-2.2
+            app.UseForwardedHeaders (new ForwardedHeadersOptions {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
 
-            app.UseHttpsRedirection ();
+            app.UseAuthentication ();
             app.UseMvc ();
+
         }
     }
 }

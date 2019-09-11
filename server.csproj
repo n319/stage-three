@@ -8,10 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DnsClient" Version="1.0.7" />
-    <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
-    <PackageReference Include="MongoDB.Driver" Version="2.7.3" />
+    <PackageReference Include="DnsClient" Version="1.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.App"/>
+    <PackageReference Include="MongoDB.Driver" Version="2.9.1" />
   </ItemGroup>
 
 

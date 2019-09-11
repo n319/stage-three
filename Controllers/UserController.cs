@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Collections.Generic;
 using AH.Api.Models;
 using AH.Api.Services;
@@ -5,7 +6,17 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AH.Api.Controllers {
-    [Authorize]
+
+        public class AuthRequest{
+            public AuthRequestPayload request {get; set;}
+            
+        }
+
+        public class AuthRequestPayload {
+            public string username {get; set;}
+            public string passwordHash {get; set;}
+        }
+
     [Route ("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase {
@@ -21,14 +32,18 @@ namespace AH.Api.Controllers {
         [HttpPost("authenticate")]
         public IActionResult Authenticate([FromBody]AgileHouseUser userParam)
         {
+            Debug.WriteLine(userParam.Username);
+            Debug.WriteLine(userParam.PasswordHash);
+            
             var user = _userService.Authenticate(userParam.Username, userParam.PasswordHash);
-
+            //public IActionResult Authenticate([FromBody] AuthRequest request)
+            //var user = _userService.Authenticate(request.request.username, request.request.passwordHash);
             if (user == null)
                 return BadRequest(new { message = "Username or password is incorrect" });
 
             return Ok(user);
         }
-
+        [Authorize]
         [HttpGet ("[action]")]
         public ActionResult<UserProjectsResponse> GetUserProjectsSummary(string id)
         {   
@@ -55,6 +70,7 @@ namespace AH.Api.Controllers {
             return response;
         }
 
+        [Authorize]
         [HttpGet]
         public ActionResult<List<AgileHouseUser>> Get () {
             return _userService.Get ();
@@ -71,6 +87,7 @@ namespace AH.Api.Controllers {
             return user;
         }
         
+        [Authorize]
         [HttpPost]
         public ActionResult<AgileHouseUser> Create (AgileHouseUser user) {
             _userService.Create (user);
@@ -91,6 +108,7 @@ namespace AH.Api.Controllers {
             return NoContent ();
         }
 
+        [Authorize]
         [HttpDelete ("{id:length(24)}")]
         public IActionResult Delete (string id) {
             var user = _userService.Get (id);
