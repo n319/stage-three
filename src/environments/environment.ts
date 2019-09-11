@@ -10,7 +10,7 @@ export const environment = {
   version: env.npm_package_version + '-dev',
   defaultLanguage: 'en-US',
   supportedLanguages: ['en-US'],
-  apiUrl: 'https://localhost:5001',
+  apiUrl: 'https://projectr.live',
   sessionKey: {
     credentials: 'credentials'
   },
@@ -21,8 +21,8 @@ export const environment = {
     projectsSummary: '/api/user/GetUserProjectsSummary'
   },
   postApi: {
-    postByUser: 'post/GetByUser?id=',
-    postByTag: 'post/GetByTag?id='
+    postByUser: '/api/post/GetByUser?id=',
+    postByTag: '/api/post/GetByTag?id='
   },
   projectApi: {
     get: '/api/project/getProjectById',
