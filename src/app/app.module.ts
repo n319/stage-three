@@ -19,7 +19,6 @@ import { AppComponent } from './app.component';
 
 import { CoreModule } from '@app/core';
 import { SharedModule } from '@app/shared';
-import { ApiModule } from './api/api.module';
 
 import { LoginModule } from './login/login.module';
 import { ShellModule } from './shell/shell.module';
@@ -34,7 +33,6 @@ import { ProjectsModule } from './projects/projects.module';
   imports: [
     CoreModule,
     BrowserModule,
-    ApiModule,
     ServiceWorkerModule.register('./ngsw-worker.js', { enabled: environment.production }),
     FormsModule,
     ReactiveFormsModule,

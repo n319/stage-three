@@ -16,6 +16,7 @@ import { SharedModule } from '@app/shared';
     ContextMenuComponent,
     KanbanListComponent
   ],
-  imports: [CommonModule, BaseViewModule, SharedModule]
+  imports: [CommonModule, BaseViewModule, SharedModule],
+  exports: [KanbanBoardComponent]
 })
 export class KanbanViewModule {}

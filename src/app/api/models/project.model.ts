@@ -1,9 +1,5 @@
 import { AgileHouseUserModel, ProjectSummary } from './agileHouseUser.model';
 
-export interface ISliderContentModel {
-  getContent(): UISliderContentModel;
-}
-
 export interface UISliderContentModel {
   thumbnail: string;
   title: string;
@@ -11,7 +7,7 @@ export interface UISliderContentModel {
   link: string;
 }
 
-export interface IProject extends ISliderContentModel {
+export interface IProject {
   id: string | null;
   name: string | null;
   authorId: string | null;
@@ -35,16 +31,6 @@ export enum UIViewPanel {
 }
 
 export class ProjectModel implements IProject {
-  getContent(): UISliderContentModel {
-    const model: UISliderContentModel = {
-      thumbnail: '',
-      title: this.name,
-      subtext: this.pieces.length.toString(),
-      link: ''
-    };
-    return model;
-  }
-
   id: string | null;
   name: string | null;
   authorId: string | null;
