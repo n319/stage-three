@@ -4,7 +4,7 @@ import { MatListItem } from '@angular/material';
 import { PieceService } from '@app/api/piece.service';
 import { PieceModel } from '@app/api/models/piece.model';
 import { Observable } from 'rxjs';
-import { share } from 'rxjs/operators';
+import { share, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-card-summary',

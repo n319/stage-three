@@ -1,5 +1,5 @@
-<mat-list-item *ngIf="pceModel$ | async as pceModel" role="listitem">
-  <mat-card class="example-card">
+<mat-list-item class="lane-item" *ngIf="pceModel$ | async as pceModel" role="listitem">
+  <mat-card class="lane-item-card">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title>{{ pceModel.name }}</mat-card-title>

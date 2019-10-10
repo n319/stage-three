@@ -2,7 +2,7 @@
 <!-- <ng-container *ngIf="ObsLaneList | async as lanes"> -->
 <!-- <div *ngFor="let label of ObsLaneList | async"> {{label}}</div>
   <div *ngFor="let pc of pieces | async"> {{pc.name}}</div> -->
-<app-kanban-list *ngFor="let lane of ObsLaneList | async" [label]="lane"> </app-kanban-list>
+<app-kanban-list class="board-lane" *ngFor="let lane of ObsLaneList | async" [label]="lane"> </app-kanban-list>
 <!-- </ng-container> -->
 
 <!-- <mat-list-item role="listitem">Item 2</mat-list-item>
