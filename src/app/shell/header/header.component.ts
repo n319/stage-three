@@ -59,7 +59,7 @@ export class HeaderComponent implements OnInit {
         routerDestination = '/matgallery';
       }
 
-      //sessionStorage.setItem('currentProject', JSON.stringify(selected));
+      sessionStorage.setItem('currentProject', JSON.stringify(selected));
 
       this.router.navigate([routerDestination], {
         queryParams: { currentProjectId: selected.id }

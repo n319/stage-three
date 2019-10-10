@@ -1,0 +1,10 @@
+<!-- <div *ngIf="currentProject | async as currentProject">{{ currentProject.name }}</div> -->
+<!-- <ng-container *ngIf="ObsLaneList | async as lanes"> -->
+<!-- <div *ngFor="let label of ObsLaneList | async"> {{label}}</div>
+  <div *ngFor="let pc of pieces | async"> {{pc.name}}</div> -->
+<app-kanban-list *ngFor="let lane of ObsLaneList | async" [label]="lane"> </app-kanban-list>
+<!-- </ng-container> -->
+
+<!-- <mat-list-item role="listitem">Item 2</mat-list-item>
+  <mat-list-item role="listitem">Item 3</mat-list-item>
+</mat-list> -->

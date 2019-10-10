@@ -7,6 +7,7 @@ import { ContextMenuComponent } from './context-menu/context-menu.component';
 import { KanbanListComponent } from './kanban-list/kanban-list.component';
 import { BaseViewModule } from '@app/base-view/base-view.module';
 import { SharedModule } from '@app/shared';
+import { MaterialModule } from '@app/material.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { SharedModule } from '@app/shared';
     ContextMenuComponent,
     KanbanListComponent
   ],
-  imports: [CommonModule, BaseViewModule, SharedModule],
+  imports: [CommonModule, BaseViewModule, SharedModule, MaterialModule],
   exports: [KanbanBoardComponent]
 })
 export class KanbanViewModule {}

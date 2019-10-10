@@ -3,10 +3,11 @@ import { PanelViewComponent } from '@app/base-view/panel-view.component';
 import { ProjectService } from '@app/api/project.service';
 import { PieceService } from '@app/api/piece.service';
 import { UserService } from '@app/api/user.service';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { ProjectModel } from '@app/api/models/project.model';
-import { tap } from 'rxjs/operators';
+import { tap, map, share } from 'rxjs/operators';
 import { PieceModel } from '@app/api/models/piece.model';
+import { SessionManagerService } from '@app/ah-application/session-manager.service';
 
 @Component({
   selector: 'app-kanban-board',
@@ -14,20 +15,21 @@ import { PieceModel } from '@app/api/models/piece.model';
   styleUrls: ['./kanban-board.component.scss']
 })
 export class KanbanBoardComponent implements OnInit {
-  @Input() projectId: string;
+  public ObsLaneList: Observable<Set<string>>;
 
-  public currentProject: Observable<ProjectModel>;
-  public pieces: Observable<PieceModel[]>;
-  public laneList: string[] = [];
-
-  constructor(private prjSvc: ProjectService, private pceSvc: PieceService, private usrSvc: UserService) {}
+  constructor(private prjSvc: ProjectService, private pceSvc: PieceService, private session: SessionManagerService) {}
 
   ngOnInit(): void {
-    this.currentProject = this.prjSvc.getProject(this.projectId);
-    this.pieces = this.pceSvc.getPiecesListById(this.projectId).pipe(
-      tap(pc => {
-        debugger;
-      })
-    );
+    const proj = this.session.getCurrentProject();
+    this.pceSvc
+      .getPiecesListById(proj.id)
+      .pipe(
+        //refactor this to the piece service
+        share(),
+        tap(pcList => {
+          this.ObsLaneList = of(new Set(pcList.map(pc => pc.kanbanStatus)));
+        })
+      )
+      .subscribe();
   }
 }

@@ -10,7 +10,7 @@ export const environment = {
   version: env.npm_package_version + '-dev',
   defaultLanguage: 'en-US',
   supportedLanguages: ['en-US'],
-  apiUrl: 'https://projectr.live',
+  apiUrl: 'https://localhost:5001',
   sessionKey: {
     credentials: 'credentials'
   },
@@ -27,13 +27,12 @@ export const environment = {
   projectApi: {
     get: '/api/project/getProjectById',
     getList: '/api/project/getList',
-    getProjectPieces: 'api/project/pieces/',
     create: '/api/project/',
     update: '/api/project/'
   },
   pieceApi: {
-    get: '/api/projectpiece/',
-    getList: '/api/projectpiece/getPiecesListById',
+    get: '/api/projectpiece/GetProjectPiece',
+    getList: '/api/projectpiece/GetPiecesListById',
     create: '/api/projectpiece/',
     update: '/api/projectpiece/'
   }

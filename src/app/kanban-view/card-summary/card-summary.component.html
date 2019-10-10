@@ -1,6 +1,28 @@
-<div class="card" [draggable]="'true'" (dragstart)="identifyCardBeingDragged($event)"  id="list-{{listIndex}}-card-{{cardIndex}}" attr.listIndex="{{listIndex}}" attr.cardIndex="{{cardIndex}}" (dragover)="allowCardDragToBeDropped($event)" >
+<mat-list-item *ngIf="pceModel$ | async as pceModel" role="listitem">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{ pceModel.name }}</mat-card-title>
+      <mat-card-subtitle>{{ pceModel.status }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        {{ pceModel.description }}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+  </mat-card>
+</mat-list-item>
+<!-- <div role="listitem">Item 1
+
+</div> -->
+
+<!-- <div class="card" [draggable]="'true'" (dragstart)="identifyCardBeingDragged($event)"  id="list-{{listIndex}}-card-{{cardIndex}}" attr.listIndex="{{listIndex}}" attr.cardIndex="{{cardIndex}}" (dragover)="allowCardDragToBeDropped($event)" >
   <div class="card-body">
     <h4 class="card-title" [(appContentEdit)]="card.header" [draggable]="'false'" >  </h4>
     <h6 class="text-muted card-subtitle mb-2" [(appContentEdit)]="card.summary" [draggable]="'false'" ></h6>
   </div>
-</div>
+</div> -->

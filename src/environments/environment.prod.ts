@@ -7,7 +7,7 @@ export const environment = {
   version: env.npm_package_version,
   defaultLanguage: 'en-US',
   supportedLanguages: ['en-US', 'fr-FR'],
-  apiUrl: 'https://projectr.live',
+  apiUrl: 'https://localhost:5001',
   deployUrl: 'https://localhost:4200',
   sessionKey: {
     credentials: 'credentials'
