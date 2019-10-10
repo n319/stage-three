@@ -2,15 +2,24 @@ using System.Collections.Generic;
 using System.Linq;
 using AH.Api.Models;
 using Microsoft.Extensions.Configuration;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace AH.Api.Services {
     public class ProjectService {
+        private readonly IMongoCollection<BsonDocument> _bsonProjects;
         private readonly IMongoCollection<AgileHouseProject> _projects;
 
         #region snippet_AgileHouseProjectServiceConstructor
         public ProjectService (IConfiguration config, IMongoService agileHouse) {
-            _projects = agileHouse.GetDatabase().GetCollection<AgileHouseProject> ("Project");
+            // IMongoCollection<BsonDocument> _bsonProjects = agileHouse.GetDatabase ().GetCollection<BsonDocument> ("Project");
+            // var inserted = _bsonProjects.Find(x => true).FirstOrDefault();
+            // inserted.Add(new BsonElement("NewEelment", "NewElementValue"));
+            // _bsonProjects.ReplaceOne(new BsonDocument("_id", inserted["_id"]), inserted);
+
+
+
+            _projects = agileHouse.GetDatabase ().GetCollection<AgileHouseProject> ("Project");
 
         }
         #endregion
@@ -24,7 +33,7 @@ namespace AH.Api.Services {
         }
 
         public List<AgileHouseProject> GetRecentByAuthorId (string authorId) {
-            return _projects.Find<AgileHouseProject> (project => project.AuthorId == authorId).SortByDescending(pr => pr.CreatedOn).Limit(10).ToList();
+            return _projects.Find<AgileHouseProject> (project => project.AuthorId == authorId).SortByDescending (pr => pr.CreatedOn).Limit (10).ToList ();
         }
 
         public List<AgileHouseProject> CreateList (List<AgileHouseProject> projectList) {

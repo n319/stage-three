@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace AH.Api.Models {  
+namespace AH.Api.Models {
     public class AgileHouseProjectPiece {
         [BsonId]
         [BsonRepresentation (BsonType.ObjectId)]
@@ -17,12 +17,17 @@ namespace AH.Api.Models {
         [BsonElement ("ProjectId")]
         public string ProjectId { get; set; }
 
+        [BsonElement ("PieceType")]
+        public string PieceType { get; set; }
+
         [BsonElement ("CreatedOn")]
         public string CreatedOn { get; set; }
 
         [BsonElement ("CompletedOn")]
         public string CompletedOn { get; set; }
 
+        [BsonElement ("KanbanStatus")]
+        public string KanbanStatus { get; set; }
 
         [BsonElement ("Status")]
         public string Status { get; set; }
@@ -38,7 +43,7 @@ namespace AH.Api.Models {
 
     }
 
-    public class AHTag{
+    public class AHTag {
         [BsonId]
         [BsonRepresentation (BsonType.ObjectId)]
         public string Id { get; set; }
@@ -47,7 +52,7 @@ namespace AH.Api.Models {
         public string Name { get; set; }
     }
 
-    public class AHCheckListItem{
+    public class AHCheckListItem {
         [BsonId]
         [BsonRepresentation (BsonType.ObjectId)]
         public string Id { get; set; }
@@ -58,6 +63,5 @@ namespace AH.Api.Models {
         [BsonElement ("Checked")]
         public string Checked { get; set; }
     }
-
 
 }

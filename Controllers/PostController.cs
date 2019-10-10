@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using AH.Api.Models;
 using AH.Api.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AH.Api.Controllers {
     [Route ("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class PostController : ControllerBase {
         private readonly PostService _postService;

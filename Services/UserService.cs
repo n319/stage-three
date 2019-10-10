@@ -21,6 +21,12 @@ namespace AH.Api.Services {
             
             _config = config; 
 
+            // IMongoCollection<BsonDocument> _bsonProjects = agileHouse.GetDatabase ().GetCollection<BsonDocument> ("AgileHouseUser");
+            // var inserted = _bsonProjects.Find(x => true).FirstOrDefault();
+            // inserted.Add(new BsonElement("NewEelment", "NewElementValue"));
+            // _bsonProjects.ReplaceOne(new BsonDocument("_id", inserted["_id"]), inserted);
+
+
             _users = (agileHouse.GetDatabase().GetCollection<AgileHouseUser>("AgileHouseUser"));
             
         }

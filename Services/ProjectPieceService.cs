@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AH.Api.Models;
 using Microsoft.Extensions.Configuration;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace AH.Api.Services {
@@ -10,6 +11,12 @@ namespace AH.Api.Services {
 
         #region snippet_AgileHouseProjectPieceServiceConstructor
         public ProjectPieceService (IConfiguration config, IMongoService agileHouse) {
+            // IMongoCollection<BsonDocument> _bsonProjects = agileHouse.GetDatabase ().GetCollection<BsonDocument> ("ProjectPiece");             
+            // var inserted = _bsonProjects.Find(x => true).FirstOrDefault();
+            // inserted.Add(new BsonElement("NewEelment", "NewElementValue"));
+            // _bsonProjects.ReplaceOne(new BsonDocument("_id", inserted["_id"]), inserted);
+
+
             _projectPieces = agileHouse.GetDatabase ().GetCollection<AgileHouseProjectPiece> ("ProjectPiece");
         }
         #endregion

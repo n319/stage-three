@@ -24,17 +24,19 @@ namespace server {
         }
 
         public IConfiguration Configuration { get; }
+
+        private string MyAllowSpecificOrigins = "MyAllowSpecificOrigins";
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices (IServiceCollection services) {
 
-            // services.AddCors (options => {
-            //     options.AddPolicy (MyAllowSpecificOrigins,
-            //         builder => {
-            //             builder.WithOrigins (new string[] { Configuration.GetValue<string> ("ClientEndpoint") })
-            //                 .AllowAnyHeader ()
-            //                 .AllowAnyMethod ();
-            //         });
-            // });
+            services.AddCors (options => {
+                options.AddPolicy (MyAllowSpecificOrigins,
+                    builder => {
+                        builder.WithOrigins (new string[] { Configuration.GetValue<string> ("ClientEndpoint") })
+                            .AllowAnyHeader ()
+                            .AllowAnyMethod ();
+                    });
+            });
 
             //TODO: add interfaces 
             services.AddScoped<IMongoService, AgileHouseMongoService> ();
@@ -76,7 +78,7 @@ namespace server {
             }
             app.UseHttpsRedirection ();
 
-            //app.UseCors (MyAllowSpecificOrigins);
+            app.UseCors (MyAllowSpecificOrigins);
 
             //!DEBUG ONLY - SECURITY RISK        
             // global cors policy
