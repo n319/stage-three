@@ -6,7 +6,7 @@ import { ProjectService } from '@app/api/project.service';
 import { PieceService } from '@app/api/piece.service';
 import { UserService } from '@app/api/user.service';
 import { SessionManagerService } from '@app/ah-application/session-manager.service';
-import { share, tap } from 'rxjs/operators';
+import { share, tap, filter, map } from 'rxjs/operators';
 import { MatList } from '@angular/material';
 
 @Component({
@@ -25,9 +25,7 @@ export class KanbanListComponent implements OnInit {
 
     this.pieces = this.pceSvc.getPiecesListById(proj.id).pipe(
       share(),
-      tap(pcList => {
-        pcList.map(pc => pc.kanbanStatus === this.label);
-      })
+      map((pieces: PieceModel[]) => pieces.filter((pc: PieceModel) => pc.kanbanStatus === this.label))
     );
   }
 }
