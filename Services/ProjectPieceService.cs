@@ -26,6 +26,10 @@ namespace AH.Api.Services {
         }
 
         public AgileHouseProjectPiece Get (string id) {
+            if(id == "undefined"){
+                return null;
+            }
+            
             return _projectPieces.Find<AgileHouseProjectPiece> (projectPiece => projectPiece.Id == id).FirstOrDefault ();
         }
 
