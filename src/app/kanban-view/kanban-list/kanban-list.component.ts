@@ -20,7 +20,6 @@ export class KanbanListComponent implements OnInit {
   @Input() public label: string;
   public dataLabel: string;
   public proj: ProjectModel;
-  // public pieces$: Observable<PieceModel[]>;
   public pieces: PieceModel[];
 
   constructor(private pceSvc: PieceService, private session: SessionManagerService) {}
@@ -28,10 +27,6 @@ export class KanbanListComponent implements OnInit {
   ngOnInit(): void {
     this.proj = this.session.getCurrentProject();
     this.dataLabel = this.label;
-    // this.pieces$ = this.pceSvc.getPiecesListById(this.proj.id).pipe(
-    //   share(),
-    //   map((pieces: PieceModel[]) => pieces.filter((pc: PieceModel) => pc.kanbanStatus === this.label))
-    // );
     this.pceSvc
       .getPiecesListById(this.proj.id)
       .pipe(
@@ -49,8 +44,10 @@ export class KanbanListComponent implements OnInit {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
-      //write update to data.id
-      //the card component gets data
+      const piece = (event.previousContainer.data[event.previousIndex] as unknown) as PieceModel;
+      piece.kanbanStatus = this.label;
+      this.pceSvc.updatePiece(piece);
+
       transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
     }
   }

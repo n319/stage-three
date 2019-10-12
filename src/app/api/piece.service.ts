@@ -25,8 +25,8 @@ export class PieceService {
     return this.http.put<PieceModel>(url, project);
   }
 
-  public updatePiece(project: PieceModel): Observable<PieceModel> {
+  public updatePiece(project: PieceModel): void {
     const url = environment.apiUrl + environment.pieceApi.update;
-    return this.http.post<PieceModel>(url, project);
+    this.http.post<PieceModel>(url, project).subscribe();
   }
 }

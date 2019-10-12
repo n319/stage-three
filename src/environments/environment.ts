@@ -34,7 +34,7 @@ export const environment = {
     get: '/api/projectpiece/GetProjectPiece',
     getList: '/api/projectpiece/GetPiecesListById',
     create: '/api/projectpiece/',
-    update: '/api/projectpiece/'
+    update: '/api/projectpiece/Update'
   }
 };
 
