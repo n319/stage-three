@@ -53,22 +53,20 @@ namespace AH.Api.Controllers {
             return NoContent ();
         }
 
-        [HttpPost]
+        [HttpPost ("[action]")]
         public ActionResult<AgileHouseProjectPiece> Create (AgileHouseProjectPiece projectPiece) {
             _projectPieceService.Create (projectPiece);
 
             return CreatedAtRoute ("GetProjectPiece", new { id = projectPiece.Id.ToString () }, projectPiece);
         }
 
-        [HttpPut ("{id:length(24)}")]
-        public IActionResult Update (string id, AgileHouseProjectPiece projectPieceIn) {
-            var projectPiece = _projectPieceService.Get (id);
-
-            if (projectPiece == null) {
+        [HttpPost ("[action]")]
+        public IActionResult Update (AgileHouseProjectPiece projectPieceIn) {
+            if (projectPieceIn == null) {
                 return NotFound ();
-            }
+            }           
 
-            _projectPieceService.Update (id, projectPieceIn);
+            _projectPieceService.Update (projectPieceIn.Id, projectPieceIn);
 
             return NoContent ();
         }
