@@ -1,18 +1,14 @@
-{{ label }}
-<mat-list class="list-lane" role="list">
-  <app-card-summary class="list-lane-item" *ngFor="let piece of pieces | async" [id]="piece.id"></app-card-summary>
-</mat-list>
-
-<!-- 
-<div class="list col custom-col list-drag-component"  (dragover)="allowCardReplacement($event)" (drop)="dropCard($event)"  id="list-{{listIndex}}"  >
-  <app-context-menu (contextAction)="delete()" ></app-context-menu>
-  <p class="list-name"  [(appContentEdit)]="list.name"></p> -->
-
-<!-- List Card Starts -->
-<!-- <div    id="list-one"  >
-    <app-card-summary  *ngFor="let card of this.list.cards;let i = index" [card]="card" [listIndex]="listIndex" [cardIndex]="i" attr.cardIndex="{{i}}" ></app-card-summary>
-  </div> -->
-<!-- List Card Ends -->
-<!-- <h6 class="text-center add-new-card" (click)="addNewCard()" >Add new card...</h6> -->
-
-<!-- </div> -->
+<div cdkDragHandle class="list-header">
+  {{ label }}
+</div>
+<div class="list-body">
+  <mat-list
+    cdkDropList
+    [cdkDropListData]="pieces"
+    (cdkDropListDropped)="onTaskDrop($event)"
+    class="list-lane"
+    role="list"
+  >
+    <app-card-summary class="list-lane-item" *ngFor="let piece of pieces" [id]="piece.id" cdkDrag></app-card-summary>
+  </mat-list>
+</div>

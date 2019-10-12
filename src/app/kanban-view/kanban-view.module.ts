@@ -8,6 +8,7 @@ import { KanbanListComponent } from './kanban-list/kanban-list.component';
 import { BaseViewModule } from '@app/base-view/base-view.module';
 import { SharedModule } from '@app/shared';
 import { MaterialModule } from '@app/material.module';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { MaterialModule } from '@app/material.module';
     ContextMenuComponent,
     KanbanListComponent
   ],
-  imports: [CommonModule, BaseViewModule, SharedModule, MaterialModule],
+  imports: [CommonModule, BaseViewModule, SharedModule, MaterialModule, DragDropModule],
   exports: [KanbanBoardComponent]
 })
 export class KanbanViewModule {}

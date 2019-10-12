@@ -8,6 +8,8 @@ import { UserService } from '@app/api/user.service';
 import { SessionManagerService } from '@app/ah-application/session-manager.service';
 import { share, tap, filter, map } from 'rxjs/operators';
 import { MatList } from '@angular/material';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { ProjectModel } from '@app/api/models/project.model';
 
 @Component({
   selector: 'app-kanban-list',
@@ -15,17 +17,41 @@ import { MatList } from '@angular/material';
   styleUrls: ['./kanban-list.component.scss']
 })
 export class KanbanListComponent implements OnInit {
-  @Input() label: string;
-  public pieces: Observable<PieceModel[]>;
+  @Input() public label: string;
+  public dataLabel: string;
+  public proj: ProjectModel;
+  // public pieces$: Observable<PieceModel[]>;
+  public pieces: PieceModel[];
 
   constructor(private pceSvc: PieceService, private session: SessionManagerService) {}
 
   ngOnInit(): void {
-    const proj = this.session.getCurrentProject();
+    this.proj = this.session.getCurrentProject();
+    this.dataLabel = this.label;
+    // this.pieces$ = this.pceSvc.getPiecesListById(this.proj.id).pipe(
+    //   share(),
+    //   map((pieces: PieceModel[]) => pieces.filter((pc: PieceModel) => pc.kanbanStatus === this.label))
+    // );
+    this.pceSvc
+      .getPiecesListById(this.proj.id)
+      .pipe(
+        share(),
+        map((pieces: PieceModel[]) => pieces.filter((pc: PieceModel) => pc.kanbanStatus === this.label))
+      )
+      .subscribe(result => (this.pieces = result));
+  }
 
-    this.pieces = this.pceSvc.getPiecesListById(proj.id).pipe(
-      share(),
-      map((pieces: PieceModel[]) => pieces.filter((pc: PieceModel) => pc.kanbanStatus === this.label))
-    );
+  get pieceIds(): string[] {
+    return this.proj.pieces;
+  }
+
+  onTaskDrop(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      //write update to data.id
+      //the card component gets data
+      transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
+    }
   }
 }

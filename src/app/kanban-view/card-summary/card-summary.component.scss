@@ -8,3 +8,7 @@
   height: fit-content;
   border: 1px solid orange;
 }
+
+:host {
+  display: flex;
+}
