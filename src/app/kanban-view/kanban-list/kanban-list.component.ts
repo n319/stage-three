@@ -46,7 +46,7 @@ export class KanbanListComponent implements OnInit {
     } else {
       const piece = (event.previousContainer.data[event.previousIndex] as unknown) as PieceModel;
       piece.kanbanStatus = this.label;
-      this.pceSvc.updatePiece(piece);
+      this.pceSvc.updatePiece(piece, false);
 
       transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
     }
