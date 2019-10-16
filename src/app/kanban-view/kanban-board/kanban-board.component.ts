@@ -19,7 +19,7 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 })
 export class KanbanBoardComponent implements OnInit {
   public ObsLaneList: Observable<KanbanLaneModel[]>;
-
+  public pieces: Observable<PieceModel[]>;
   constructor(
     private prjSvc: ProjectService,
     private pceSvc: PieceService,
@@ -29,29 +29,45 @@ export class KanbanBoardComponent implements OnInit {
 
   ngOnInit(): void {
     const proj = this.session.getCurrentProject();
-    this.pceSvc
-      .getPiecesListById(proj.id)
-      .pipe(
-        //refactor this to the piece service
-        share(),
-        tap(pcList => {
-          this.ObsLaneList = this.ref.getOrderOfKanbanLanes();
-          // this.ObsLaneList = of(new Set(pcList.map(pc => pc.kanbanStatus)));
-        })
-      )
-      .subscribe();
+    this.ObsLaneList = this.ref.getOrderOfKanbanLanes();
+    this.pieces = this.pceSvc.getPiecesListById(proj.id).pipe(share());
   }
 
-  onLaneDrop(event: CdkDragDrop<string[]>) {
+  // getConnectedList(): Observable<PieceModel[]> {
+  //   return this.pieces.subscribe(
+
+  //   );
+  // }
+
+  getConnectedList(lane: any): Observable<PieceModel[]> {
+    debugger;
+    return this.pieces;
+  }
+
+  getPiecesForLane(lane: any): Observable<PieceModel[]> {
+    debugger;
+    return this.pieces;
+  }
+
+  onItemDrop(event: CdkDragDrop<PieceModel[]>) {
     debugger;
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
-      const kanbanLane = (event.previousContainer.data[event.previousIndex] as unknown) as KanbanLaneModel;
-      kanbanLane.laneSequence = event.currentIndex;
-      this.ref.updateKanbanLane(kanbanLane);
+      const piece = (event.previousContainer.data[event.previousIndex] as unknown) as PieceModel;
+      debugger;
+      piece.kanbanStatus = 'test';
+      this.pceSvc.updatePiece(piece, false);
 
       transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
     }
+  }
+
+  onLaneDrop(event: CdkDragDrop<KanbanLaneModel[]>) {
+    // const kanbanLane = (event.previousContainer.data[event.previousIndex] as unknown) as KanbanLaneModel;
+    //   kanbanLane.laneSequence = event.currentIndex;
+    //   this.ref.updateKanbanLane(kanbanLane);
+    debugger;
+    moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
   }
 }

@@ -1,11 +1,19 @@
-<div cdkDropList [cdkDropListData]="ObsLaneList | async" (cdkDropListDropped)="onLaneDrop($event)">
-  <app-kanban-list
-    cdkDropListGroup
-    class="board-lane"
-    *ngFor="let lane of ObsLaneList | async"
-    [label]="lane.laneName"
-    cdkDrag
-    [cdkDragData]="lane.laneName"
+<div cdkDropListGroup>
+  <div
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    [cdkDropListData]="ObsLaneList | async"
+    (cdkDropListDropped)="onLaneDrop($event)"
   >
-  </app-kanban-list>
+    <app-kanban-list
+      class="board-lane"
+      cdkDropList
+      *ngFor="let lane of ObsLaneList | async"
+      cdkDrag
+      [cdkDragData]="lane.laneName"
+      [label]="lane.laneName"
+      (cdkDropListDropped)="onItemDrop($event)"
+    >
+    </app-kanban-list>
+  </div>
 </div>

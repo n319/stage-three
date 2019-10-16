@@ -3,12 +3,18 @@
 </div>
 <div class="list-body">
   <mat-list
+    class="list-lane"
     cdkDropList
     [cdkDropListData]="pieces"
     (cdkDropListDropped)="onTaskDrop($event)"
-    class="list-lane"
     role="list"
   >
-    <app-card-summary class="list-lane-item" *ngFor="let piece of pieces" [id]="piece.id" cdkDrag></app-card-summary>
+    <app-card-summary
+      class="list-lane-item"
+      *ngFor="let piece of pieces"
+      [id]="piece.id"
+      cdkDrag
+      [cdkDragData]="piece"
+    ></app-card-summary>
   </mat-list>
 </div>

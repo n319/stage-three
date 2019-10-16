@@ -8,9 +8,9 @@ import { of } from 'rxjs';
 })
 export class ReferenceService {
   private kanbanLanes: KanbanLaneModel[] = [
-    { laneName: 'Todo', laneSequence: 0 },
-    { laneName: 'In Progress', laneSequence: 1 },
-    { laneName: 'Done', laneSequence: 2 }
+    { id: 0, laneName: 'Todo', laneSequence: 0 },
+    { id: 1, laneName: 'In Progress', laneSequence: 1 },
+    { id: 2, laneName: 'Done', laneSequence: 2 }
   ];
 
   constructor() {}
@@ -21,7 +21,6 @@ export class ReferenceService {
   }
 
   public updateKanbanLane(laneUpdate: KanbanLaneModel) {
-    debugger;
     const index = this.kanbanLanes.findIndex(lane => lane.laneName === laneUpdate.laneName);
     this.kanbanLanes.splice(index, 1, laneUpdate);
   }
