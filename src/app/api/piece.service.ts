@@ -27,7 +27,7 @@ export class PieceService {
     if (pc.length === 1) {
       return of(pc[0]);
     } else if (pc.length > 1) {
-      //TODO log / fix this
+      //TODO log / fix - there is more than 1 item in the cache with an id
       return of(pc[0]);
     }
 

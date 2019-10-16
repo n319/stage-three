@@ -10,11 +10,20 @@ import { ProjectService } from './project.service';
 import { PostService } from './post.service';
 import { PieceService } from './piece.service';
 import { CoreModule } from '@app/core';
+import { ReferenceService } from './reference.service';
 
 @NgModule({
   declarations: [],
   imports: [CommonModule, CoreModule],
-  providers: [AuthenticationService, AuthenticationGuard, PostService, UserService, ProjectService, PieceService],
+  providers: [
+    AuthenticationService,
+    AuthenticationGuard,
+    PostService,
+    UserService,
+    ProjectService,
+    PieceService,
+    ReferenceService
+  ],
   exports: []
 })
 export class ApiModule {}

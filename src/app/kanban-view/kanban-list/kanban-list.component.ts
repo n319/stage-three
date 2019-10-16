@@ -41,6 +41,7 @@ export class KanbanListComponent implements OnInit {
   }
 
   onTaskDrop(event: CdkDragDrop<string[]>) {
+    debugger;
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {

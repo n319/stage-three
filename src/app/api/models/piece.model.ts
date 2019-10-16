@@ -1,5 +1,3 @@
-import { UISliderContentModel } from './project.model';
-
 export class PieceModel {
   id: string | null;
   name: string | null;
