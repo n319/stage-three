@@ -35,7 +35,7 @@
     "@angular/service-worker": "~8.2.11",
     "@fortawesome/fontawesome-free-webfonts": "^1.0.9",
     "@nebular/theme": "^4.4.0",
-    "@ng-bootstrap/ng-bootstrap": "^4.1.0",
+    "@ng-bootstrap/ng-bootstrap": "^5.1.1",
     "@ngx-formly/core": "~5.0.0",
     "@ngx-formly/material": "^5.0.0",
     "@ngx-translate/core": "^10.0.1",
