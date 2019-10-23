@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {} from '@angular/common';
 import { Observable, of } from 'rxjs';
 import { environment } from '@env/environment';
 import { PieceModel } from './models/piece.model';
@@ -34,7 +34,7 @@ export class PieceService {
     return this.http
       .cache()
       .get<PieceModel>(url)
-      .pipe(tap(piece => this.addToCache(piece)));
+      .pipe(tap((piece: PieceModel) => this.addToCache(piece)));
   }
 
   public createPiece(project: PieceModel): Observable<PieceModel> {
