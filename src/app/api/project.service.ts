@@ -14,12 +14,12 @@ export class ProjectService {
 
   public getProject(id: string): Observable<ProjectModel> {
     const url = environment.apiUrl + environment.projectApi.get + '?id=' + id;
-    return this.http.cache().get<ProjectModel>(url);
+    return this.http.get<ProjectModel>(url);
   }
 
   public getProjectList(prjs: ProjectSummary[]): Observable<PanelViewProjects> {
     const url = environment.projectApi.getList;
-    return this.http.cache().post<PanelViewProjects>(url, prjs);
+    return this.http.post<PanelViewProjects>(url, prjs);
   }
 
   public createProject(project: IProject): Observable<IProject> {

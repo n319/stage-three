@@ -1,9 +1,10 @@
-import {} from '@angular/common';
+import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { environment } from '@env/environment';
 import { PieceModel } from './models/piece.model';
 import { HttpCacheService } from '@app/core';
 import { tap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class PieceService {
 
   public getPiecesListById(projId: string): Observable<PieceModel[]> {
     const url = environment.apiUrl + environment.pieceApi.getList + '?id=' + projId;
-    return this.http.get<PieceModel[]>(url).pipe(tap(pieces => this.addAllToCache(pieces)));
+    return this.http.get<PieceModel[]>(url).pipe(tap((pieces: PieceModel[]) => this.addAllToCache(pieces)));
   }
 
   public getPiece(id: string): Observable<PieceModel> {
@@ -31,10 +32,7 @@ export class PieceService {
     }
 
     const url = environment.apiUrl + environment.pieceApi.get + '?id=' + id;
-    return this.http
-      .cache()
-      .get<PieceModel>(url)
-      .pipe(tap((piece: PieceModel) => this.addToCache(piece)));
+    return this.http.get<PieceModel>(url).pipe(tap((piece: PieceModel) => this.addToCache(piece)));
   }
 
   public createPiece(project: PieceModel): Observable<PieceModel> {

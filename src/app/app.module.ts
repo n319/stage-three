@@ -35,6 +35,7 @@ import { ProjectsModule } from './projects/projects.module';
     BrowserModule,
     ServiceWorkerModule.register('./ngsw-worker.js', { enabled: environment.production }),
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule,
     FormlyModule.forRoot(),
     FormlyMaterialModule,
@@ -46,7 +47,6 @@ import { ProjectsModule } from './projects/projects.module';
     HomeModule,
     BacklogModule,
     ProjectsModule,
-    MatGalleryModule,
     AboutModule,
     LoginModule,
     AppRoutingModule // must be imported as the last module as it contains the fallback route

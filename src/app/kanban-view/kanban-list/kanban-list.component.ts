@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ListViewComponent } from '@app/base-view/list-view.component';
 import { Observable, of } from 'rxjs';
 import { PieceModel } from '@app/api/models/piece.model';
 import { ProjectService } from '@app/api/project.service';

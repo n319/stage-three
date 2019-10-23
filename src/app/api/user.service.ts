@@ -22,6 +22,6 @@ export class UserService {
 
     const url = environment.apiUrl + environment.userApi.projectsSummary + '?id=' + userId;
 
-    return this.http.cache().get<UserProjectsSummaryResponse>(url);
+    return this.http.get<UserProjectsSummaryResponse>(url);
   }
 }
