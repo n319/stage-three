@@ -20,6 +20,8 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 export class KanbanBoardComponent implements OnInit {
   public ObsLaneList: Observable<KanbanLaneModel[]>;
   public pieces: Observable<PieceModel[]>;
+  public piecesForLanes: Observable<PieceModel[][]>;
+
   constructor(
     private prjSvc: ProjectService,
     private pceSvc: PieceService,
@@ -33,24 +35,20 @@ export class KanbanBoardComponent implements OnInit {
     this.pieces = this.pceSvc.getPiecesListById(proj.id).pipe(share());
   }
 
-  // getConnectedList(): Observable<PieceModel[]> {
-  //   return this.pieces.subscribe(
-
-  //   );
-  // }
-
   getConnectedList(lane: any): Observable<PieceModel[]> {
-    debugger;
+    // return this.groups.map(x => `${x.id}`);
+
     return this.pieces;
   }
 
-  getPiecesForLane(lane: any): Observable<PieceModel[]> {
-    debugger;
-    return this.pieces;
+  getPiecesForLane(laneName: string): Observable<PieceModel[]> {
+    return this.pieces.pipe(
+      share(),
+      map(ps => ps.filter(p => p.kanbanStatus === laneName))
+    );
   }
 
   onItemDrop(event: CdkDragDrop<PieceModel[]>) {
-    debugger;
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -67,7 +65,6 @@ export class KanbanBoardComponent implements OnInit {
     // const kanbanLane = (event.previousContainer.data[event.previousIndex] as unknown) as KanbanLaneModel;
     //   kanbanLane.laneSequence = event.currentIndex;
     //   this.ref.updateKanbanLane(kanbanLane);
-    debugger;
     moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
   }
 }

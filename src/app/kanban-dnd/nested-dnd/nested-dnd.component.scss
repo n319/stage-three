@@ -1,0 +1,22 @@
+:host {
+  display: block;
+  box-sizing: border-box;
+}
+
+mat-card {
+  transition: transform 200ms, opacity 200ms;
+}
+
+.dndDraggingSource {
+  opacity: 0.5;
+  transform: scale(0.98);
+}
+
+.kanban-lane {
+  border: 1px solid red;
+  display: inline-flex;
+}
+
+.card-item {
+  border: 1px solid purple;
+}

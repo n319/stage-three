@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { environment } from '@env/environment';
 import { PieceModel } from './models/piece.model';
-import { HttpClient } from '@angular/common/http';
 import { HttpCacheService } from '@app/core';
 import { tap } from 'rxjs/operators';
 
