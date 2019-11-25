@@ -1,11 +1,9 @@
-﻿// =============================
-// Email: info@ebenmonney.com
-// www.ebenmonney.com/templates
-// =============================
+﻿
+
+
+
 
 using DAL.Core;
-using System;
-using System.Linq;
 
 namespace QuickApp.ViewModels
 {

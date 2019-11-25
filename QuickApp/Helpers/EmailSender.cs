@@ -1,16 +1,16 @@
-﻿// =============================
-// Email: info@ebenmonney.com
-// www.ebenmonney.com/templates
-// =============================
+﻿
+
+
+
 
 using MailKit.Net.Smtp;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using MimeKit;
 using System;
-using Microsoft.Extensions.Logging;
-using System.Threading.Tasks;
-using System.Security.Cryptography.X509Certificates;
 using System.Net.Security;
-using Microsoft.Extensions.Options;
+using System.Security.Cryptography.X509Certificates;
+using System.Threading.Tasks;
 
 namespace QuickApp.Helpers
 {

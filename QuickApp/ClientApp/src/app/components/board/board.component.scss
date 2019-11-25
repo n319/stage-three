@@ -1,0 +1,81 @@
+.boardContent {
+  display: block;
+  width: fit-content;
+}
+
+.mat-input-element {
+  color: #212121;
+}
+
+.boardWrapper {
+  display: flex;
+  border-radius: .25rem;
+  padding: 2px;
+  width: fit-content;
+}
+
+.groupContainer {
+  display: block;
+  width: fit-content;
+  padding: 0px;
+  margin: 0px 0px 0px 0px;
+  border: 1px solid #8BC34A;
+  border-radius: .25rem;
+  margin: 8px 2px 8px 2px;
+  padding: 0px 0px 2px 12px;
+  background: #DCEDC8;
+}
+
+.itemContainer {
+  display: block;
+}
+
+mat-list-item, .mat-list-item {
+  display: block;
+  height: auto !important;
+}
+
+mat-card {
+  display: block;
+  margin-bottom: 4px;
+  padding: 0px 16px;
+}
+
+mat-card-header{
+  padding-left: 4px;
+}
+
+.removeButton {
+  height: 30px;
+}
+
+.summary-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.summary-full-width {
+  width: 100%;
+}
+
+
+column-label {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.column-full-width{
+  width:100%;
+}
+
+
+.example-form{
+  display:inline;
+}
+
+
+mat-card > form > mat-form-field{
+  line-height: .75;
+}

@@ -1,7 +1,7 @@
-// =============================
-// Email: info@ebenmonney.com
-// www.ebenmonney.com/templates
-// =============================
+
+
+
+
 
 import { Component, ViewEncapsulation, OnInit, OnDestroy, ViewChildren, AfterViewInit, QueryList, ElementRef } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
@@ -43,7 +43,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   notificationsLoadingSubscription: any;
 
   @ViewChildren('loginModal,loginControl')
-  modalLoginControls: QueryList<any>;
+  modalLoginControls: QueryList<any>; 
 
   loginModal: ModalDirective;
   loginControl: LoginComponent;
@@ -81,9 +81,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.toastaConfig.showDuration = false;
 
     this.appTitleService.appName = this.appTitle;
-  }
-
-
+  } 
+  
   ngAfterViewInit() {
 
     this.modalLoginControls.changes.subscribe((controls: QueryList<any>) => {
@@ -121,6 +120,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   onLoginModalHide() {
     this.alertService.resetStickyMessage();
   }
+
 
 
   ngOnInit() {

@@ -1,23 +1,20 @@
-﻿// =============================
-// Email: info@ebenmonney.com
-// www.ebenmonney.com/templates
-// =============================
-
-using DAL.Models;
+﻿using DAL.Models;
+using DAL.Models.Interfaces;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Threading;
-using DAL.Models.Interfaces;
+using System.Threading.Tasks;
 
 namespace DAL
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
+        public ApplicationDbContext(DbContextOptions options) : base(options)
+        { }
+
+        //Base
         public string CurrentUserId { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<ProductCategory> ProductCategories { get; set; }
@@ -25,14 +22,49 @@ namespace DAL
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
 
+        //Projectr.Live
+        public DbSet<UserAccount> UserAccount { get; set; }
+        public DbSet<AccountType> AccountType { get; set; }
 
+        public DbSet<UserProject> UserProject { get; set; }
+        public DbSet<Project> Project { get; set; }
+        public DbSet<ProjectContentTag> ProjectContentTag { get; set; }
+        public DbSet<ViewType> ViewType { get; set; }
 
-        public ApplicationDbContext(DbContextOptions options) : base(options)
-        { }
+        public DbSet<ProjectPiece> ProjectPiece { get; set; }
+        public DbSet<Piece> Piece { get; set; }
+        public DbSet<PieceViewAttribute> PieceViewAttribute { get; set; }
+        public DbSet<PieceContentTag> PieceContentTag { get; set; }
 
+        public DbSet<CheckListItem> CheckListItem { get; set; }
+        public DbSet<ContentTagType> ContentTagType { get; set; }
+        public DbSet<ViewAttributeType> ViewAttributeType { get; set; }
+
+        public DbSet<EventLog> EventLog { get; set; }
+        public DbSet<EventType> EventType { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+
+            //Projectr.Live
+            builder.Entity<UserAccount>().ToTable("UserAccount");
+
+            builder.Entity<UserProject>().ToTable("UserProject");
+
+            builder.Entity<AccountType>().ToTable("AccontType");
+            
+            builder.Entity<Project>().ToTable("Project");
+            builder.Entity<ProjectContentTag>().ToTable("ProjectContentTag");
+            builder.Entity<ViewType>().ToTable("ViewType");
+            builder.Entity<ProjectPiece>().ToTable("ProjectPiece");
+            builder.Entity<Piece>().ToTable("Piece");
+            builder.Entity<PieceViewAttribute>().ToTable("PieceViewAttribute");
+            builder.Entity<PieceContentTag>().ToTable("PieceContentTag");
+            builder.Entity<CheckListItem>().ToTable("CheckListItem");
+            builder.Entity<ContentTagType>().ToTable("ContentTagType");
+            builder.Entity<ViewAttributeType>().ToTable("ViewAttributeType");
+
+            //Base
             base.OnModelCreating(builder);
             const string priceDecimalType = "decimal(18,2)";
 

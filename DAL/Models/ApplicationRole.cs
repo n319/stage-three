@@ -1,14 +1,12 @@
-﻿// =============================
-// Email: info@ebenmonney.com
-// www.ebenmonney.com/templates
-// =============================
+﻿
+
+
+
 
 using DAL.Models.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DAL.Models
 {
@@ -18,7 +16,7 @@ namespace DAL.Models
         /// Initializes a new instance of <see cref="ApplicationRole"/>.
         /// </summary>
         /// <remarks>
-        /// The Id property is initialized to from a new GUID string value.
+        /// The Id property is initialized to from a new GUId string value.
         /// </remarks>
         public ApplicationRole()
         {
@@ -30,7 +28,7 @@ namespace DAL.Models
         /// </summary>
         /// <param name="roleName">The role name.</param>
         /// <remarks>
-        /// The Id property is initialized to from a new GUID string value.
+        /// The Id property is initialized to from a new GUId string value.
         /// </remarks>
         public ApplicationRole(string roleName) : base(roleName)
         {
@@ -44,7 +42,7 @@ namespace DAL.Models
         /// <param name="roleName">The role name.</param>
         /// <param name="description">Description of the role.</param>
         /// <remarks>
-        /// The Id property is initialized to from a new GUID string value.
+        /// The Id property is initialized to from a new GUId string value.
         /// </remarks>
         public ApplicationRole(string roleName, string description) : base(roleName)
         {

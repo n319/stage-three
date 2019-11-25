@@ -31,6 +31,16 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0" />
+    <PackageReference Include="Microsoft.NetCore.Analyzers" Version="2.9.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
     <PackageReference Include="Serilog.Extensions.Logging.File" Version="2.0.0-dev-00032" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-rc4" />
   </ItemGroup>
@@ -60,6 +70,19 @@
     <EmbeddedResource Remove="Logs\**" />
     <None Remove="ClientApp\dist\**" />
     <None Remove="Logs\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20191118062938_revisedRelationships.cs" />
+    <Compile Remove="Migrations\20191118062938_revisedRelationships.Designer.cs" />
+    <Compile Remove="Migrations\20191118064041_testreltioship.cs" />
+    <Compile Remove="Migrations\20191118064041_testreltioship.Designer.cs" />
+    <Compile Remove="Migrations\20191118064227_test2.cs" />
+    <Compile Remove="Migrations\20191118064227_test2.Designer.cs" />
+    <Compile Remove="Migrations\20191118065124_removekanbanLane.cs" />
+    <Compile Remove="Migrations\20191118065124_removekanbanLane.Designer.cs" />
+    <Compile Remove="Migrations\20191118092738_adminRole.cs" />
+    <Compile Remove="Migrations\20191118092738_adminRole.Designer.cs" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

@@ -1,15 +1,4 @@
-﻿// =============================
-// Email: info@ebenmonney.com
-// www.ebenmonney.com/templates
-// =============================
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace QuickApp
+﻿namespace QuickApp
 {
     public class AppSettings
     {
@@ -17,7 +6,7 @@ namespace QuickApp
 
     }
 
-
+                                                                                                                                                                     
 
     public class SmtpConfig
     {

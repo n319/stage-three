@@ -1,18 +1,12 @@
-﻿// =============================
-// Email: info@ebenmonney.com
-// www.ebenmonney.com/templates
-// =============================
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
 using DAL;
-using QuickApp.ViewModels;
-using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using QuickApp.Helpers;
+using QuickApp.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace QuickApp.Controllers
 {
@@ -56,8 +50,8 @@ namespace QuickApp.Controllers
         [HttpGet("email")]
         public async Task<string> Email()
         {
-            string recepientName = "QickApp Tester"; //         <===== Put the recepient's name here
-            string recepientEmail = "test@ebenmonney.com"; //   <===== Put the recepient's email here
+            string recepientName = "Projectr.Live Tester"; //         <===== Put the recepient's name here
+            string recepientEmail = "test@projectr.live"; //   <===== Put the recepient's email here
 
             string message = EmailTemplates.GetTestEmail(recepientName, DateTime.UtcNow);
 

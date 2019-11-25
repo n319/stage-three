@@ -1,10 +1,10 @@
-// =============================
-// Email: info@ebenmonney.com
-// www.ebenmonney.com/templates
-// =============================
+
+
+
+
 
 import { NgModule, ErrorHandler } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
@@ -64,69 +64,83 @@ import { UsersManagementComponent } from './components/controls/users-management
 import { RolesManagementComponent } from './components/controls/roles-management.component';
 import { RoleEditorComponent } from './components/controls/role-editor.component';
 
+import { DragulaModule } from 'ng2-dragula';
+import { BoardComponent } from './components/board/board.component';
+import { GalleryComponent } from './components/gallery/gallery.component';
+import { MaterialModule } from './material.module';
+import { MatAutocompleteModule, MatFormFieldModule } from '@angular/material';
+
+
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    FormsModule,
-    AppRoutingModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useClass: TranslateLanguageLoader
-      }
-    }),
-    NgxDatatableModule,
-    OAuthModule.forRoot(),
-    ToastaModule.forRoot(),
-    TooltipModule.forRoot(),
-    PopoverModule.forRoot(),
-    BsDropdownModule.forRoot(),
-    CarouselModule.forRoot(),
-    ModalModule.forRoot(),
-    ChartsModule
-  ],
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    HomeComponent,
-    CustomersComponent,
-    ProductsComponent,
-    OrdersComponent,
-    SettingsComponent,
-    UsersManagementComponent, UserInfoComponent, UserPreferencesComponent,
-    RolesManagementComponent, RoleEditorComponent,
-    AboutComponent,
-    NotFoundComponent,
-    NotificationsViewerComponent,
-    SearchBoxComponent,
-    StatisticsDemoComponent, TodoDemoComponent, BannerDemoComponent,
-    EqualValidator,
-    LastElementDirective,
-    AutofocusDirective,
-    BootstrapTabDirective,
-    BootstrapToggleDirective,
-    BootstrapSelectDirective,
-    BootstrapDatepickerDirective,
-    GroupByPipe
-  ],
-  providers: [
-    { provide: ErrorHandler, useClass: AppErrorHandler },
-    { provide: OAuthStorage, useClass: AuthStorage },
-    AlertService,
-    ThemeManager,
-    ConfigurationService,
-    AppTitleService,
-    AppTranslationService,
-    NotificationService,
-    NotificationEndpoint,
-    AccountService,
-    AccountEndpoint,
-    LocalStoreManager
-  ],
-  bootstrap: [AppComponent]
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        FormsModule,
+        AppRoutingModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useClass: TranslateLanguageLoader
+            }
+        }),
+        NgxDatatableModule,
+        OAuthModule.forRoot(),
+        ToastaModule.forRoot(),
+        TooltipModule.forRoot(),
+        PopoverModule.forRoot(),
+        BsDropdownModule.forRoot(),
+        CarouselModule.forRoot(),
+        ModalModule.forRoot(),
+        ChartsModule,
+        DragulaModule.forRoot(),
+        MaterialModule,
+        ReactiveFormsModule,
+        MatAutocompleteModule,
+        MatFormFieldModule
+    ],
+    declarations: [
+        AppComponent,
+        LoginComponent,
+        BoardComponent,
+        GalleryComponent,
+        HomeComponent,
+        CustomersComponent,
+        ProductsComponent,
+        OrdersComponent,
+        SettingsComponent,
+        UsersManagementComponent, UserInfoComponent, UserPreferencesComponent,
+        RolesManagementComponent, RoleEditorComponent,
+        AboutComponent,
+        NotFoundComponent,
+        NotificationsViewerComponent,
+        SearchBoxComponent,
+        StatisticsDemoComponent, TodoDemoComponent, BannerDemoComponent,
+        EqualValidator,
+        LastElementDirective,
+        AutofocusDirective,
+        BootstrapTabDirective,
+        BootstrapToggleDirective,
+        BootstrapSelectDirective,
+        BootstrapDatepickerDirective,
+        GroupByPipe
+    ],
+    providers: [
+        { provide: ErrorHandler, useClass: AppErrorHandler },
+        { provide: OAuthStorage, useClass: AuthStorage },
+        AlertService,
+        ThemeManager,
+        ConfigurationService,
+        AppTitleService,
+        AppTranslationService,
+        NotificationService,
+        NotificationEndpoint,
+        AccountService,
+        AccountEndpoint,
+        LocalStoreManager
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 }

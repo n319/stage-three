@@ -4,9 +4,25 @@ $footerHeight: 40px;
     height: 100%;
 }
 
+.search-nav-field > mat-form-field {
+  padding: 0px 4px;
+  margin: 0px 20px;
+  font-size: 13px;
+  border: 1px solid #DCEDC8;
+  border-radius: .25rem;
+  background-color: #efefef;
+  color: #212121;
+}
+
+
+.mat-form-field-underline {
+  display: none;
+}
+
+
 main.app-component {
-    height: calc(100% - #{$footerHeight});
-    padding-top: 60px;
+  height: calc(100% - #{$footerHeight});
+  padding-top: 60px;
 }
 
 .footer-height.app-component {
@@ -28,8 +44,8 @@ footer.app-component {
 .navbar.app-component .nav-pills > .active > a,
 .navbar.app-component .nav-pills > .active > a:hover,
 .navbar.app-component .nav-pills > .active > a:focus {
-    background-color: #efefef;
-    color: #808080;
+  background-color: #efefef;
+  color: #838383;
 }
 
 

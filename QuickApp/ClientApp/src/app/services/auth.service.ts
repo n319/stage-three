@@ -1,7 +1,7 @@
-// =============================
-// Email: info@ebenmonney.com
-// www.ebenmonney.com/templates
-// =============================
+
+
+
+
 
 import { Injectable } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
@@ -18,6 +18,7 @@ import { Utilities } from './utilities';
 import { AccessToken } from '../models/access-token.model';
 import { User } from '../models/user.model';
 import { PermissionValues } from '../models/permission.model';
+
 
 @Injectable()
 export class AuthService {

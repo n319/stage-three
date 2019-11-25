@@ -1,11 +1,11 @@
-﻿// =============================
-// Email: info@ebenmonney.com
-// www.ebenmonney.com/templates
-// =============================
+﻿
 
-using System;
-using Microsoft.Extensions.FileProviders;
+
+
+
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.FileProviders;
+using System;
 using System.IO;
 
 namespace QuickApp.Helpers

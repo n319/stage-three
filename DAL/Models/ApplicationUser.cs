@@ -1,15 +1,12 @@
-﻿// =============================
-// Email: info@ebenmonney.com
-// www.ebenmonney.com/templates
-// =============================
+﻿
 
+
+
+
+using DAL.Models.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
-using DAL.Models.Interfaces;
 
 namespace DAL.Models
 {
@@ -28,9 +25,14 @@ namespace DAL.Models
             }
         }
 
-
+        //DEPR//
         public string JobTitle { get; set; }
         public string FullName { get; set; }
+        //DEPR//
+
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+
         public string Configuration { get; set; }
         public bool IsEnabled { get; set; }
         public bool IsLockedOut => this.LockoutEnabled && this.LockoutEnd >= DateTimeOffset.UtcNow;
@@ -39,8 +41,6 @@ namespace DAL.Models
         public string UpdatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
-
-
 
         /// <summary>
         /// Navigation property for the roles this user belongs to.

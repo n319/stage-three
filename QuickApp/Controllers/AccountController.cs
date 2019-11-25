@@ -1,24 +1,24 @@
-﻿// =============================
-// Email: info@ebenmonney.com
-// www.ebenmonney.com/templates
-// =============================
+﻿
 
+
+
+
+using AutoMapper;
+using DAL.Core;
+using DAL.Core.Interfaces;
+using DAL.Models;
+using IdentityServer4.AccessTokenValidation;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using QuickApp.Authorization;
+using QuickApp.Helpers;
+using QuickApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.Extensions.Logging;
-using QuickApp.ViewModels;
-using AutoMapper;
-using DAL.Models;
-using DAL.Core.Interfaces;
-using QuickApp.Authorization;
-using QuickApp.Helpers;
-using Microsoft.AspNetCore.JsonPatch;
-using DAL.Core;
-using IdentityServer4.AccessTokenValidation;
 
 namespace QuickApp.Controllers
 {
@@ -263,7 +263,7 @@ namespace QuickApp.Controllers
         [ProducesResponseType(403)]
         public async Task<IActionResult> Register([FromBody] UserEditViewModel user)
         {
-            if (!(await _authorizationService.AuthorizeAsync(this.User, (user.Roles, new string[] { }), Authorization.Policies.AssignAllowedRolesPolicy)).Succeeded)
+            if (!(await _authorizationService.AuthorizeAsync(this.User, (user.Roles, Array.Empty<string>()), Authorization.Policies.AssignAllowedRolesPolicy)).Succeeded)
                 return new ChallengeResult();
 
 

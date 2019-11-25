@@ -89,11 +89,11 @@ ___
 LOGIN WITH USERNAME OR EMAIL ADDRESS
 > * **Default Administrator Account**
 >   * Username: admin
->   * Email:    admin@ebenmonney.com
+>   * Email:    admin@projectr.live
 >   * Password: tempP@ss123
 > * **Default Standard Account**
 >   * Username: user
->   * Email:    user@ebenmonney.com
+>   * Email:    user@projectr.live
 >   * Password: tempP@ss123
 
 
