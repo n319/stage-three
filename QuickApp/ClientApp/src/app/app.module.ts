@@ -1,8 +1,3 @@
-
-
-
-
-
 import { NgModule, ErrorHandler } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -71,6 +66,15 @@ import { MaterialModule } from './material.module';
 import { MatAutocompleteModule, MatFormFieldModule } from '@angular/material';
 
 
+import { Select2Module } from 'ng2-select2';
+import { DynamicCrudService } from './services/dynamic-crud/dynamic-crud.service';
+import { DataCreate } from './services/dynamic-crud/create.service';
+import { DataUpdate } from './services/dynamic-crud/update.service';
+import { DataRead } from './services/dynamic-crud/read.service';
+import { DataDelete } from './services/dynamic-crud/delete.service';
+import { ApiEndpoint } from './services/dynamic-crud/api-endpoint.service';
+import { LaneFilterPipe } from './pipes/lane-filter.pipe';
+
 
 @NgModule({
     imports: [
@@ -98,7 +102,8 @@ import { MatAutocompleteModule, MatFormFieldModule } from '@angular/material';
         MaterialModule,
         ReactiveFormsModule,
         MatAutocompleteModule,
-        MatFormFieldModule
+        MatFormFieldModule,
+        Select2Module
     ],
     declarations: [
         AppComponent,
@@ -124,11 +129,11 @@ import { MatAutocompleteModule, MatFormFieldModule } from '@angular/material';
         BootstrapToggleDirective,
         BootstrapSelectDirective,
         BootstrapDatepickerDirective,
-        GroupByPipe
+        GroupByPipe,
+        LaneFilterPipe
     ],
     providers: [
         { provide: ErrorHandler, useClass: AppErrorHandler },
-        { provide: OAuthStorage, useClass: AuthStorage },
         AlertService,
         ThemeManager,
         ConfigurationService,
@@ -138,7 +143,13 @@ import { MatAutocompleteModule, MatFormFieldModule } from '@angular/material';
         NotificationEndpoint,
         AccountService,
         AccountEndpoint,
-        LocalStoreManager
+        LocalStoreManager,
+        DynamicCrudService,
+        DataCreate,
+        DataUpdate,
+        DataRead,
+        DataDelete,
+        ApiEndpoint
     ],
     bootstrap: [AppComponent]
 })

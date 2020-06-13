@@ -28,7 +28,7 @@ export class User {
   }
 
 
-  public id: string;
+    public id: string;
   public userName: string;
   public fullName: string;
   public email: string;

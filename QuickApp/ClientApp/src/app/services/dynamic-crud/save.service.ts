@@ -29,14 +29,14 @@ export class DataSave {
                 const toCreate = [], toUpdate = [];
                 objToSave.forEach(o => o.id ? toUpdate.push(o) : toCreate.push(o));
                 
-                const createFetch = fetch(`${this.DS.endpoint}${model.tableName}`, {
+                const createFetch = fetch(`${this.DS.endpoint}${model.constructor.tableName}`, {
                     method: "POST",
                     body: JSON.stringify(toCreate),
                     headers: {
                         'Content-Type': 'application/json'
                     }
                 });
-                const updateFetch = fetch(`${this.DS.endpoint}${model.tableName}`, {
+                const updateFetch = fetch(`${this.DS.endpoint}${model.constructor.tableName}`, {
                     method: "PATCH",
                     body: JSON.stringify(toUpdate),
                     headers: {
@@ -63,7 +63,7 @@ export class DataSave {
                 this.cacheAndNotifySaved(model, objToSave);
                 return objToSave;
             } else {
-                const res = await fetch(`${this.DS.endpoint}${model.tableName}`, {
+                const res = await fetch(`${this.DS.endpoint}${model.constructor.tableName}`, {
                     method: objToSave.id ? "PATCH" : "POST",
                     body: JSON.stringify(objToSave),
                     headers: {
@@ -85,11 +85,11 @@ export class DataSave {
 
     private cacheAndNotifySaved<T>(model: T | any, newModelObj) {
         // Append the new object into the front end cache
-        this.DS.cache[model.tableName].push(Object.assign({}, newModelObj));
+        this.DS.cache[model.constructor.tableName].push(Object.assign({}, newModelObj));
 
-        this.DS.subjectMap[model.tableName].many.next(
-            this.DS.cache[model.tableName]
+        this.DS.subjectMap[model.constructor.tableName].many.next(
+            this.DS.cache[model.constructor.tableName]
         );
-        this.DS.subjectMap[model.tableName].one.next(newModelObj);
+        this.DS.subjectMap[model.constructor.tableName].one.next(newModelObj);
     }
 }

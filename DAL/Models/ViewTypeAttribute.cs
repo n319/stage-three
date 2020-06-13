@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DAL.Models
 {
-    public class ViewAttributeType
+    public class ViewTypeAttribute
     {
         public int Id { get; set; }
         public int ViewTypeId { get; set; }
@@ -17,7 +17,7 @@ namespace DAL.Models
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime CreatedOn { get; set; }
-
+         
         public DateTime CompletedOn { get; set; }
     }
 }

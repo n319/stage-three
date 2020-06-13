@@ -13,11 +13,29 @@
 
       <div *ngIf="isUserLoggedIn" class="app-component collapse navbar-collapse menuItemsContainer">
         <ul class="app-component nav nav-pills flex-column flex-lg-row mr-auto">
+
           <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
             <a class="nav-link" routerLink=""><i class="fa fa-home"></i></a>
           </li>
+
           <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link" routerLink="/board">{{'mainMenu.Board' | translate}}</a>
+
+            <div class="btn-group">
+              <button type="button" class="btn nav-link" routerLink="/board">
+              {{'mainMenu.Board' | translate}}
+                </button>
+              <button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="sr-only">Toggle Dropdown</span>
+              </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Board1</a>
+                <a class="dropdown-item" href="#">Board2</a>
+                <a class="dropdown-item" href="#">Board3</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">New Board</a>
+              </div>
+            </div>
+
           </li>
           <li class="nav-item" routerLinkActive="active">
             <a class="nav-link" routerLink="/gallery">{{'mainMenu.Gallery' | translate}}</a>
@@ -25,9 +43,10 @@
           <li class="nav-item" routerLinkActive="active">
             <a class="nav-link" routerLink="/about">{{'mainMenu.About' | translate}}</a>
           </li>
+
         </ul>
 
-        
+
         <span class="app-component navbar-text notifications-popup">{{'app.Welcome' | translate}}</span>
         <a class="app-component nav-link user-name d-inline-block px-1" [popover]="popTemplate" (onHidden)="markNotificationsAsRead()" placement="bottom" [popoverTitle]="notificationsTitle" href="javascript:;" triggers="focus">
           {{userName}}

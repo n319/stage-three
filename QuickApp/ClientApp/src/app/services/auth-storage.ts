@@ -1,8 +1,4 @@
 
-
-
-
-
 import { Injectable } from '@angular/core';
 import { OAuthStorage } from 'angular-oauth2-oidc';
 
@@ -17,7 +13,7 @@ export class AuthStorage implements OAuthStorage {
   static RememberMe = false;
   private dbKeyPrefix = 'AUTH:';
 
-  getItem(key: string): string {
+    getItem(key: string): string {
     return this.localStorage.getData(this.dbKeyPrefix + key);
   }
 
@@ -25,7 +21,7 @@ export class AuthStorage implements OAuthStorage {
     this.localStorage.deleteData(this.dbKeyPrefix + key);
   }
 
-  setItem(key: string, data: string): void {
+    setItem(key: string, data: string): void {
     if (AuthStorage.RememberMe) {
       this.localStorage.savePermanentData(data, this.dbKeyPrefix + key);
     } else {

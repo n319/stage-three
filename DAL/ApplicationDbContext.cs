@@ -12,9 +12,14 @@ namespace DAL
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
         public ApplicationDbContext(DbContextOptions options) : base(options)
-        { }
+        {
+            //var canConnect = Database.CanConnect();
+            //var migrationList = Database.GetAppliedMigrations();
+            
+           //Database.SetInitializer<ApplicationDbContext>(new CreateDatabaseIfNotExists<ApplicationDbContext>());
+        }
 
-        //Base
+        //BasA
         public string CurrentUserId { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<ProductCategory> ProductCategories { get; set; }
@@ -38,14 +43,13 @@ namespace DAL
 
         public DbSet<CheckListItem> CheckListItem { get; set; }
         public DbSet<ContentTagType> ContentTagType { get; set; }
-        public DbSet<ViewAttributeType> ViewAttributeType { get; set; }
+        public DbSet<ViewTypeAttribute> ViewAttributeType { get; set; }
 
         public DbSet<EventLog> EventLog { get; set; }
         public DbSet<EventType> EventType { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-
             //Projectr.Live
             builder.Entity<UserAccount>().ToTable("UserAccount");
 
@@ -62,7 +66,7 @@ namespace DAL
             builder.Entity<PieceContentTag>().ToTable("PieceContentTag");
             builder.Entity<CheckListItem>().ToTable("CheckListItem");
             builder.Entity<ContentTagType>().ToTable("ContentTagType");
-            builder.Entity<ViewAttributeType>().ToTable("ViewAttributeType");
+            builder.Entity<ViewTypeAttribute>().ToTable("ViewAttributeType");
 
             //Base
             base.OnModelCreating(builder);

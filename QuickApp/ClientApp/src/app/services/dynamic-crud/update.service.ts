@@ -5,12 +5,18 @@ import { catchError, tap } from "rxjs/operators";
 
 import { DynamicCrudService } from "./dynamic-crud.service";
 import { handleHttpError } from "./utilities";
+import { EndpointBase } from '../endpoint-base.service';
+import { AuthService } from '../auth.service';
 
 @Injectable()
-export class DataUpdate {
+export class DataUpdate extends EndpointBase {
   private DS: DynamicCrudService;
 
-  constructor(private http: HttpClient) {}
+    constructor(
+        protected http: HttpClient, authService: AuthService
+    ) {
+        super(http, authService)
+    }
 
   setDataService(ds: DynamicCrudService) {
     this.DS = ds;
@@ -22,30 +28,30 @@ export class DataUpdate {
    * @param objToUpdate The front end object to be updated in the DB
    */
   update<T>(model: T | any, objToUpdate: T | any) {
-    this.DS.loadingMap[model.tableName] = true;
+    this.DS.loadingMap[model.constructor.tableName] = true;
 
     if (this.DS.isOptimistic) {
       this.cacheAndNotifyUpdated(model, objToUpdate);
     }
 
-    const url = `${this.DS.endpoint}${model.tableName}/${objToUpdate.key}`;
-    this.http.patch(url, objToUpdate, this.DS.httpOptions).subscribe(
+    const url = `${this.DS.endpoint}${model.constructor.tableName}/${objToUpdate.key}`;
+      this.http.patch(url, objToUpdate, { headers: this.requestHeaders }).subscribe(
       res => {
         if (!this.DS.isOptimistic) {
           this.cacheAndNotifyUpdated(model, objToUpdate);
         }
-        this.DS.loadingMap[model.tableName] = false;
+        this.DS.loadingMap[model.constructor.tableName] = false;
       },
       err => {
         handleHttpError(err);
-        this.DS.loadingMap[model.tableName] = false;
+        this.DS.loadingMap[model.constructor.tableName] = false;
       }
     );
   }
 
   updateObs<T>(model: T | any, objToUpdate: T | any): Observable<T[]> {
-    const url = `${this.DS.endpoint}${model.tableName}/${objToUpdate.key}`;
-    return this.http.patch<T[]>(url, objToUpdate, this.DS.httpOptions).pipe(
+    const url = `${this.DS.endpoint}${model.constructor.tableName}/${objToUpdate.key}`;
+      return this.http.patch<T[]>(url, objToUpdate, { headers: this.requestHeaders }).pipe(
       catchError(handleHttpError),
       tap((res: T[]) => {
         this.cacheAndNotifyUpdated(model, objToUpdate);
@@ -57,7 +63,7 @@ export class DataUpdate {
     model: T | any,
     objToUpdate: T | any
   ): Promise<T | any> {
-    const url = `${this.DS.endpoint}${model.tableName}/${objToUpdate.key}`;
+    const url = `${this.DS.endpoint}${model.constructor.tableName}/${objToUpdate.key}`;
     try {
       const res = await fetch(url, {
         method: "PATCH",
@@ -76,7 +82,7 @@ export class DataUpdate {
 
   private cacheAndNotifyUpdated<T>(model: T | any, objToUpdate: T | any) {
     // Find the front end object to update in the cache
-    const localObjToUpdate: T | any = this.DS.cache[model.tableName].find(
+    const localObjToUpdate: T | any = this.DS.cache[model.constructor.tableName].find(
       el => el.key === objToUpdate.key
     );
     if (!localObjToUpdate) {
@@ -89,10 +95,10 @@ export class DataUpdate {
     Object.assign(localObjToUpdate, objToUpdate);
 
     // Optimistic Update Frontend
-    this.DS.subjectMap[model.tableName].many.next(
-      this.DS.cache[model.tableName]
+    this.DS.subjectMap[model.constructor.tableName].many.next(
+      this.DS.cache[model.constructor.tableName]
     );
-    this.DS.subjectMap[model.tableName].one.next(localObjToUpdate);
+    this.DS.subjectMap[model.constructor.tableName].one.next(localObjToUpdate);
   }
 
   // TODO:

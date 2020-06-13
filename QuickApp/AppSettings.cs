@@ -3,6 +3,7 @@
     public class AppSettings
     {
         public SmtpConfig SmtpConfig { get; set; }
+        public string Secret { get; set; }
 
     }
 

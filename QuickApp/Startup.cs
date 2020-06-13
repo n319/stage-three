@@ -1,8 +1,3 @@
-
-
-
-
-
 using AutoMapper;
 using DAL;
 using DAL.Core;
@@ -45,7 +40,7 @@ namespace QuickApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"], b => b.MigrationsAssembly("QuickApp")));
+                options.UseMySql(Configuration["ConnectionStrings:DefaultConnection"], b => b.MigrationsAssembly(   "QuickApp")));
 
             // add identity
             services.AddIdentity<ApplicationUser, ApplicationRole>()
@@ -111,7 +106,7 @@ namespace QuickApp
             });
 
 
-            // Add cors
+            // Add cors 
             services.AddCors();
 
             services.AddControllersWithViews();

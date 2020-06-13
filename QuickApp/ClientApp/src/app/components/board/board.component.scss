@@ -1,14 +1,14 @@
 .boardContent {
-  display: block;
+  display: inline-flex;
   width: fit-content;
 }
 
-.mat-input-element {
+/*.mat-input-element {
   color: #212121;
-}
+}*/
 
 .boardWrapper {
-  display: flex;
+  display: flex;  
   border-radius: .25rem;
   padding: 2px;
   width: fit-content;
@@ -19,11 +19,17 @@
   width: fit-content;
   padding: 0px;
   margin: 0px 0px 0px 0px;
-  border: 1px solid #8BC34A;
+  border: 1px solid;
+  /*border: 1px solid #8BC34A;*/
   border-radius: .25rem;
   margin: 8px 2px 8px 2px;
   padding: 0px 0px 2px 12px;
-  background: #DCEDC8;
+  /*background: #DCEDC8;*/
+  background: #ECEFF1; //blue-gray#50
+}
+
+.add-lane-button{
+  display: inline;
 }
 
 .itemContainer {
@@ -38,7 +44,7 @@ mat-list-item, .mat-list-item {
 mat-card {
   display: block;
   margin-bottom: 4px;
-  padding: 0px 16px;
+  padding: 0px 16px 12px 16px;
 }
 
 mat-card-header{

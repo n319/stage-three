@@ -11,7 +11,10 @@ namespace DAL.Models
 
         public int ApplicationUserId { get; set; }
 
-        public int ViewId { get; set; }
+        public int ViewTypeId { get; set; }
+
+        public int ViewTypeAttributeId { get; set; }
+
         public int ProjectId { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]

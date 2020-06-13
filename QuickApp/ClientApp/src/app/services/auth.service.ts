@@ -46,7 +46,7 @@ export class AuthService {
     this.initializeLoginStatus();
   }
 
-  private initializeLoginStatus() {
+    private initializeLoginStatus() {
     this.localStorage.getInitEvent().subscribe(() => {
       this.reevaluateLoginStatus();
     });
@@ -111,7 +111,7 @@ export class AuthService {
     }
   }
 
-  login(userName: string, password: string, rememberMe?: boolean) {
+    login(userName: string, password: string, rememberMe?: boolean) {
     if (this.isLoggedIn) {
       this.logout();
     }
@@ -146,7 +146,6 @@ export class AuthService {
     const decodedAccessToken = jwtHelper.decodeToken(accessToken) as AccessToken;
 
     const permissions: PermissionValues[] = Array.isArray(decodedAccessToken.permission) ? decodedAccessToken.permission : [decodedAccessToken.permission];
-
     if (!this.isLoggedIn) {
       this.configurations.import(decodedAccessToken.configuration);
     }
@@ -219,7 +218,7 @@ export class AuthService {
     return this.localStorage.getDataObject<PermissionValues[]>(DBkeys.USER_PERMISSIONS) || [];
   }
 
-  get accessToken(): string {
+    get accessToken(): string {
     return this.oauthService.getAccessToken();
   }
 

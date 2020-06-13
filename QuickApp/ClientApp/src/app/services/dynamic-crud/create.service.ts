@@ -5,14 +5,17 @@ import { catchError, tap } from 'rxjs/operators';
 
 import { DynamicCrudService } from './dynamic-crud.service';
 import { handleHttpError } from './utilities';
+import { EndpointBase } from '../endpoint-base.service';
+import { AuthService } from '../auth.service';
 
 @Injectable()
-export class DataCreate {
+export class DataCreate extends EndpointBase{
     private DS: DynamicCrudService
 
     constructor(
-        private http: HttpClient
-    ) { }
+        protected http: HttpClient, authService: AuthService
+    ) {
+    super(http, authService)}
 
     setDataService(ds: DynamicCrudService) {
         this.DS = ds;
@@ -24,21 +27,21 @@ export class DataCreate {
      * @param objToCreate The front end object to be created
      */
     create<T>(model: T | any, objToCreate?: T | any) {
-        this.DS.loadingMap[model.tableName] = true;
+        this.DS.loadingMap[model.constructor.tableName] = true;
 
         const newModelObj = new model(objToCreate);
 
-        const url = `${this.DS.endpoint}${model.tableName}`;
-        this.http.post(url, newModelObj, this.DS.httpOptions)
+        const url = `${this.DS.endpoint}${model.constructor.tableName}`;
+        this.http.post(url, newModelObj, { headers: this.requestHeaders })
             .subscribe(
                 (res: any) => {
                     newModelObj.key = res.key || res.ObjectId || res.id || '';
                     this.cacheAndNotifyCreated(model, newModelObj);
-                    this.DS.loadingMap[model.tableName] = false;
+                    this.DS.loadingMap[model.constructor.tableName] = false;
                 },
                 err => {
                     handleHttpError(err);
-                    this.DS.loadingMap[model.tableName] = false;
+                    this.DS.loadingMap[model.constructor.tableName] = false;
                 }
             );
     }
@@ -46,8 +49,8 @@ export class DataCreate {
     createObs<T>(model: T | any, objToCreate?: T | any): Observable<T | T[]> {
         const newModelObj = new model(objToCreate);
 
-        const url = `${this.DS.endpoint}${model.tableName}`;
-        return this.http.post(url, newModelObj, this.DS.httpOptions)
+        const url = `${this.DS.endpoint}${model.constructor.tableName}`;
+        return this.http.post(url, newModelObj, { headers: this.requestHeaders })
             .pipe(
                 catchError(handleHttpError),
                 tap((res: T[] | any) => {
@@ -60,7 +63,7 @@ export class DataCreate {
     async createPromise<T>(model: T | any, objToCreate: T | any): Promise<T | any> {
         const newModelObj = new model(objToCreate);
 
-        const url = `${this.DS.endpoint}${model.tableName}`;
+        const url = `${this.DS.endpoint}${model.constructor.tableName}`;
         try {
             const res = await fetch(url, {
                 method: 'POST',
@@ -81,10 +84,10 @@ export class DataCreate {
 
     private cacheAndNotifyCreated<T>(model: T | any, newModelObj) {
         // Append the new object into the front end cache
-        this.DS.cache[model.tableName].push(Object.assign({}, newModelObj));
+        this.DS.cache[model.constructor.tableName].push(Object.assign({}, newModelObj));
 
-        this.DS.subjectMap[model.tableName].many.next(this.DS.cache[model.tableName]);
-        this.DS.subjectMap[model.tableName].one.next(newModelObj);
+        this.DS.subjectMap[model.constructor.tableName].many.next(this.DS.cache[model.constructor.tableName]);
+        this.DS.subjectMap[model.constructor.tableName].one.next(newModelObj);
     }
 
     // TODO: 

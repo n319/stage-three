@@ -63,7 +63,8 @@ const routes: Routes = [
   exports: [RouterModule],
   providers: [
     AuthService,
-    AuthGuard,
+      AuthGuard,
+
     { provide: UrlSerializer, useClass: LowerCaseUrlSerializer }]
 })
 export class AppRoutingModule { }

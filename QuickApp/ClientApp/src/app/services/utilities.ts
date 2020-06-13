@@ -338,8 +338,8 @@ export class Utilities {
     } else {
       base = window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port : '');
     }
-
-    return base.replace(/\/$/, '');
+      let out = base.replace(/\/$/, '');
+    return out;
   }
 
   public static printDateOnly(date: Date) {

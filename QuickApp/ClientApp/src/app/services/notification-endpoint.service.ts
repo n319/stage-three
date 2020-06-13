@@ -8,8 +8,6 @@ import { HttpResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
 
-
-
 @Injectable()
 export class NotificationEndpoint {
 

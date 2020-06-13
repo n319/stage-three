@@ -18,6 +18,7 @@ import { AuthService } from '../services/auth.service';
 import { ConfigurationService } from '../services/configuration.service';
 import { Permission } from '../models/permission.model';
 import { LoginComponent } from '../components/login/login.component';
+import { Select2OptionData } from 'ng2-select2';
 
 const alertify: any = require('../assets/scripts/alertify.js');
 
@@ -29,12 +30,14 @@ const alertify: any = require('../assets/scripts/alertify.js');
 })
 export class AppComponent implements OnInit, AfterViewInit {
 
+  public exampleData: Array<Select2OptionData>;
+
   isAppLoaded: boolean;
   isUserLoggedIn: boolean;
   shouldShowLoginModal: boolean;
   removePrebootScreen: boolean;
   newNotificationCount = 0;
-  appTitle = 'QuickApp';
+  appTitle = 'Projectr';
   appLogo = require('../assets/images/logo-white.png');
 
   stickyToasties: number[] = [];
@@ -73,6 +76,14 @@ export class AppComponent implements OnInit, AfterViewInit {
     public router: Router) {
 
     storageManager.initialiseStorageSyncListener();
+
+
+      this.exampleData = [
+          {
+              id: 'basic1',
+              text: 'Basic 1'
+          }
+      ];
 
     this.toastaConfig.theme = 'bootstrap';
     this.toastaConfig.position = 'top-right';

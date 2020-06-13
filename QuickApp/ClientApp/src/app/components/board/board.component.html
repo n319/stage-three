@@ -1,48 +1,50 @@
 <div class="boardContent">
-  <div class="boardWrapper wrapper" dragula="COLUMNS" [(dragulaModel)]="groups">
-    <div class="groupContainer container" *ngFor="let group of groups">
+  <div class="boardWrapper wrapper" dragula="COLUMNS" [(dragulaModel)]="lanes">
+    <div *ngFor="let group of lanes" class="groupContainer">
+      <div class="group-handle">
+        <form class="example-form">
+          <mat-form-field class="example-full-width">
+            <input matInput value="{{group.name}}">
+          </mat-form-field>
+        </form>
 
-      <form class="example-form">
-        <mat-form-field class="example-full-width">
-          <input matInput value="{{group.name}}">
-        </mat-form-field>
-      </form>
+        <button class="removeGroup float-right" mat-icon-button aria-label="Remove this group" (click)="removeGroup($event)">
+          <mat-icon [attr.data-name]="group.name">remove_circle_outline</mat-icon>
+        </button>
 
-      <button class="removeGroup float-right" mat-icon-button aria-label="Remove this group" (click)="removeGroup($event)">
-        <mat-icon [attr.data-name]="group.name">remove_circle_outline</mat-icon>
-      </button>
+        <mat-list role="list" class="itemContainer" dragula="ITEMS" [(dragulaModel)]="pieces">
+          <mat-list-item *ngFor="let item of pieces | laneFilter:group" class="boardItem">
 
-      <mat-list role="list" class="itemContainer" dragula="ITEMS" [(dragulaModel)]="group.items">
-        <mat-list-item *ngFor="let item of group.items" class="boardItem">
+            <mat-card>
 
-          <mat-card>
-              
-                <!--<div mat-card-avatar class="example-header-image"></div>-->
-                <form class="example-form">
-                  <mat-form-field class="example-full-width">
-                    <input matInput value="{{item.name}}">
-                  </mat-form-field>
-                </form>
-              
+              <!--<div mat-card-avatar class="example-header-image"></div>-->
+              <form class="example-form">
+                <mat-form-field class="example-full-width">
+                  <input matInput value="{{item.name}}">
+                </mat-form-field>
+              </form>
+
 
               <!--<mat-card-subtitle>Dog Breed</mat-card-subtitle>-->
-            <!--<img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">-->
-            <mat-card-content>
-              Lár et ataquë valarauko. Ruc riel línë torma pé, mel vaxë ondo vá, lin lú yelma antorya. Ve san hesta ananta onótima, soica tanwëataquë ela sú. Manwa liptë lá tuv. Tellaurë simpetar an rin, var fánë yelma goneheca nu.
-            </mat-card-content>
-            <mat-card-actions>
-              <button mat-button>LIKE</button>
-              <button mat-button>SHARE</button>
-            </mat-card-actions>
+              <!--<img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">-->
+              <mat-card-content>
+                Lár et ataqu ë valarauko. Ruc riel línë torma pé, mel vaxë ondo vá, lin lú yelma antorya. Ve san hesta ananta onótima, soica tanwëataquë ela sú. Manwa liptë lá tuv. Tellaurë simpetar an rin, var fánë yelma goneheca nu.
+              </mat-card-content>
+              <mat-card-actions>
+                <button mat-button>LIKE</button>
+                <button mat-button>SHARE</button>
+              </mat-card-actions>
 
-          </mat-card>
+            </mat-card>
 
-        </mat-list-item>
-      </mat-list>
+          </mat-list-item>
+        </mat-list>
+      </div>
     </div>
-
-    <button mat-icon-button aria-label="Add another group" (click)="createGroup()">
+  </div>
+  <span>
+    <button mat-icon-button aria-label="Add another group" class="add-lane-button" (click)="createGroup()">
       <mat-icon>control_point</mat-icon>
     </button>
-  </div>
+  </span>
 </div>

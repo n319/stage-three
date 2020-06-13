@@ -4,14 +4,10 @@ $footerHeight: 40px;
     height: 100%;
 }
 
-.search-nav-field > mat-form-field {
-  padding: 0px 4px;
-  margin: 0px 20px;
-  font-size: 13px;
-  border: 1px solid #DCEDC8;
-  border-radius: .25rem;
-  background-color: #efefef;
-  color: #212121;
+.search-nav-form > div > input.form-control {
+  position: relative;
+  bottom: 2px;
+  height: 37px;
 }
 
 
@@ -19,7 +15,7 @@ $footerHeight: 40px;
   display: none;
 }
 
-
+ 
 main.app-component {
   height: calc(100% - #{$footerHeight});
   padding-top: 60px;
@@ -48,7 +44,7 @@ footer.app-component {
   color: #838383;
 }
 
-
+haitr
 .navbar.app-component .nav-pills > li > a {
     font-weight: bold;
     padding-top: 0.4rem;

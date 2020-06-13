@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Repositories
 {
-    public class ViewAttributeTypeRepository : Repository<ViewAttributeType>, IViewAttributeTypeRepository
+    public class ViewAttributeTypeRepository : Repository<ViewTypeAttribute>, IViewAttributeTypeRepository
     {
         public ViewAttributeTypeRepository(DbContext context) : base(context)
         { }

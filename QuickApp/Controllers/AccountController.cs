@@ -42,7 +42,6 @@ namespace QuickApp.Controllers
             _logger = logger;
         }
 
-
         [HttpGet("users/me")]
         [ProducesResponseType(200, Type = typeof(UserViewModel))]
         public async Task<IActionResult> GetCurrentUser()
