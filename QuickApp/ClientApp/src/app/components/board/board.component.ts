@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
 import { DragulaService } from 'ng2-dragula';
-import { Observable, of, forkJoin, Subject } from 'rxjs';
+import { Observable, of, forkJoin, Subject, Subscription } from 'rxjs';
 import { DynamicCrudService } from '../../services/dynamic-crud/dynamic-crud.service';
 import { Piece } from '../../models/projectr/piece.model';
 import { ViewTypeAttribute } from '../../models/projectr/view-type-attribute.model';
@@ -18,12 +18,23 @@ export class BoardComponent implements OnInit, OnDestroy {
 
     pieces: Piece[] = [];
     lanes: ViewTypeAttribute[] = [];
-    
+    subs = new Subscription();
 
     constructor(private dragulaService: DragulaService, private data: DynamicCrudService) {
+        
         this.dragulaService.createGroup("COLUMNS", {
             moves: (el, source, handle) => handle.className === "group-handle"
         });
+        
+        this.dragulaService.createGroup("ITEMS", {
+
+        });
+
+        this.subs.add(this.dragulaService.dropModel("ITEMS")
+            .subscribe(({ source, target, item}) => {
+                debugger;//MOVE ITEM from source to target in piece's data
+            })
+        );
     }
 
 
@@ -78,17 +89,19 @@ export class BoardComponent implements OnInit, OnDestroy {
     }
 
 
-
     ngOnInit() {
         this.read();
 
     }
 
 
-
     ngOnDestroy(): void {
         
         this.dragulaService.destroy("COLUMNS");
+
+        this.dragulaService.destroy("ITEMS");
+        this.subs.unsubscribe();
+
     }
 
     createGroup(): void {

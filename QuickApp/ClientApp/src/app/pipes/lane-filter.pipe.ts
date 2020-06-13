@@ -8,7 +8,6 @@ export class LaneFilterPipe implements PipeTransform {
         if (!items || !filter) {
             return items;
         }
-        debugger;
         // filter items array, items which match and return true will be
         // kept, false will be filtered out
         let outvar = items.filter(item => item.viewTypeAttributeId === filter.id);
