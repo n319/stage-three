@@ -16,8 +16,7 @@ export class BoardComponent implements OnInit, OnDestroy {
 
     private unsub: Subject<void> = new Subject<any>();
 
-    pieces: Piece[] = [];
-    lanes: ViewTypeAttribute[] = [];
+    lanesAndPieces: ViewTypeAttribute[] = [];
     subs = new Subscription();
 
     constructor(private dragulaService: DragulaService, private data: DynamicCrudService) {
@@ -30,11 +29,10 @@ export class BoardComponent implements OnInit, OnDestroy {
 
         });
 
-        this.subs.add(this.dragulaService.dropModel("ITEMS")
-            .subscribe(({ source, target, item}) => {
-                debugger;//MOVE ITEM from source to target in piece's data
-            })
-        );
+      //this.subs.add(this.dragulaService.dropModel("ITEMS")
+      //  .subscribe(({ source, target, item }) => {
+      //      })
+      //  );
     }
 
 
@@ -63,31 +61,20 @@ export class BoardComponent implements OnInit, OnDestroy {
             .pipe(takeUntil(this.unsub))
             .subscribe(
                 (res: any) => {
-                    this.lanes = [];
+                    this.lanesAndPieces = [];
                     for (let item of res[0]) {
                         for (let lane of item.viewTypeAttributes) {
-                            this.lanes.push(lane);
+                          
+                          lane.pieces = item.projectPieces.filter(pc => pc.viewTypeAttributeId == lane.id);
+                          this.lanesAndPieces.push(lane);
                         }
 
-                        for (let pc of item.projectPieces) {
-                            this.pieces.push(pc);
-                        }
                     }
-                    this.lanes.sort((a, b) => a.order - b.order);
-
-                    debugger;
+                    this.lanesAndPieces.sort((a, b) => a.order - b.order);
                 },
                 err => console.error(err)
             );
     }
-
-    update() {
-
-        this.pieces.forEach(p => this.data.updateObs<Piece>(Piece, p));
-
-        
-    }
-
 
     ngOnInit() {
         this.read();

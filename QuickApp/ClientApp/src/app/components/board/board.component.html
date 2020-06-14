@@ -1,6 +1,6 @@
 <div class="boardContent">
-  <div class="boardWrapper wrapper" dragula="COLUMNS" [(dragulaModel)]="lanes">
-    <div *ngFor="let group of lanes" class="groupContainer">
+  <div class="boardWrapper wrapper" dragula="COLUMNS" [(dragulaModel)]="lanesAndPieces">
+    <div *ngFor="let group of lanesAndPieces" class="groupContainer">
       <div class="group-handle">
         <form class="example-form">
           <mat-form-field class="example-full-width">
@@ -12,8 +12,8 @@
           <mat-icon [attr.data-name]="group.name">remove_circle_outline</mat-icon>
         </button>
 
-        <mat-list role="list" class="itemContainer" dragula="ITEMS" [(dragulaModel)]="pieces">
-          <mat-list-item *ngFor="let item of pieces | laneFilter:group" class="boardItem">
+        <mat-list role="list" class="itemContainer" dragula="ITEMS" [(dragulaModel)]="group.pieces" [attr.data-lane-id] ="group.id">
+          <mat-list-item *ngFor="let item of group.pieces" class="boardItem">
 
             <mat-card>
 

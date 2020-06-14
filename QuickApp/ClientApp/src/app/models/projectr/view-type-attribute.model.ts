@@ -1,5 +1,6 @@
 import { ModelData } from './data.model';
 import { ITable } from '../dynamic-crud/ITable.model';
+import { Piece } from './piece.model';
 
 export interface IViewTypeAttribute extends ITable {
     name: string;
@@ -23,6 +24,7 @@ export class ViewTypeAttribute implements IViewTypeAttribute {
     createdOn: Date;
     completedOn?: Date;
     id: number;
+    boardPieces: Piece[];
 
     constructor(props: ViewTypeAttribute) {
         Object.keys(props).forEach(prop => {
