@@ -43,19 +43,7 @@ export class BoardComponent implements OnInit, OnDestroy {
       * This gives us more flexiblity for waiting for all results to complete before continuining (similar to async-await).
       */
     read() {
-        //const pieceObs = this.data.readObs<Piece>(Piece);
-        //const viewTypeAttrObs = this.data.readObs<ViewTypeAttribute>(ViewTypeAttribute.prototype);
         const getViewData = this.data.readObs<BoardComponentData>(BoardComponentData.prototype, "projectId=1");
-        //forkJoin([pieceObs, viewTypeAttrObs])
-        //    .pipe(takeUntil(this.unsub))
-        //    .subscribe(
-        //        (res: any) => {
-        //            this.pieces = res[0];
-        //            this.lanes = res[1];
-        //            debugger;
-        //        },
-        //        err => console.error(err)
-        //    );
 
         forkJoin([getViewData])
             .pipe(takeUntil(this.unsub))
@@ -64,11 +52,9 @@ export class BoardComponent implements OnInit, OnDestroy {
                     this.lanesAndPieces = [];
                     for (let item of res[0]) {
                         for (let lane of item.viewTypeAttributes) {
-                          
-                          lane.pieces = item.projectPieces.filter(pc => pc.viewTypeAttributeId == lane.id);
+                          lane.boardPieces = item.projectPieces.filter(pc => pc.viewTypeAttributeId == lane.id);
                           this.lanesAndPieces.push(lane);
                         }
-
                     }
                     this.lanesAndPieces.sort((a, b) => a.order - b.order);
                 },
@@ -78,7 +64,7 @@ export class BoardComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.read();
-
+        
     }
 
 
@@ -91,15 +77,32 @@ export class BoardComponent implements OnInit, OnDestroy {
 
     }
 
-    createGroup(): void {
+  createGroup(): void {
+    debugger;
+    let maxOrder = this.lanesAndPieces.sort((a, b) => a.order - b.order).reverse()[0];
 
+    let newLane = new ViewTypeAttribute(maxOrder);
+    newLane.order = newLane.order + 1;
+
+    //get this from DB write back
+    let id = this.lanesAndPieces.sort((a, b) => a.id - b.id).reverse()[0];
+    newLane.id = id.id + 1;
+
+    newLane.name = "New";
+    newLane.boardPieces = [];
+    newLane.createdOn = new Date(Date.now());
+    newLane.completedOn = null;
+    
+    this.lanesAndPieces.push(newLane);
 
 
     }
 
     removeGroup(event: any): void {
-        debugger;
-      
+        
+      debugger;
+      let removeElement = this.lanesAndPieces.findIndex(pc => pc.id == event.target.parentElement.parentElement.parentElement.dataset.laneId);
+      this.lanesAndPieces.splice(removeElement ,1);
     }
 
     removeCard(): void {
