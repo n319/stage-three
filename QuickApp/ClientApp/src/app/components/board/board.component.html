@@ -1,18 +1,19 @@
 <div class="boardContent">
   <div class="boardWrapper wrapper" dragula="COLUMNS" [(dragulaModel)]="lanesAndPieces">
     <div *ngFor="let group of lanesAndPieces" class="groupContainer">
-      <div class="group-handle" [attr.data-lane-id] ="group.id">
+      <div class="group-handle" [attr.data-lane-id]="group.id">
+
         <form class="example-form">
-          <mat-form-field class="example-full-width">
-            <input matInput value="{{group.name}}">
-          </mat-form-field>
-        </form>
+            <mat-form-field class="example-full-width">
+              <input matInput value="{{group.name}}">
+            </mat-form-field>
+          </form>
 
-        <button class="removeGroup float-right" mat-icon-button aria-label="Remove this group" (click)="removeGroup($event)">
-          <mat-icon [attr.data-name]="group.name">remove_circle_outline</mat-icon>
-        </button>
+          <button class="removeGroup float-right" mat-icon-button aria-label="Remove this group" (click)="removeGroup($event)">
+            <mat-icon [attr.data-name]="group.name">remove_circle_outline</mat-icon>
+          </button>
 
-        <mat-list role="list" class="itemContainer" dragula="ITEMS" [(dragulaModel)]="group.boardPieces" [attr.data-lane-id] ="group.id">
+        <mat-list role="list" class="itemContainer" dragula="ITEMS" [(dragulaModel)]="group.boardPieces" [attr.data-lane-id]="group.id">
           <mat-list-item *ngFor="let item of group.boardPieces" class="boardItem">
 
             <mat-card>

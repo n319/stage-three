@@ -8,74 +8,75 @@ import { takeUntil } from 'rxjs/operators';
 import { BoardComponentData } from '../../models/projectr/boardComponent.model';
 
 @Component({
-    selector: 'app-board',
-    templateUrl: './board.component.html',
-    styleUrls: ['./board.component.scss']
+  selector: 'app-board',
+  templateUrl: './board.component.html',
+  styleUrls: ['./board.component.scss']
 })
 export class BoardComponent implements OnInit, OnDestroy {
 
-    private unsub: Subject<void> = new Subject<any>();
+  private unsub: Subject<void> = new Subject<any>();
 
-    lanesAndPieces: ViewTypeAttribute[] = [];
-    subs = new Subscription();
+  lanesAndPieces: ViewTypeAttribute[] = [];
+  subs = new Subscription();
 
-    constructor(private dragulaService: DragulaService, private data: DynamicCrudService) {
-        
-        this.dragulaService.createGroup("COLUMNS", {
-            moves: (el, source, handle) => handle.className === "group-handle"
-        });
-        
-        this.dragulaService.createGroup("ITEMS", {
+  constructor(private dragulaService: DragulaService, private data: DynamicCrudService) {
 
-        });
+    this.dragulaService.createGroup("COLUMNS", {
+      direction: 'horizontal',
+      moves: (el, source, handle) => handle.className === "group-handle"
+    });
 
-      //this.subs.add(this.dragulaService.dropModel("ITEMS")
-      //  .subscribe(({ source, target, item }) => {
-      //      })
-      //  );
-    }
+    //this.dragulaService.createGroup("ITEMS", {
 
+    //});
 
-    /**
-      * First we create an observable for each data type we are interested in.
-      * Then we use the forkJoin to subscribe and wait for all observables to complete before continuining.
-      * Once we get a result, we spread the results into our component's local properties.
-      * This gives us more flexiblity for waiting for all results to complete before continuining (similar to async-await).
-      */
-    read() {
-        const getViewData = this.data.readObs<BoardComponentData>(BoardComponentData.prototype, "projectId=1");
-
-        forkJoin([getViewData])
-            .pipe(takeUntil(this.unsub))
-            .subscribe(
-                (res: any) => {
-                    this.lanesAndPieces = [];
-                    for (let item of res[0]) {
-                        for (let lane of item.viewTypeAttributes) {
-                          lane.boardPieces = item.projectPieces.filter(pc => pc.viewTypeAttributeId == lane.id);
-                          this.lanesAndPieces.push(lane);
-                        }
-                    }
-                    this.lanesAndPieces.sort((a, b) => a.order - b.order);
-                },
-                err => console.error(err)
-            );
-    }
-
-    ngOnInit() {
-        this.read();
-        
-    }
+    //this.subs.add(this.dragulaService.dropModel("ITEMS")
+    //  .subscribe(({ source, target, item }) => {
+    //      })
+    //  );
+  }
 
 
-    ngOnDestroy(): void {
-        
-        this.dragulaService.destroy("COLUMNS");
+  /**
+    * First we create an observable for each data type we are interested in.
+    * Then we use the forkJoin to subscribe and wait for all observables to complete before continuining.
+    * Once we get a result, we spread the results into our component's local properties.
+    * This gives us more flexiblity for waiting for all results to complete before continuining (similar to async-await).
+    */
+  read() {
+    const getViewData = this.data.readObs<BoardComponentData>(BoardComponentData.prototype, "projectId=1");
 
-        this.dragulaService.destroy("ITEMS");
-        this.subs.unsubscribe();
+    forkJoin([getViewData])
+      .pipe(takeUntil(this.unsub))
+      .subscribe(
+        (res: any) => {
+          this.lanesAndPieces = [];
+          for (let item of res[0]) {
+            for (let lane of item.viewTypeAttributes) {
+              lane.boardPieces = item.projectPieces.filter(pc => pc.viewTypeAttributeId == lane.id);
+              this.lanesAndPieces.push(lane);
+            }
+          }
+          this.lanesAndPieces.sort((a, b) => a.order - b.order);
+        },
+        err => console.error(err)
+      );
+  }
 
-    }
+  ngOnInit() {
+    this.read();
+
+  }
+
+
+  ngOnDestroy(): void {
+
+    this.dragulaService.destroy("COLUMNS");
+
+    this.dragulaService.destroy("ITEMS");
+    this.subs.unsubscribe();
+
+  }
 
   createGroup(): void {
     debugger;
@@ -86,26 +87,28 @@ export class BoardComponent implements OnInit, OnDestroy {
 
     //get this from DB write back
     let id = this.lanesAndPieces.sort((a, b) => a.id - b.id).reverse()[0];
-    newLane.id = id.id + 1;
+    newLane.id = -1;
 
     newLane.name = "New";
-    newLane.boardPieces = [];
+    newLane.boardPieces = []; 
     newLane.createdOn = new Date(Date.now());
-    newLane.completedOn = null;
-    
+    newLane.completedOn = new Date();
+
     this.lanesAndPieces.push(newLane);
-
-
-    }
-
-    removeGroup(event: any): void {
-        
+    this.data.createObs<ViewTypeAttribute>(ViewTypeAttribute.prototype, newLane).subscribe(res => {
       debugger;
-      let removeElement = this.lanesAndPieces.findIndex(pc => pc.id == event.target.parentElement.parentElement.parentElement.dataset.laneId);
-      this.lanesAndPieces.splice(removeElement ,1);
-    }
+      this.lanesAndPieces.slice(this.lanesAndPieces.indexOf(newLane), 1);
+    });
+  }
 
-    removeCard(): void {
+  removeGroup(event: any): void {
 
-    }
+    debugger;
+    let removeElement = this.lanesAndPieces.findIndex(pc => pc.id == event.target.parentElement.parentElement.parentElement.parentElement.dataset.laneId);
+    this.lanesAndPieces.splice(removeElement, 1);
+  }
+
+  removeCard(): void {
+
+  }
 }

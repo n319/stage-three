@@ -70,7 +70,7 @@ export class DynamicCrudService {
         this.DC.create(model, objToCreate);
     }
 
-    createObs<T>(model: T | any, objToCreate?: T | any): Observable<T | T[]> {
+  createObs<T>(model: T | any, objToCreate?: T | any): Observable<T | T[]> {
         return this.DC.createObs(model, objToCreate);
     }
 

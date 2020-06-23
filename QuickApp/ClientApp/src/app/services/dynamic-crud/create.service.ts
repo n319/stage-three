@@ -47,13 +47,14 @@ export class DataCreate extends EndpointBase{
     }
 
     createObs<T>(model: T | any, objToCreate?: T | any): Observable<T | T[]> {
-        const newModelObj = new model(objToCreate);
-
-        const url = `${this.DS.endpoint}${model.constructor.tableName}`;
-        return this.http.post(url, newModelObj, { headers: this.requestHeaders })
-            .pipe(
+      const newModelObj = new model.constructor(objToCreate);
+      const url = `${this.DS.endpoint}/api/${model.constructor.tableName}`;
+      const body = JSON.stringify(newModelObj);
+      return this.http.post(url, body, { headers: this.postRequestHeaders })
+          .pipe(
                 catchError(handleHttpError),
-                tap((res: T[] | any) => {
+            tap((res: T[] | any) => {
+                    debugger;
                     newModelObj.key = res.key || res.ObjectId || res.id || '';
                     this.cacheAndNotifyCreated(model, newModelObj);
                 })
@@ -84,7 +85,7 @@ export class DataCreate extends EndpointBase{
 
     private cacheAndNotifyCreated<T>(model: T | any, newModelObj) {
         // Append the new object into the front end cache
-        this.DS.cache[model.constructor.tableName].push(Object.assign({}, newModelObj));
+      this.DS.cache[model.constructor.tableName].push(Object.assign({}, newModelObj));
 
         this.DS.subjectMap[model.constructor.tableName].many.next(this.DS.cache[model.constructor.tableName]);
         this.DS.subjectMap[model.constructor.tableName].one.next(newModelObj);

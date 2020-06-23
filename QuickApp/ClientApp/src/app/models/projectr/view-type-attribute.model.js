@@ -8,8 +8,6 @@ var ViewTypeAttribute = /** @class */ (function () {
             var value = props[prop];
             _this[prop] = value;
         });
-        // OPTIONAL: If you are using a different primary key than "id" you can transform this here
-        // this.id = props.id || props.key || props.MY_PRIMARY_KEY || ''
     }
     ViewTypeAttribute.tableName = 'ViewTypeAttribute';
     return ViewTypeAttribute;

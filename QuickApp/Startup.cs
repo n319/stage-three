@@ -1,4 +1,4 @@
-using AutoMapper;
+﻿using AutoMapper;
 using DAL;
 using DAL.Core;
 using DAL.Core.Interfaces;
@@ -20,6 +20,7 @@ using QuickApp.Helpers;
 using System;
 using System.Collections.Generic;
 using AppPermissions = DAL.Core.ApplicationPermissions;
+using QuickApp.Data;
 
 namespace QuickApp
 {

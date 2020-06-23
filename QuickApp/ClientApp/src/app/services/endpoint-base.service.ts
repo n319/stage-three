@@ -22,14 +22,25 @@ export class EndpointBase {
 
   }
 
-    protected get requestHeaders(): HttpHeaders {
+  protected get postRequestHeaders(): HttpHeaders {
+    const headers = new HttpHeaders({
+      'data': 'json',
+      'Authorization': 'Bearer ' + this.authService.accessToken,
+      'Content-Type': 'application/json',
+      'Accept': 'application/json, text/plain, */*'
+    });
+
+    return headers;
+  }
+
+  protected get requestHeaders(): HttpHeaders {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + this.authService.accessToken,
       'Content-Type': 'application/json',
       'Accept': 'application/json, text/plain, */*'
     });
 
-      return headers ;
+      return headers;
   }
 
   public refreshLogin() {

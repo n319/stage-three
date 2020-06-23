@@ -40,9 +40,9 @@ export class DataRead{
     //        );
     //}
 
-    readObs<T>(model: T | any, query?: string): Observable<T[]> {
+  readObs<T>(model: T | any, query?: string): Observable<T[]> {
         this.DS.loadingMap[model.constructor.tableName] = true;
-        var url = `${this.DS.endpoint}/api/${model.constructor.tableName}`;
+    var url = `${this.DS.endpoint}/api/${model.constructor.tableName}`;
 
         return this.apiClient.getAPIEndpoint<T[]>(url, query).pipe(
             catchError(handleHttpError),
@@ -72,12 +72,12 @@ export class DataRead{
     
 
     private cacheAndNotifyRead<T>(model: T | any, res: T[]) {
-        this.DS.cache[model.constructor.tableName] = [];
+        this.DS.cache[model.tableName] = [];
         res.forEach((el: T) => {
-            this.DS.cache[model.constructor.tableName].push(new model.constructor(el));
+          this.DS.cache[model.constructor.tableName].push(new model.constructor(el));
         });
         // Update Frontend
-        this.DS.subjectMap[model.constructor.tableName].many.next(this.DS.cache[model.constructor.tableName]);
+      this.DS.subjectMap[model.constructor.tableName].many.next(this.DS.cache[model.constructor.tableName]);
     }
 
 }

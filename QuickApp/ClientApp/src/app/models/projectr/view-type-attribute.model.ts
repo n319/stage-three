@@ -31,7 +31,5 @@ export class ViewTypeAttribute implements IViewTypeAttribute {
             const value = props[prop];
             this[prop] = value;
         });
-        // OPTIONAL: If you are using a different primary key than "id" you can transform this here
-        // this.id = props.id || props.key || props.MY_PRIMARY_KEY || ''
     }
 }

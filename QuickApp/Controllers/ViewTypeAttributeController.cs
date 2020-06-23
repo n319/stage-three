@@ -38,5 +38,12 @@ namespace Api.Controllers
             var project = _unitOfWork.ViewAttributeType.GetAll();
             return Ok(project);
         }
+
+        [HttpPost]
+        public ActionResult<ViewTypeAttribute[]> PostCreateViewTypeAttribute(ViewTypeAttribute model)
+        {   
+            //TODO sanity checks, add model to unitOfWorkContext, get id, return object, make sure completed on date is updated.
+            return new List<ViewTypeAttribute>().ToArray();
+        }
     }
 }
