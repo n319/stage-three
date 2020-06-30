@@ -79,7 +79,6 @@ export class BoardComponent implements OnInit, OnDestroy {
   }
 
   createGroup(): void {
-    debugger;
     let maxOrder = this.lanesAndPieces.sort((a, b) => a.order - b.order).reverse()[0];
 
     let newLane = new ViewTypeAttribute(maxOrder);
@@ -87,25 +86,24 @@ export class BoardComponent implements OnInit, OnDestroy {
 
     //get this from DB write back
     let id = this.lanesAndPieces.sort((a, b) => a.id - b.id).reverse()[0];
-    newLane.id = -1;
+    newLane.id = 0;
 
     newLane.name = "New";
     newLane.boardPieces = []; 
     newLane.createdOn = new Date(Date.now());
     newLane.completedOn = new Date();
 
-    this.lanesAndPieces.push(newLane);
     this.data.createObs<ViewTypeAttribute>(ViewTypeAttribute.prototype, newLane).subscribe(res => {
-      debugger;
-      this.lanesAndPieces.slice(this.lanesAndPieces.indexOf(newLane), 1);
+
+      this.lanesAndPieces.push(res as ViewTypeAttribute);
     });
   }
 
   removeGroup(event: any): void {
-
-    debugger;
-    let removeElement = this.lanesAndPieces.findIndex(pc => pc.id == event.target.parentElement.parentElement.parentElement.parentElement.dataset.laneId);
-    this.lanesAndPieces.splice(removeElement, 1);
+    let removeElementIndex = this.lanesAndPieces.findIndex(pc => pc.id == event.target.parentElement.parentElement.parentElement.parentElement.dataset.laneId);
+    let removeElement = this.lanesAndPieces.splice(removeElementIndex, 1)[0];
+    this.data.deleteObs<ViewTypeAttribute>(ViewTypeAttribute.prototype, removeElement).subscribe(res => {
+    });
   }
 
   removeCard(): void {

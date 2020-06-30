@@ -42,8 +42,8 @@ export class DataRead{
 
   readObs<T>(model: T | any, query?: string): Observable<T[]> {
         this.DS.loadingMap[model.constructor.tableName] = true;
-    var url = `${this.DS.endpoint}/api/${model.constructor.tableName}`;
-
+        var url = `${this.DS.endpoint}/api/${model.constructor.tableName}`;
+        
         return this.apiClient.getAPIEndpoint<T[]>(url, query).pipe(
             catchError(handleHttpError),
             tap((res: T[]) => {

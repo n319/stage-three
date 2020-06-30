@@ -36,7 +36,7 @@ export class DataDelete extends EndpointBase {
             this.cacheAndNotifyDelete(model, objToDelete);
         }
 
-        const url = `${this.DS.endpoint}${model.constructor.tableName}/${objToDelete.key || objToDelete.id}`;
+        const url = `${this.DS.endpoint}${model.constructor.tableName}${objToDelete.key || objToDelete.id}`;
         this.http.delete(url, { headers: this.requestHeaders })
             .subscribe(
                 res => {
@@ -57,9 +57,8 @@ export class DataDelete extends EndpointBase {
             // Optimistically Remove the object to delete from the front end cache by filtering out everything that doesn't have the same key
             this.DS.cache[model.constructor.tableName] = this.DS.cache[model.constructor.tableName].filter(el => el.key !== objToDelete.key);
         }
-
-        const url = `${this.DS.endpoint}${model.constructor.tableName}/${objToDelete.key || objToDelete.id}`;
-        return this.http.delete<T[]>(url, { headers: this.requestHeaders })
+      const url = `${this.DS.endpoint}/api/${model.constructor.tableName}/${objToDelete.key || objToDelete.id}`;
+      return this.http.delete(url, { headers: this.postRequestHeaders})
             .pipe(
                 catchError(handleHttpError),
                 tap((res: T[]) => {

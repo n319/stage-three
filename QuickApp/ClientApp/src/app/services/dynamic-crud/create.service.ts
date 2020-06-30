@@ -54,7 +54,6 @@ export class DataCreate extends EndpointBase{
           .pipe(
                 catchError(handleHttpError),
             tap((res: T[] | any) => {
-                    debugger;
                     newModelObj.key = res.key || res.ObjectId || res.id || '';
                     this.cacheAndNotifyCreated(model, newModelObj);
                 })

@@ -4,6 +4,7 @@ using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Api.Controllers
 {
@@ -40,10 +41,24 @@ namespace Api.Controllers
         }
 
         [HttpPost]
-        public ActionResult<ViewTypeAttribute[]> PostCreateViewTypeAttribute(ViewTypeAttribute model)
-        {   
-            //TODO sanity checks, add model to unitOfWorkContext, get id, return object, make sure completed on date is updated.
-            return new List<ViewTypeAttribute>().ToArray();
+        public ActionResult<ViewTypeAttribute> PostCreateViewTypeAttribute([FromBody] ViewTypeAttribute model)
+        {
+            //TODO1 sanity checks, return object, make sure completed on date is updated.
+            _unitOfWork.ViewAttributeType.Add(model);
+            _unitOfWork.SaveChanges();
+
+            return model;
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult<int> DeleteViewTypeAttribute(string id)
+        {
+            int iid = int.Parse(id);
+            var toRemove = _unitOfWork.ViewAttributeType.Find(atr => atr.Id == iid).FirstOrDefault();
+            _unitOfWork.ViewAttributeType.Remove(toRemove);
+            
+            _unitOfWork.SaveChanges();
+            return 0;
         }
     }
 }
