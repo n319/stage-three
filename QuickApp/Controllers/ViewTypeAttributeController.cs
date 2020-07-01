@@ -50,6 +50,20 @@ namespace Api.Controllers
             return model;
         }
 
+        [HttpPatch]
+        public ActionResult<ViewTypeAttribute> PatchUpdateViewTypeAttribute([FromBody] ViewTypeAttribute model)
+        {
+            var toUpdate = _unitOfWork.ViewAttributeType.Find(atr => atr.Id == model.Id).FirstOrDefault();
+
+            toUpdate.Name = model.Name;
+            toUpdate.Order = model.Order;
+
+            _unitOfWork.SaveChanges();
+
+            return model;
+        }
+
+
         [HttpDelete("{id}")]
         public ActionResult<int> DeleteViewTypeAttribute(string id)
         {

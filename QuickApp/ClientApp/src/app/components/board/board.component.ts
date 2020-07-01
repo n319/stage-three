@@ -68,8 +68,26 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   }
 
+  onChangeItemName(e) {
+
+    let newVal = e.currentTarget.value;
+    let id = e.currentTarget.dataset["cardId"];
+    for (let ln = 0; ln < this.lanesAndPieces.length; ln++) {
+      
+      let lane = this.lanesAndPieces[ln] as ViewTypeAttribute;
+
+      let piece = lane.boardPieces.find(p => p.id == id);
+      if (piece != undefined) {
+        piece.name = newVal;
+        this.data.update(Piece.prototype, piece);
+        break;
+      }
+    }
+  }
+
 
   ngOnDestroy(): void {
+    debugger;
 
     this.dragulaService.destroy("COLUMNS");
 
@@ -109,4 +127,6 @@ export class BoardComponent implements OnInit, OnDestroy {
   removeCard(): void {
 
   }
+
+
 }

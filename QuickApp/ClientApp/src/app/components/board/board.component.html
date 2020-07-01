@@ -21,7 +21,7 @@
               <!--<div mat-card-avatar class="example-header-image"></div>-->
               <form class="example-form">
                 <mat-form-field class="example-full-width">
-                  <input matInput value="{{item.name}}">
+                  <input matInput (change)="onChangeItemName($event)" [attr.data-card-id]="item.id" value="{{item.name}}">
                 </mat-form-field>
               </form>
 

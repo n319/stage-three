@@ -29,7 +29,7 @@ export class DataUpdate extends EndpointBase {
    */
   update<T>(model: T | any, objToUpdate: T | any) {
     this.DS.loadingMap[model.constructor.tableName] = true;
-
+    debugger;
     if (this.DS.isOptimistic) {
       this.cacheAndNotifyUpdated(model, objToUpdate);
     }
