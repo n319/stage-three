@@ -23,6 +23,9 @@ export class Piece implements IPiece {
     createdOn: Date;
     completedOn?: Date;
     tableDefinition: string = 'Piece';
+    static tableName = 'Piece';
+    dirty: boolean;
+
     id: number;
 
     constructor(props: Piece) {

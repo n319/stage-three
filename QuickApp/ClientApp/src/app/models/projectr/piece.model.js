@@ -11,6 +11,7 @@ var Piece = /** @class */ (function () {
         // OPTIONAL: If you are using a different primary key than "id" you can transform this here
         // this.id = props.id || props.key || props.MY_PRIMARY_KEY || ''
     }
+    Piece.tableName = 'Piece';
     return Piece;
 }());
 exports.Piece = Piece;

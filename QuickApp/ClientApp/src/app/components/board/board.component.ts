@@ -73,14 +73,29 @@ export class BoardComponent implements OnInit, OnDestroy {
     let newVal = e.currentTarget.value;
     let id = e.currentTarget.dataset["cardId"];
     for (let ln = 0; ln < this.lanesAndPieces.length; ln++) {
-      
+
       let lane = this.lanesAndPieces[ln] as ViewTypeAttribute;
 
       let piece = lane.boardPieces.find(p => p.id == id);
       if (piece != undefined) {
         piece.name = newVal;
-        this.data.update(Piece.prototype, piece);
+        this.data.update<Piece>(Piece.prototype, piece);
         break;
+      }
+    }
+  }
+
+  onChangeLane(e) {
+    debugger;
+    let newVal = e.currentTarget.value;
+    let id = e.currentTarget.dataset["laneId"];
+
+    for (let ln = 0; ln < this.lanesAndPieces.length; ln++) {
+
+      let lane = this.lanesAndPieces[ln] as ViewTypeAttribute;
+      if (lane.id == id) {
+        lane.name = newVal;
+        this.data.update<ViewTypeAttribute>(ViewTypeAttribute.prototype, lane);
       }
     }
   }
@@ -107,7 +122,7 @@ export class BoardComponent implements OnInit, OnDestroy {
     newLane.id = 0;
 
     newLane.name = "New";
-    newLane.boardPieces = []; 
+    newLane.boardPieces = [];
     newLane.createdOn = new Date(Date.now());
     newLane.completedOn = new Date();
 

@@ -25,6 +25,7 @@ export class ViewTypeAttribute implements IViewTypeAttribute {
     completedOn?: Date;
     id: number;
     boardPieces: Piece[];
+    dirty: boolean;
 
     constructor(props: ViewTypeAttribute) {
         Object.keys(props).forEach(prop => {

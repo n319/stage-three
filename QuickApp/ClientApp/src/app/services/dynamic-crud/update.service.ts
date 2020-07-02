@@ -34,8 +34,11 @@ export class DataUpdate extends EndpointBase {
       this.cacheAndNotifyUpdated(model, objToUpdate);
     }
 
-    const url = `${this.DS.endpoint}${model.constructor.tableName}/${objToUpdate.key}`;
-      this.http.patch(url, objToUpdate, { headers: this.requestHeaders }).subscribe(
+    const url = `${this.DS.endpoint}/api/${model.constructor.tableName}`;
+
+    const objToHttp = JSON.stringify(objToUpdate);
+
+    this.http.patch(url, objToHttp, { headers: this.postRequestHeaders }).subscribe(
       res => {
         if (!this.DS.isOptimistic) {
           this.cacheAndNotifyUpdated(model, objToUpdate);

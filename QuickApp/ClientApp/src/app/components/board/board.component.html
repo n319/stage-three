@@ -5,7 +5,7 @@
 
         <form class="example-form">
             <mat-form-field class="example-full-width">
-              <input matInput value="{{group.name}}">
+              <input matInput [attr.data-lane-id]="group.id" (change)="onChangeLane($event)" value="{{group.name}}">
             </mat-form-field>
           </form>
 
