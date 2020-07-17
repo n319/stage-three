@@ -25,7 +25,7 @@ namespace Api.Controllers
         [HttpGet]
         public IActionResult Get(string projectId)
         {
-            int id = int.Parse(projectId);
+           int id = int.Parse(projectId);
             BoardModel model = new BoardModel();
             model.project = _unitOfWork.Project.Get(id);
             model.projectPieces = _unitOfWork.Piece.GetAll().Where(pc => pc.ProjectId == id).ToArray();

@@ -17,11 +17,11 @@ namespace QuickApp.Controllers
     [Route("api/[controller]")]
     [Authorize(AuthenticationSchemes = IdentityServerAuthenticationDefaults.AuthenticationScheme)]
     [ApiController]
-    public class PiecesController : ControllerBase
+    public class PieceController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public PiecesController(IUnitOfWork unitOfWork)
+        public PieceController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
@@ -33,11 +33,32 @@ namespace QuickApp.Controllers
             return _unitOfWork.Piece.GetAll().ToArray();
         }
 
-        // GET: api/Pieces/5
-        [HttpGet("{id}")]
-        public ActionResult<Piece[]> GetPiece(int id)
+        [HttpGet("{pieceId}")]
+        public ActionResult<Piece> GetPieceById(int pieceId)
         {
-            var piece = _unitOfWork.Piece.Find(p=> p.Id == id).ToArray();
+            return _unitOfWork.Piece.Get(pieceId);
+        }
+
+        [HttpPatch]
+        public ActionResult<Piece> PatchUpdatePiece([FromBody] Piece piece)
+        {
+            var toUpdate = _unitOfWork.Piece.Find(pc => pc.Id == piece.Id).FirstOrDefault();
+
+            toUpdate.Name = piece.Name;
+            toUpdate.ViewTypeAttributeId = piece.ViewTypeAttributeId;
+            toUpdate.CompletedOn = piece.CompletedOn;
+            toUpdate.Description = piece.Description;
+
+            _unitOfWork.SaveChanges();
+
+            return piece;
+        }
+
+        // GET: api/Pieces/5
+        [HttpGet("{pieceId}")]
+        public ActionResult<Piece[]> GetPiece(int pieceId)
+        {
+            var piece = _unitOfWork.Piece.Find(p=> p.Id == pieceId).ToArray();
 
             if (piece == null)
             {
@@ -51,7 +72,7 @@ namespace QuickApp.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPiece(int id, Piece piece)
+        public ActionResult<IActionResult> PutPiece(int id, Piece piece)
         {
             if (id != piece.Id)
             {
@@ -86,12 +107,13 @@ namespace QuickApp.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public ActionResult<Piece> PostPiece(Piece piece)
+        public ActionResult<Piece> PostPiece([FromBody] Piece piece)
         {
             _unitOfWork.Piece.Add(piece);
             _unitOfWork.SaveChanges();
 
-            return CreatedAtAction("GetPiece", new { id = piece.Id }, piece);
+            //return CreatedAtAction("GetPiece", new { id = piece.Id }, piece);
+            return piece;
         }
 
         // DELETE: api/Pieces/5

@@ -57,7 +57,6 @@ namespace Api.Controllers
 
             toUpdate.Name = model.Name;
             toUpdate.Order = model.Order;
-
             _unitOfWork.SaveChanges();
 
             return model;

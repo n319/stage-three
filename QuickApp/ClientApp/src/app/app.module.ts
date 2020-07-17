@@ -60,11 +60,12 @@ import { RolesManagementComponent } from './components/controls/roles-management
 import { RoleEditorComponent } from './components/controls/role-editor.component';
 
 import { DragulaModule } from 'ng2-dragula';
-import { BoardComponent } from './components/board/board.component';
-import { GalleryComponent } from './components/gallery/gallery.component';
 import { MaterialModule } from './material.module';
 import { MatAutocompleteModule, MatFormFieldModule } from '@angular/material';
 
+import { BoardComponent } from './components/board/board.component';
+import { GalleryComponent } from './components/gallery/gallery.component';
+import { PieceDialogComponent } from './components/piece-dialog/piece-dialog.component';
 
 import { Select2Module } from 'ng2-select2';
 import { DynamicCrudService } from './services/dynamic-crud/dynamic-crud.service';
@@ -74,6 +75,7 @@ import { DataRead } from './services/dynamic-crud/read.service';
 import { DataDelete } from './services/dynamic-crud/delete.service';
 import { ApiEndpoint } from './services/dynamic-crud/api-endpoint.service';
 import { LaneFilterPipe } from './pipes/lane-filter.pipe';
+
 
 
 @NgModule({
@@ -108,7 +110,8 @@ import { LaneFilterPipe } from './pipes/lane-filter.pipe';
     declarations: [
         AppComponent,
         LoginComponent,
-        BoardComponent,
+      BoardComponent,
+      PieceDialogComponent,
         GalleryComponent,
         HomeComponent,
         CustomersComponent,
@@ -151,7 +154,8 @@ import { LaneFilterPipe } from './pipes/lane-filter.pipe';
         DataDelete,
         ApiEndpoint
     ],
-    bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [PieceDialogComponent]
 })
 export class AppModule {
 }

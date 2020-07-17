@@ -1,6 +1,6 @@
 <div class="boardContent">
   <div class="boardWrapper wrapper" dragula="COLUMNS" [(dragulaModel)]="lanesAndPieces">
-    <div *ngFor="let group of lanesAndPieces" class="groupContainer">
+    <div *ngFor="let group of lanesAndPieces" class="groupContainer" (dblclick)="onDblclickCreateNewPiece($event)" [attr.data-lane-id]="group.id">
       <div class="group-handle" [attr.data-lane-id]="group.id">
 
         <form class="example-form">
@@ -16,12 +16,12 @@
         <mat-list role="list" class="itemContainer" dragula="ITEMS" [(dragulaModel)]="group.boardPieces" [attr.data-lane-id]="group.id">
           <mat-list-item *ngFor="let item of group.boardPieces" class="boardItem">
 
-            <mat-card>
+            <mat-card (click)="onClickPieceCard($event)" [attr.data-card-id]="item.id">
 
               <!--<div mat-card-avatar class="example-header-image"></div>-->
               <form class="example-form">
                 <mat-form-field class="example-full-width">
-                  <input matInput (change)="onChangeItemName($event)" [attr.data-card-id]="item.id" value="{{item.name}}">
+                  <input matInput (click)="onClickNameInput($event)"(change)="onChangeItemName($event)" [attr.data-card-id]="item.id" value="{{item.name}}">
                 </mat-form-field>
               </form>
 

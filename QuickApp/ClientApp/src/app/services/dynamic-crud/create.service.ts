@@ -46,12 +46,14 @@ export class DataCreate extends EndpointBase{
             );
     }
 
-    createObs<T>(model: T | any, objToCreate?: T | any): Observable<T | T[]> {
+  createObs<T>(model: T | any, objToCreate?: T | any): Observable<T | T[]> {
+    debugger;
       const newModelObj = new model.constructor(objToCreate);
       const url = `${this.DS.endpoint}/api/${model.constructor.tableName}`;
       const body = JSON.stringify(newModelObj);
       return this.http.post(url, body, { headers: this.postRequestHeaders })
-          .pipe(
+        .pipe( 
+
                 catchError(handleHttpError),
             tap((res: T[] | any) => {
                     newModelObj.key = res.key || res.ObjectId || res.id || '';

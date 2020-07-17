@@ -19,10 +19,10 @@ namespace Api.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        [HttpGet("[action]")]
-        public ActionResult<Project> GetProject(int id)
+        [HttpGet("{projectId}")]
+        public ActionResult<Project> GetProject(int projectId)
         {
-            var project = _unitOfWork.Project.Get(id);
+            var project = _unitOfWork.Project.Get(projectId);
 
             if (project == null)
             {

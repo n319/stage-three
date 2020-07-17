@@ -6,6 +6,9 @@ import { Piece } from '../../models/projectr/piece.model';
 import { ViewTypeAttribute } from '../../models/projectr/view-type-attribute.model';
 import { takeUntil } from 'rxjs/operators';
 import { BoardComponentData } from '../../models/projectr/boardComponent.model';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { PieceDialogComponent } from '../piece-dialog/piece-dialog.component';
+
 
 @Component({
   selector: 'app-board',
@@ -19,7 +22,7 @@ export class BoardComponent implements OnInit, OnDestroy {
   lanesAndPieces: ViewTypeAttribute[] = [];
   subs = new Subscription();
 
-  constructor(private dragulaService: DragulaService, private data: DynamicCrudService) {
+  constructor(private dragulaService: DragulaService, private data: DynamicCrudService, public dialog: MatDialog) {
 
     this.dragulaService.createGroup("COLUMNS", {
       direction: 'horizontal',
@@ -45,12 +48,13 @@ export class BoardComponent implements OnInit, OnDestroy {
     */
   read() {
     const getViewData = this.data.readObs<BoardComponentData>(BoardComponentData.prototype, "projectId=1");
-
+    debugger;
     forkJoin([getViewData])
       .pipe(takeUntil(this.unsub))
       .subscribe(
         (res: any) => {
           this.lanesAndPieces = [];
+          debugger;
           for (let item of res[0]) {
             for (let lane of item.viewTypeAttributes) {
               lane.boardPieces = item.projectPieces.filter(pc => pc.viewTypeAttributeId == lane.id);
@@ -87,6 +91,8 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   onChangeLane(e) {
     debugger;
+    event.stopPropagation();
+    
     let newVal = e.currentTarget.value;
     let id = e.currentTarget.dataset["laneId"];
 
@@ -143,5 +149,55 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   }
 
+  onDblclickCreateNewPiece(event: any): void {
+    let laneId = event.target.closest(".groupContainer").dataset.laneId as number;
+
+   let lane = this.lanesAndPieces.find(val => val.id == laneId);
+    debugger;
+
+    //let viewTypeAttr = lane.boardPieces.map(pc => Math.max(pc.viewTypeAttributeId))[0];
+    let viewTypeAttr = lane.id;
+    let data: Piece = {
+      id: 0,
+      description: '',
+      projectId: lane.projectId,
+      name: 'NewPiece',
+      viewTypeId: lane.viewTypeId,
+      viewTypeAttributeId: viewTypeAttr,
+      applicationUserId: lane.applicationUserId,
+      createdOn: new Date(Date.now()),
+      completedOn: new Date(),
+      tableDefinition: 'Piece',
+      dirty: true
+    };
+    debugger;
+    let pc = new Piece(data);
+    
+
+    this.data.createObs(Piece.prototype, pc).subscribe(
+      res => {
+        let test = res as Piece;
+        let lane = this.lanesAndPieces.find(lane => lane.id == test.viewTypeAttributeId);
+        lane.boardPieces.push(test);
+        debugger;
+      });
+  }
+
+  onClickPieceCard(event: any): void {
+    let test = 0;
+
+    const dialogConfig = new MatDialogConfig();
+    debugger;
+
+    let pcId = event.target.closest("mat-card").dataset.cardId;
+
+    dialogConfig.data = {pcId: pcId};
+
+    let pieceDialog = this.dialog.open(PieceDialogComponent, dialogConfig);
+  }
+
+  onClickNameInput(event: any): void {
+    event.stopPropagation();
+  }
 
 }
