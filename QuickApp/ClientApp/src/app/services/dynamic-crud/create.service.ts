@@ -47,7 +47,6 @@ export class DataCreate extends EndpointBase{
     }
 
   createObs<T>(model: T | any, objToCreate?: T | any): Observable<T | T[]> {
-    debugger;
       const newModelObj = new model.constructor(objToCreate);
       const url = `${this.DS.endpoint}/api/${model.constructor.tableName}`;
       const body = JSON.stringify(newModelObj);

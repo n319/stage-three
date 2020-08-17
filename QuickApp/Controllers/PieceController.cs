@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DAL.Models;
-using QuickApp.Data;
 using IdentityServer4.AccessTokenValidation;
 using System.Net;
 using Microsoft.AspNetCore.Authorization;
@@ -28,26 +27,36 @@ namespace QuickApp.Controllers
 
         // GET: api/Pieces
         [HttpGet]
-        public ActionResult<Piece[]> GetPiece()
+        public IActionResult GetPieceById(int pieceId)
         {
-            return _unitOfWork.Piece.GetAll().ToArray();
-        }
+            var pc = _unitOfWork.Piece.Get(pieceId);
+            
+            pc.contentTags = _unitOfWork.PieceContentTag.GetAll().Where(pc => pc.PieceId == pieceId).ToArray<PieceContentTag>();
 
-        [HttpGet("{pieceId}")]
-        public ActionResult<Piece> GetPieceById(int pieceId)
-        {
-            return _unitOfWork.Piece.Get(pieceId);
+            List<Piece> output = new List<Piece>() { pc };
+
+            return Ok(output);
         }
 
         [HttpPatch]
         public ActionResult<Piece> PatchUpdatePiece([FromBody] Piece piece)
         {
             var toUpdate = _unitOfWork.Piece.Find(pc => pc.Id == piece.Id).FirstOrDefault();
-
+            //use pieceContentTag
             toUpdate.Name = piece.Name;
             toUpdate.ViewTypeAttributeId = piece.ViewTypeAttributeId;
             toUpdate.CompletedOn = piece.CompletedOn;
             toUpdate.Description = piece.Description;
+            toUpdate.contentTags = piece.contentTags;
+
+            var currentTags = _unitOfWork.PieceContentTag.GetAll().Where(pc => pc.PieceId == piece.Id).ToArray<PieceContentTag>();
+
+            foreach (var tag in currentTags)
+            {
+                _unitOfWork.PieceContentTag.Remove(tag);
+            }
+
+            _unitOfWork.PieceContentTag.AddRange(piece.contentTags);
 
             _unitOfWork.SaveChanges();
 
@@ -71,15 +80,16 @@ namespace QuickApp.Controllers
         // PUT: api/Pieces/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
-        [HttpPut("{id}")]
-        public ActionResult<IActionResult> PutPiece(int id, Piece piece)
+        [HttpPut]
+        public ActionResult<IActionResult> PutPiece([FromBody] Piece piece)
         {
-            if (id != piece.Id)
+            //use pieceContentTag
+            if (piece == null)
             {
                 return BadRequest();
             }
 
-            if (!PieceExists(id))
+            if (!PieceExists(piece.Id))
             {
                 _unitOfWork.Piece.Add(piece);
             }
@@ -90,7 +100,7 @@ namespace QuickApp.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PieceExists(id))
+                if (!PieceExists(piece.Id))
                 {
                     return NotFound();
                 }
@@ -109,6 +119,7 @@ namespace QuickApp.Controllers
         [HttpPost]
         public ActionResult<Piece> PostPiece([FromBody] Piece piece)
         {
+            //use pieceContentTag
             _unitOfWork.Piece.Add(piece);
             _unitOfWork.SaveChanges();
 

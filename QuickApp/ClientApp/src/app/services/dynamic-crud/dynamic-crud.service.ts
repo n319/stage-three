@@ -116,6 +116,10 @@ export class DynamicCrudService {
         return this.DU.updatePromise(model, objToUpdate);
     }
 
+  putObs<T>(model: T | any, objToUpdate: T | any): Observable<T[]> {
+    return this.DU.put<T>(model, objToUpdate);
+  }
+
     // DELETE
     //Delete should be straightforward now if you’ve been following along.The cacheAndNotifyDelete method is straightforward
     //as we use the built in .filter method to remove the object from the local cache and then notify the front end via the subjects appropriately.

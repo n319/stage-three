@@ -3,6 +3,7 @@ using DAL.Models;
 using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace Api.Controllers
 {
@@ -17,6 +18,12 @@ namespace Api.Controllers
         public ProjectController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
+        }
+
+        [HttpGet]
+        public ActionResult<Project[]> GetAllProjects()
+        {
+            return _unitOfWork.Project.GetAll().ToArray();
         }
 
         [HttpGet("{projectId}")]

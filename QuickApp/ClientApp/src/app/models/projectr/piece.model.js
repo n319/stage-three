@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Piece = void 0;
 var Piece = /** @class */ (function () {
     function Piece(props) {
         var _this = this;

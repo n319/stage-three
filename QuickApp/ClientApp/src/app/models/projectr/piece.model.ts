@@ -1,5 +1,6 @@
 import { ModelData } from './data.model';
 import { ITable } from '../dynamic-crud/ITable.model';
+import { PieceContentTag } from './pieceContentTag.model';
 
 export interface IPiece extends ITable {
     name: string;
@@ -21,11 +22,11 @@ export class Piece implements IPiece {
     viewTypeAttributeId: number;
     applicationUserId: number;
     createdOn: Date;
+    contentTags: PieceContentTag[];
     completedOn?: Date;
     tableDefinition: string = 'Piece';
     static tableName = 'Piece';
     dirty: boolean;
-
     id: number;
 
     constructor(props: Piece) {

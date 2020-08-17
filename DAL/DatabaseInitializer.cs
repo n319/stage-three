@@ -202,10 +202,10 @@ namespace DAL
                 _logger.LogInformation("Generating PieceContentTags");
 
                 var pieceContentTags = new List<PieceContentTag>();
-                pieceContentTags.Add(new PieceContentTag { ContentTagId = 1, PieceId = 1 });
-                pieceContentTags.Add(new PieceContentTag { ContentTagId = 2, PieceId = 2 });
-                pieceContentTags.Add(new PieceContentTag { ContentTagId = 3, PieceId = 3 });
-                pieceContentTags.Add(new PieceContentTag { ContentTagId = 4, PieceId = 3 });
+                pieceContentTags.Add(new PieceContentTag { ContentTagId = 1, PieceId = 1, ProjectId = 1, Name="", ContentId=3 });
+                pieceContentTags.Add(new PieceContentTag { ContentTagId = 2, PieceId = 2, ProjectId = 1, Name = "", ContentId = 1 });
+                pieceContentTags.Add(new PieceContentTag { ContentTagId = 3, PieceId = 3, ProjectId = 1, Name = "", ContentId = 2});
+                pieceContentTags.Add(new PieceContentTag { ContentTagId = 4, PieceId = 3, ProjectId = 1, Name = "", ContentId = 1 });
 
                 _context.PieceContentTag.AddRange(pieceContentTags);
                 _logger.LogInformation("Generation Done");

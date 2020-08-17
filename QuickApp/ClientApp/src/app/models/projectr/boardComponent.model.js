@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.BoardComponentData = void 0;
 var BoardComponentData = /** @class */ (function () {
     function BoardComponentData(props) {
         var _this = this;

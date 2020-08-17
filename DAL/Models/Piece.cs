@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DAL.Models
@@ -23,6 +24,9 @@ namespace DAL.Models
         public DateTime CompletedOn { get; set; }
 
         public string Description { get; set; }
+
+        [NotMapped]
+        public ICollection<PieceContentTag> contentTags { get; set; }
 
     }
 

@@ -1,0 +1,16 @@
+<div (click)="onClickContentTagToggleEdit($event)" [attr.data-tag-id]="contentTag.id">
+  <div *ngIf="!edit">
+      {{contentTag.pieceId}} - {{contentTag.id}} - {{contentTag.name}}
+    
+  </div>
+  <div *ngIf="edit">
+
+    <div class="form-group">
+      <label for="name"></label>
+      <input type="text" class="form-control" id="name"
+             [(ngModel)]="contentTag.name" name="name"
+             (keyup.enter)="save()"
+             (click)="onClickName($event)"/>
+    </div>
+  </div>
+</div>

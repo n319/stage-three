@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ViewTypeAttribute = void 0;
 var ViewTypeAttribute = /** @class */ (function () {
     function ViewTypeAttribute(props) {
         var _this = this;

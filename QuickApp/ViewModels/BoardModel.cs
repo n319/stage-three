@@ -13,5 +13,7 @@ namespace QuickApp.ViewModels
         public ViewTypeAttribute[] viewTypeAttributes {get; set;}
         public Project project {get; set;}
         public Piece[] projectPieces {get; set;}
+
+        public PieceContentTag[] pieceContentTags { get; set; }
     }
 }

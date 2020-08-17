@@ -20,7 +20,6 @@ using QuickApp.Helpers;
 using System;
 using System.Collections.Generic;
 using AppPermissions = DAL.Core.ApplicationPermissions;
-using QuickApp.Data;
 
 namespace QuickApp
 {

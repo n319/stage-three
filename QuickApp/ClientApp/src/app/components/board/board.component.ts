@@ -48,13 +48,11 @@ export class BoardComponent implements OnInit, OnDestroy {
     */
   read() {
     const getViewData = this.data.readObs<BoardComponentData>(BoardComponentData.prototype, "projectId=1");
-    debugger;
     forkJoin([getViewData])
       .pipe(takeUntil(this.unsub))
       .subscribe(
         (res: any) => {
           this.lanesAndPieces = [];
-          debugger;
           for (let item of res[0]) {
             for (let lane of item.viewTypeAttributes) {
               lane.boardPieces = item.projectPieces.filter(pc => pc.viewTypeAttributeId == lane.id);
@@ -90,7 +88,6 @@ export class BoardComponent implements OnInit, OnDestroy {
   }
 
   onChangeLane(e) {
-    debugger;
     event.stopPropagation();
     
     let newVal = e.currentTarget.value;
@@ -108,8 +105,6 @@ export class BoardComponent implements OnInit, OnDestroy {
 
 
   ngOnDestroy(): void {
-    debugger;
-
     this.dragulaService.destroy("COLUMNS");
 
     this.dragulaService.destroy("ITEMS");
@@ -153,7 +148,6 @@ export class BoardComponent implements OnInit, OnDestroy {
     let laneId = event.target.closest(".groupContainer").dataset.laneId as number;
 
    let lane = this.lanesAndPieces.find(val => val.id == laneId);
-    debugger;
 
     //let viewTypeAttr = lane.boardPieces.map(pc => Math.max(pc.viewTypeAttributeId))[0];
     let viewTypeAttr = lane.id;
@@ -168,9 +162,9 @@ export class BoardComponent implements OnInit, OnDestroy {
       createdOn: new Date(Date.now()),
       completedOn: new Date(),
       tableDefinition: 'Piece',
-      dirty: true
+      dirty: true,
+      contentTags: []
     };
-    debugger;
     let pc = new Piece(data);
     
 
@@ -179,7 +173,7 @@ export class BoardComponent implements OnInit, OnDestroy {
         let test = res as Piece;
         let lane = this.lanesAndPieces.find(lane => lane.id == test.viewTypeAttributeId);
         lane.boardPieces.push(test);
-        debugger;
+        
       });
   }
 
@@ -187,7 +181,6 @@ export class BoardComponent implements OnInit, OnDestroy {
     let test = 0;
 
     const dialogConfig = new MatDialogConfig();
-    debugger;
 
     let pcId = event.target.closest("mat-card").dataset.cardId;
 

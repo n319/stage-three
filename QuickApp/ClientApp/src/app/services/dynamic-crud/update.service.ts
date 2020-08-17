@@ -22,6 +22,24 @@ export class DataUpdate extends EndpointBase {
     this.DS = ds;
   }
 
+  put<T>(model: T | any, objToPut: T | any): Observable<T[]> {
+    this.DS.loadingMap[model.constructor.tableName] = true;
+
+    if (this.DS.isOptimistic) {
+      this.cacheAndNotifyUpdated(model, objToPut);
+    }
+
+    const url = `${this.DS.endpoint}/api/${model.constructor.tableName}`;
+
+    const objToHttp = JSON.stringify(objToPut);
+
+    return this.http.put<T[]>(url, objToHttp, { headers: this.postRequestHeaders }).pipe(
+      catchError(handleHttpError),
+      tap((res: T[]) => {
+        this.cacheAndNotifyUpdated(model, objToPut);
+      }));
+  }
+
   /**
    * Update a front end object's values into the database
    * @param model The interface / class to construct the query against and build response objects from
@@ -29,7 +47,7 @@ export class DataUpdate extends EndpointBase {
    */
   update<T>(model: T | any, objToUpdate: T | any) {
     this.DS.loadingMap[model.constructor.tableName] = true;
-    debugger;
+
     if (this.DS.isOptimistic) {
       this.cacheAndNotifyUpdated(model, objToUpdate);
     }
@@ -53,8 +71,9 @@ export class DataUpdate extends EndpointBase {
   }
 
   updateObs<T>(model: T | any, objToUpdate: T | any): Observable<T[]> {
-    const url = `${this.DS.endpoint}${model.constructor.tableName}/${objToUpdate.key}`;
-      return this.http.patch<T[]>(url, objToUpdate, { headers: this.requestHeaders }).pipe(
+    const url = `${this.DS.endpoint}/api/${model.constructor.tableName}`;
+    const objToHttp = JSON.stringify(objToUpdate);
+    return this.http.patch<T[]>(url, objToHttp, { headers: this.requestHeaders }).pipe(
       catchError(handleHttpError),
       tap((res: T[]) => {
         this.cacheAndNotifyUpdated(model, objToUpdate);
