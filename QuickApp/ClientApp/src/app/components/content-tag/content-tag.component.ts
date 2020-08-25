@@ -8,8 +8,9 @@ import { PieceContentTag } from '../../models/projectr/pieceContentTag.model';
 })
 export class ContentTagComponent implements OnInit, OnDestroy {
 
-  @Input() contentTag: PieceContentTag; 
-  @Output() valueChange = new EventEmitter<string>();
+  @Input() contentTag: PieceContentTag;
+  @Output() valueChange = new EventEmitter<PieceContentTag>();
+  @Output() onRemove = new EventEmitter<PieceContentTag>();
 
   edit: boolean = false;
   dirty: boolean = false;
@@ -33,11 +34,16 @@ export class ContentTagComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    debugger;
     //this.contentTag.name
-    if (this.dirty) {
-      this.valueChange.emit(JSON.stringify(this.contentTag));
+    if (this.dirty || this.contentTag.dirty) {
+      this.valueChange.emit(this.contentTag);
     }
 
+  }
+
+  onClickRemoveContentTag(event): void {
+    this.onRemove.emit(this.contentTag);
   }
 
 

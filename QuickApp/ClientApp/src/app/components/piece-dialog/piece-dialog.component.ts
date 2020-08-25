@@ -59,13 +59,12 @@ export class PieceDialogComponent implements OnInit, OnDestroy {
       projectId: this.piece.projectId,
       contentTagId: 1,
       contentId: 0,
-      id: 0
+      id: 0,
+      dirty: true
       }
     let test = Object.create(newTag);
-
+    debugger;
     this.piece.contentTags.push(test);
-
-    let t = "";
   }
 
   setStep(index: number) {
@@ -85,7 +84,11 @@ export class PieceDialogComponent implements OnInit, OnDestroy {
   saveContentTag(tag) {
     const index = this.piece.contentTags.findIndex(t => t.id == tag.id);
     this.piece.contentTags.splice(index, 1, tag);
-    var test = "edsfgserg";
+  }
+
+  removeContentTag(tag) {
+    const index = this.piece.contentTags.findIndex(t => t.id == tag.id);
+    this.piece.contentTags.splice(index, 1);
   }
 
 }
