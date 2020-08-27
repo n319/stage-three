@@ -76,6 +76,7 @@ import { DataDelete } from './services/dynamic-crud/delete.service';
 import { ApiEndpoint } from './services/dynamic-crud/api-endpoint.service';
 import { LaneFilterPipe } from './pipes/lane-filter.pipe';
 import { ContentTagComponent } from './components/content-tag/content-tag.component';
+import { CarouselComponent } from './components/carousel/carousel.component';
 
 
 
@@ -135,7 +136,8 @@ import { ContentTagComponent } from './components/content-tag/content-tag.compon
         BootstrapSelectDirective,
         BootstrapDatepickerDirective,
         GroupByPipe,
-        LaneFilterPipe
+      LaneFilterPipe,
+      CarouselComponent
     ],
     providers: [
         { provide: ErrorHandler, useClass: AppErrorHandler },

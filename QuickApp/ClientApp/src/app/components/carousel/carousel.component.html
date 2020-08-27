@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-xs-12">
+    <carousel [itemsPerSlide]="itemsPerSlide"
+              [singleSlideOffset]="singleSlideOffset"
+              [noWrap]="!noWrap"
+              [interval]="false"
+              [showIndicators]="true"
+              [startFromIndex]="5"
+              (slideRangeChange)="onSlideRangeChange($event)">
+      <slide *ngFor="let slide of slides; let index=index">
+        <h3>{{slide.label}}</h3>
+        <h3>{{index}}</h3>
+      </slide>
+    </carousel>
+  </div>
+</div>
+
+
+<!--<div class="container" [ngStyle]="{'marginTop': '20px'}">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" [(ngModel)]="noWrap">
+      Infinite
+    </label>
+  </div>
+</div>-->
