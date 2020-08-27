@@ -26,15 +26,15 @@
               </mat-panel-title>
               <mat-panel-description>
                 Related Pieces
-                <button mat-icon-button (click)="AddContentTag($event)">
-                  <mat-icon aria-hidden="false" aria-label="add button" class="add-box-icon">add_circle_outline</mat-icon>
+                <button mat-raised-button (click)="AddContentTag($event)">
+                  <mat-icon aria-hidden="false" aria-label="add button" class="add-box-icon">add_box</mat-icon>
                 </button>
               </mat-panel-description>
             </mat-expansion-panel-header>
 
             <!--  take contentTags  -->
             <div *ngFor="let tag of piece.contentTags">
-                <app-content-tag [contentTag]="tag" (valueChange)="saveContentTag(tag)" (onRemove)="removeContentTag(tag)"></app-content-tag>
+                <app-content-tag [contentTag]="tag" (valueChange)="saveContentTag(tag)"></app-content-tag>
             </div>
           </mat-expansion-panel>
         </mat-accordion>

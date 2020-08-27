@@ -76,7 +76,6 @@ import { DataDelete } from './services/dynamic-crud/delete.service';
 import { ApiEndpoint } from './services/dynamic-crud/api-endpoint.service';
 import { LaneFilterPipe } from './pipes/lane-filter.pipe';
 import { ContentTagComponent } from './components/content-tag/content-tag.component';
-import { SliderComponent } from './components/slider/slider.component';
 
 
 
@@ -111,8 +110,7 @@ import { SliderComponent } from './components/slider/slider.component';
     ],
     declarations: [
         AppComponent,
-      LoginComponent,
-      SliderComponent,
+        LoginComponent,
       BoardComponent,
       PieceDialogComponent,
       ContentTagComponent,

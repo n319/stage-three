@@ -1,9 +1,7 @@
 <div (click)="onClickContentTagToggleEdit($event)" [attr.data-tag-id]="contentTag.id">
   <div *ngIf="!edit">
-    <span>{{contentTag.pieceId}} - {{contentTag.id}} - {{contentTag.name}} </span>
-    <span class="mat-button-wrapper">
-            <mat-icon (click)="onClickRemoveContentTag($event)" aria-hidden="false" aria-label="remove button" class="minus-box-icon removeButtonIcon">remove_circle_outline</mat-icon>
-    </span>
+      {{contentTag.pieceId}} - {{contentTag.id}} - {{contentTag.name}}
+    
   </div>
   <div *ngIf="edit">
 

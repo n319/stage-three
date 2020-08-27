@@ -6,5 +6,4 @@ export class PieceContentTag {
   pieceId: number;
   contentId: number;
   createdOn: Date;
-  dirty: boolean;
 }
