@@ -16,6 +16,7 @@ import { PieceContentTag } from '../../models/projectr/pieceContentTag.model';
 export class PieceDialogComponent implements OnInit, OnDestroy {
 
   private unsub: Subject<void> = new Subject<any>();
+  public response: { dbPath: '' };
 
   pcId: string;
   piece: Piece;

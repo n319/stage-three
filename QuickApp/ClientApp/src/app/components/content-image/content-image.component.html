@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-12">
+    <div class="row">
+      <app-upload class="col-12" (onUploadFinished)="uploadFinished($event)"></app-upload>
+    </div>
+    <div class="row">
+      <div class="col-12 imageContent">
+        <div *ngFor="let image of images">
+          <img [src]="image" class="img"/>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -4,14 +4,18 @@ using DAL.Core;
 using DAL.Core.Interfaces;
 using DAL.Models;
 using IdentityServer4.AccessTokenValidation;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
@@ -19,6 +23,7 @@ using QuickApp.Authorization;
 using QuickApp.Helpers;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using AppPermissions = DAL.Core.ApplicationPermissions;
 
 namespace QuickApp
@@ -41,6 +46,9 @@ namespace QuickApp
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseMySql(Configuration["ConnectionStrings:DefaultConnection"], b => b.MigrationsAssembly(   "QuickApp")));
+            
+            services.AddDbContext<ContentDbContext>(options =>
+               options.UseMySql(Configuration["ConnectionStrings:ContentConnection"], b => b.MigrationsAssembly("QuickApp")));
 
             // add identity
             services.AddIdentity<ApplicationUser, ApplicationRole>()
@@ -65,6 +73,11 @@ namespace QuickApp
                 //    //options.Lockout.MaxFailedAccessAttempts = 10;
             });
 
+            //services.Configure<FormOptions>(o => {
+            //    o.ValueLengthLimit = int.MaxValue;
+            //    o.MultipartBodyLengthLimit = int.MaxValue;
+            //    o.MemoryBufferThreshold = int.MaxValue;
+            //});
 
             // Adds IdentityServer.
             services.AddIdentityServer()
@@ -181,7 +194,9 @@ namespace QuickApp
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+    
+            
+
             if (!env.IsDevelopment())
             {
                 app.UseSpaStaticFiles();
@@ -195,6 +210,19 @@ namespace QuickApp
 
             app.UseIdentityServer();
             app.UseAuthorization();
+
+            const string cacheMaxAge = "604800";
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(Configuration.GetValue<string>("StoredFilesPath")),
+                RequestPath = "/content",
+                OnPrepareResponse = ctx => {
+                    ctx.Context.Response.Headers.Append(
+                    "Cache-Control", $"public, max-age={cacheMaxAge}");
+                }
+            });
+
 
             app.UseSwagger();
             app.UseSwaggerUI(c =>

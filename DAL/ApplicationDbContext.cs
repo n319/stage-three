@@ -11,7 +11,7 @@ namespace DAL
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
-        public ApplicationDbContext(DbContextOptions options) : base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
             //var canConnect = Database.CanConnect();
             //var migrationList = Database.GetAppliedMigrations();

@@ -77,6 +77,8 @@ import { ApiEndpoint } from './services/dynamic-crud/api-endpoint.service';
 import { LaneFilterPipe } from './pipes/lane-filter.pipe';
 import { ContentTagComponent } from './components/content-tag/content-tag.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
+import { UploadComponent } from './components/upload/upload.component';
+import { ContentImageComponent } from './components/content-image/content-image.component';
 
 
 
@@ -115,7 +117,9 @@ import { CarouselComponent } from './components/carousel/carousel.component';
       BoardComponent,
       PieceDialogComponent,
       ContentTagComponent,
-        GalleryComponent,
+      UploadComponent,
+      ContentImageComponent,
+      GalleryComponent,
         HomeComponent,
         CustomersComponent,
         ProductsComponent,
