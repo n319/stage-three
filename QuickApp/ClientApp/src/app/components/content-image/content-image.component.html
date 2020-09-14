@@ -5,9 +5,11 @@
     </div>
     <div class="row">
       <div class="col-12 imageContent">
-        <div *ngFor="let image of images">
-          <img [src]="image" class="img"/>
-          </div>
+        <div *ngFor="let image of images" class="row">
+          <a target="_blank" href="{{image}}" class="col-12">
+            <img [src]="image" class="img"/>
+          </a>
+        </div>
       </div>
     </div>
   </div>

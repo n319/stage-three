@@ -1,0 +1,11 @@
+img{
+    width: inherit;
+}
+ 
+.imageContent{
+    /*display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;*/
+    overflow-y:auto;
+    max-height: 450px;
+}

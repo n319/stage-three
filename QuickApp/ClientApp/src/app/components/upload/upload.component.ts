@@ -11,6 +11,7 @@ export class UploadComponent implements OnInit {
   public progress: number;
   public message: string;
   @Output() public onUploadFinished = new EventEmitter();
+  public showProgress: boolean;
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
@@ -32,8 +33,13 @@ export class UploadComponent implements OnInit {
     
     this.http.post('https://localhost:44350/api/imagerecords/upload', formData, { headers: headers, reportProgress: true, observe: 'events' })
       .subscribe(event => {
-        if (event.type === HttpEventType.UploadProgress)
+        if (event.type === HttpEventType.UploadProgress) {
+          this.showProgress = true;
           this.progress = Math.round(100 * event.loaded / event.total);
+          if (this.progress == 100) {
+            this.showProgress = false;
+          }
+        }
         else if (event.type === HttpEventType.Response) {
           this.message = 'Upload success.';
           this.onUploadFinished.emit(event.body);
