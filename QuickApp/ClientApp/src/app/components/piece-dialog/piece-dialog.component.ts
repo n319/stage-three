@@ -83,6 +83,11 @@ export class PieceDialogComponent implements OnInit, OnDestroy {
     }
   }
 
+  addImage(event) {
+    debugger;
+    //this.piece.images.add(event);
+  }
+
   saveContentTag(tag) {
     const index = this.piece.contentTags.findIndex(t => t.id == tag.id);
     this.piece.contentTags.splice(index, 1, tag);

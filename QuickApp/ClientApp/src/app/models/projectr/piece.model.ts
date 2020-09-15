@@ -23,6 +23,8 @@ export class Piece implements IPiece {
     applicationUserId: number;
     createdOn: Date;
     contentTags: PieceContentTag[];
+    images: string[];
+
     completedOn?: Date;
     tableDefinition: string = 'Piece';
     static tableName = 'Piece';

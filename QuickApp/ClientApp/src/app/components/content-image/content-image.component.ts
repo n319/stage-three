@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-content-image',
@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContentImageComponent implements OnInit {
 
+  @Output() imageAdded = new EventEmitter<string>();
   public images: string[];
 
   constructor() {
@@ -16,11 +17,9 @@ export class ContentImageComponent implements OnInit {
   ngOnInit() {
   }
 
-
   uploadFinished(event) {
     this.images.push(this.createPath(event.trustedFileNameForFileStorage));
-    //create IMG display component
-    //insert new image into div.imageContent
+    this.imageAdded.emit(event.trustedFileNameForFileStorage);
   }
 
   private createPath(fileName):string {
