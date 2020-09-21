@@ -10,6 +10,7 @@ using IdentityServer4.AccessTokenValidation;
 using System.Net;
 using Microsoft.AspNetCore.Authorization;
 using DAL;
+using Newtonsoft.Json;
 
 namespace QuickApp.Controllers
 {
@@ -19,10 +20,12 @@ namespace QuickApp.Controllers
     public class PieceController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly ContentDbContext _content;
 
-        public PieceController(IUnitOfWork unitOfWork)
+        public PieceController(IUnitOfWork unitOfWork, ContentDbContext context)
         {
             _unitOfWork = unitOfWork;
+            _content = context;
         }
 
         // GET: api/Pieces
@@ -32,6 +35,8 @@ namespace QuickApp.Controllers
             var pc = _unitOfWork.Piece.Get(pieceId);
             
             pc.contentTags = _unitOfWork.PieceContentTag.GetAll().Where(pc => pc.PieceId == pieceId).ToArray<PieceContentTag>();
+
+
 
             List<Piece> output = new List<Piece>() { pc };
 
@@ -49,6 +54,13 @@ namespace QuickApp.Controllers
             toUpdate.Description = piece.Description;
             toUpdate.contentTags = piece.contentTags;
 
+            if (piece.Images != null)
+            {
+                toUpdate.ImageJson = JsonConvert.SerializeObject(
+                    piece.Images.Select(i => { i = i.Replace("content/", ""); return i; }).ToList().ToArray()
+                );
+            }
+
             var currentTags = _unitOfWork.PieceContentTag.GetAll().Where(pc => pc.PieceId == piece.Id).ToArray<PieceContentTag>();
 
             foreach (var tag in currentTags)
@@ -57,7 +69,7 @@ namespace QuickApp.Controllers
             }
 
             _unitOfWork.PieceContentTag.AddRange(piece.contentTags);
-
+            
             _unitOfWork.SaveChanges();
 
             return piece;
@@ -68,6 +80,8 @@ namespace QuickApp.Controllers
         public ActionResult<Piece[]> GetPiece(int pieceId)
         {
             var piece = _unitOfWork.Piece.Find(p=> p.Id == pieceId).ToArray();
+
+            piece[0].Images = JsonConvert.DeserializeObject(piece[0].ImageJson) as string[];
 
             if (piece == null)
             {

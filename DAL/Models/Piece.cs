@@ -18,6 +18,11 @@ namespace DAL.Models
 
         public int ProjectId { get; set; }
 
+        [NotMapped]
+        public string[] Images { get; set; }
+
+        public string ImageJson { get; set; }
+
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime CreatedOn { get; set; }
 

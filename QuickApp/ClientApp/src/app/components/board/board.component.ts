@@ -163,7 +163,9 @@ export class BoardComponent implements OnInit, OnDestroy {
       completedOn: new Date(),
       tableDefinition: 'Piece',
       dirty: true,
-      contentTags: []
+      contentTags: [],
+      images: [],
+      imageJson: ""
     };
     let pc = new Piece(data);
     

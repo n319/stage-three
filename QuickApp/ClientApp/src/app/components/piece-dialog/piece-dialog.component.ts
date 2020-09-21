@@ -20,7 +20,7 @@ export class PieceDialogComponent implements OnInit, OnDestroy {
 
   pcId: string;
   piece: Piece;
-  step:number = -1;
+  step: number = -1;
 
   DataForm: FormGroup = new FormGroup({});
 
@@ -30,8 +30,11 @@ export class PieceDialogComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     const getViewData = this.service.readObs<Piece>(Piece.prototype, "pieceId=" + this.pcId).subscribe(
-        res => {
+      res => {
         this.piece = res[0] as Piece;
+
+        this.piece.images = JSON.parse(this.piece.imageJson);
+
         Object.keys(this.piece).forEach(key => {
           this.DataForm.addControl(key, new FormControl(this.piece[key]));
         });
@@ -66,7 +69,6 @@ export class PieceDialogComponent implements OnInit, OnDestroy {
 
     this.piece.contentTags.push(test);
 
-    let t = "";
   }
 
   setStep(index: number) {
@@ -74,7 +76,6 @@ export class PieceDialogComponent implements OnInit, OnDestroy {
   }
 
   onClickContentTagToggleEdit(event) {
-    debugger;
     //let tagId = event.currentTarget.dataset["tagId"];
     //let tag = this.piece.contentTags.filter(t => t.Id = tagId);
     if (event.currentTarget.dataset["EditFl"] == "0") {
@@ -84,14 +85,17 @@ export class PieceDialogComponent implements OnInit, OnDestroy {
   }
 
   addImage(event) {
-    debugger;
-    //this.piece.images.add(event);
+
+    if (this.piece.images === undefined || this.piece.images === null) {
+      this.piece.images = [];
+    }
+    this.piece.images.push(event);
+
   }
 
   saveContentTag(tag) {
     const index = this.piece.contentTags.findIndex(t => t.id == tag.id);
     this.piece.contentTags.splice(index, 1, tag);
-    var test = "edsfgserg";
   }
 
 }

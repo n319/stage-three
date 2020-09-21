@@ -18,7 +18,7 @@ export class ContentTagComponent implements OnInit, OnDestroy {
     
   ngOnInit() {
   }
-
+                                                                                                             
   onClickContentTagToggleEdit(event) {
     this.edit = !this.edit;
   }
