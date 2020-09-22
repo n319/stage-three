@@ -24,7 +24,11 @@ export class Piece implements IPiece {
     createdOn: Date;
     contentTags: PieceContentTag[];
     images: string[];
-    imageJson: string;
+  imageJson: string;
+
+  files: string[];
+  filesJson: string;
+
 
     completedOn?: Date;
     tableDefinition: string = 'Piece';

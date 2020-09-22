@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DAL.Models.Content
 {
-    public class FileRecord
+    public class ImageRecord
     {
         public int Id { get; set; }
         public string Path { get; set; }

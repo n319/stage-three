@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-12">
+    <div class="row">
+      <app-upload class="col-12" (onUploadFinished)="uploadFinished($event)" [buttonText]="label"></app-upload>
+    </div>
+    <div class="row">
+      <div class="col-12 fileContent">
+        <div *ngFor="let file of fileInput" class="row">
+          <a target="_blank" href="{{file}}" class="col-12">{{file}}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -8,9 +8,10 @@ namespace DAL
 {
     public class ContentDbContext : DbContext
     {
-        public ContentDbContext(DbContextOptions<ContentDbContext> options) : base(options)
-        {}
+        public ContentDbContext(DbContextOptions<ContentDbContext> options) : base(options){}
 
         public DbSet<ImageRecord> Images { get; set; }
+        public DbSet<FileRecord> Files { get; set; }
+
     }
 }

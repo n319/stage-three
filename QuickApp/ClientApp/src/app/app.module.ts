@@ -79,6 +79,7 @@ import { ContentTagComponent } from './components/content-tag/content-tag.compon
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { UploadComponent } from './components/upload/upload.component';
 import { ContentImageComponent } from './components/content-image/content-image.component';
+import { ContentFileComponent } from './components/content-file/content-file.component';
 
 
 
@@ -119,6 +120,7 @@ import { ContentImageComponent } from './components/content-image/content-image.
       ContentTagComponent,
       UploadComponent,
       ContentImageComponent,
+      ContentFileComponent,
       GalleryComponent,
         HomeComponent,
         CustomersComponent,

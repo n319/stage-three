@@ -93,6 +93,10 @@ export class PieceDialogComponent implements OnInit, OnDestroy {
 
   }
 
+  addFile(event) {
+
+  }
+
   saveContentTag(tag) {
     const index = this.piece.contentTags.findIndex(t => t.id == tag.id);
     this.piece.contentTags.splice(index, 1, tag);
