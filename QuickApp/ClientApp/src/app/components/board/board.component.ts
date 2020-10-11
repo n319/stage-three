@@ -165,7 +165,9 @@ export class BoardComponent implements OnInit, OnDestroy {
       dirty: true,
       contentTags: [],
       images: [],
-      imageJson: ""
+      imageJson: "",
+      files: [],
+      filesJson: ""
     };
     let pc = new Piece(data);
     

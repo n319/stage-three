@@ -30,7 +30,7 @@ export class ContentFileComponent implements OnInit {
     }
 
     let imgPath = this.createPath(event.trustedFileNameForFileStorage);
-    this.fileInput.push(imgPath);
+    //this.fileInput.push(imgPath);
 
     this.fileAdded.emit(imgPath);
     //this.imageAdded.emit(JSON.stringify(event.trustedFileNameForFileStorage));
@@ -38,7 +38,7 @@ export class ContentFileComponent implements OnInit {
 
   private createPath(fileName: string): string {
     fileName = fileName.replace("\"", "");
-    return `content/${fileName}`;
+    return `content/selif/${fileName}`;
   }
 
 }

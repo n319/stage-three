@@ -267,3 +267,5 @@ __pycache__/
 *.licenseheader
 Thumbs.db
 tempkey.rsa
+/QuickApp/ClientApp/documentation
+/documentation

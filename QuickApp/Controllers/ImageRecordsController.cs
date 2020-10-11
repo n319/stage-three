@@ -134,11 +134,9 @@ namespace QuickApp.Controllers
                     trustedFileNameForFileStorage = trustedFileNameForFileStorage.Split(".")[0] + ".";//remove random file extension
                     trustedFileNameForFileStorage += trustedFileNameForDisplay.Split(".")[1];//append uploaded file extension
 
-                    var storePath = _configuration.GetValue<string>("StoredImagesPath");
+                    var storePath = _configuration.GetValue<string>("StoredContentPath");
 
-                    var fullPath = Path.Combine(storePath, trustedFileNameForFileStorage);
-                    
-                    var dbPath = Path.Combine(storePath, trustedFileNameForFileStorage);
+                    var fullPath = Path.Combine(storePath, "segami", trustedFileNameForFileStorage);
 
                     using (var stream = new FileStream(fullPath, FileMode.Create))
                     {

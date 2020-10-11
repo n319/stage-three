@@ -16,7 +16,7 @@ export class ContentImageComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    
     if (this.imageInput != null) {
       for (let i in this.imageInput) {
         this.imageInput[i] = this.createPath(this.imageInput[i]);
@@ -30,7 +30,7 @@ export class ContentImageComponent implements OnInit {
     }
 
     let imgPath = this.createPath(event.trustedFileNameForFileStorage);
-    this.imageInput.push(imgPath);
+    //this.imageInput.push(imgPath);
 
     this.imageAdded.emit(imgPath);
     //this.imageAdded.emit(JSON.stringify(event.trustedFileNameForFileStorage));
@@ -38,7 +38,7 @@ export class ContentImageComponent implements OnInit {
 
   private createPath(fileName: string): string {
     fileName = fileName.replace("\"", "");
-    return `content/${fileName}`;
+    return `content/segami/${fileName}`;
   }
 
 }

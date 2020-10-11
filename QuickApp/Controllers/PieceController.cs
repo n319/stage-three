@@ -57,8 +57,15 @@ namespace QuickApp.Controllers
             if (piece.Images != null)
             {
                 toUpdate.ImageJson = JsonConvert.SerializeObject(
-                    piece.Images.Select(i => { i = i.Replace("content/", ""); return i; }).ToList().ToArray()
-                );
+                    piece.Images.Select(i => { i = i.Replace("content/segami/", ""); return i; }).ToList()
+                    .Select(i => { i = i.Replace("content/selif/", ""); return i; }).ToList().ToArray());
+            }
+
+            if (piece.Files != null)
+            {
+                toUpdate.FilesJson = JsonConvert.SerializeObject(
+                    piece.Files.Select(i => { i = i.Replace("content/segami/", ""); return i; }).ToList()
+                    .Select(i => { i = i.Replace("content/selif/", ""); return i; }).ToList().ToArray());
             }
 
             var currentTags = _unitOfWork.PieceContentTag.GetAll().Where(pc => pc.PieceId == piece.Id).ToArray<PieceContentTag>();

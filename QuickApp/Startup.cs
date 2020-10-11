@@ -215,14 +215,13 @@ namespace QuickApp
 
             app.UseStaticFiles(new StaticFileOptions
             {
-                FileProvider = new PhysicalFileProvider(Configuration.GetValue<string>("StoredFilesPath")),
+                FileProvider = new PhysicalFileProvider(Configuration.GetValue<string>("StoredContentPath")),
                 RequestPath = "/content",
                 OnPrepareResponse = ctx => {
                     ctx.Context.Response.Headers.Append(
                     "Cache-Control", $"public, max-age={cacheMaxAge}");
                 }
             });
-
 
             app.UseSwagger();
             app.UseSwaggerUI(c =>

@@ -33,7 +33,12 @@ export class PieceDialogComponent implements OnInit, OnDestroy {
       res => {
         this.piece = res[0] as Piece;
 
-        this.piece.images = JSON.parse(this.piece.imageJson);
+        if (this.piece.imageJson != null && this.piece.imageJson != "") {
+          this.piece.images = JSON.parse(this.piece.imageJson);
+        }
+        else {
+          this.piece.images = [];
+        }
 
         Object.keys(this.piece).forEach(key => {
           this.DataForm.addControl(key, new FormControl(this.piece[key]));
@@ -94,7 +99,10 @@ export class PieceDialogComponent implements OnInit, OnDestroy {
   }
 
   addFile(event) {
-
+    if (this.piece.files === undefined || this.piece.files === null) {
+      this.piece.files = [];
+    }
+    this.piece.files.push(event);
   }
 
   saveContentTag(tag) {
