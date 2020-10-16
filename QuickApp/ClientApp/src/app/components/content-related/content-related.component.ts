@@ -1,5 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { PieceContentTag } from '../../models/projectr/pieceContentTag.model';
+import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { FormControl, FormGroup } from '@angular/forms';
+
 
 @Component({
   selector: 'app-content-related',
@@ -13,20 +16,60 @@ export class ContentRelatedComponent implements OnInit {
   @Input() pieceId: number;
   @Input() projectId: number;
 
+
   step: number = -1;
   edit: boolean = false;
   dirty: boolean = false;
-  filter: PieceContentTag;
-   
-  constructor() {
 
-    this.filter = new PieceContentTag();
-    this.filter.contentTagId = 1; //related tags
+  myFormGroup: FormGroup;
+  iconCss = new FormControl();
+  icons:any = [];
+
+  constructor(library: FaIconLibrary) {
+
+
+    let fasLib = (library as any).definitions.fas;
+
+    for (let add in fasLib) {
+      this.icons.push({'fas' : (fasLib[add] as any).icon});
+    }
+
+    //(library as any).definitions.fas.forEach(icon => this.icons.push({ 'fas': icon }));
+    //(library as any).definitions.far.forEach(icon => this.icons.push({ 'far': icon }));
+    //(library as any).definitions.fab.forEach(icon => this.icons.push({ 'fab': icon }));
+
+  }
+
+  onIconPickerSelect(icon: string): void {
+    this.iconCss.setValue(icon);
+  }
+
+
+  getIconObject(icon): string[] {
+    const key = Object.keys(icon)[0];
+    // debugger;
+    return [key, icon[key]];
+  }
+
+  getIconName(icon): string {
+    const key = Object.keys(icon)[0];
+    // debugger;
+    return icon[key];
+  }
+
+  filter(itemList: string):[] {
+    if (itemList) {
+      return this.icons.filter(i => i[Object.keys(i)[0]].indexOf(itemList) > -1);
+    } else {
+      return this.icons;
+    }
   }
 
   ngOnInit() {
-
+    this.myFormGroup = new FormGroup({ iconCss: this.iconCss });
   }
+
+
 
   setStep(index: number) {
     this.step = index;

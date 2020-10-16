@@ -57,11 +57,6 @@ export class BoardComponent implements OnInit, OnDestroy {
             for (let lane of item.viewTypeAttributes) {
               lane.boardPieces = item.projectPieces.filter(pc => pc.viewTypeAttributeId == lane.id);
 
-              for (let pc of lane.boardPieces) {
-                debugger;
-                let test = pc;
-              }
-
               this.lanesAndPieces.push(lane);
             }
           }

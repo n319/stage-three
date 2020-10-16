@@ -37,6 +37,9 @@ namespace DAL.Models
         [NotMapped]
         public ICollection<PieceContentTag> contentTags { get; set; }
 
+        [NotMapped]
+        public ICollection<PieceContentTag> relatedPieces { get; set; }
+
     }
 
 }

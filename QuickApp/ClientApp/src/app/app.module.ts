@@ -4,6 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
+import { CommonModule } from '@angular/common';
+
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { OAuthModule, OAuthStorage } from 'angular-oauth2-oidc';
@@ -83,10 +85,18 @@ import { ContentFileComponent } from './components/content-file/content-file.com
 import { ContentTagFilterPipe } from './pipes/content-tag-filter.pipe';
 import { ContentRelatedComponent } from './components/content-related/content-related.component';
 
+import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 
+import { faCoffee, fas } from '@fortawesome/free-solid-svg-icons';
+
+import { IconPickerModule } from 'ngx-icon-picker';
+
+import { far } from '@fortawesome/free-regular-svg-icons';
+import { fab } from '@fortawesome/free-brands-svg-icons';
 
 @NgModule({
-    imports: [
+  imports: [
+    CommonModule,
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
@@ -111,8 +121,10 @@ import { ContentRelatedComponent } from './components/content-related/content-re
         MaterialModule,
         ReactiveFormsModule,
         MatAutocompleteModule,
-        MatFormFieldModule,
-        Select2Module
+    MatFormFieldModule,
+        FontAwesomeModule,
+    Select2Module,
+    IconPickerModule
     ],
     declarations: [
         AppComponent,
@@ -172,4 +184,10 @@ import { ContentRelatedComponent } from './components/content-related/content-re
   entryComponents: [PieceDialogComponent]
 })
 export class AppModule {
+  constructor(library: FaIconLibrary) {
+    library.addIconPacks(fas);
+    library.addIconPacks(fab);
+    library.addIconPacks(far);
+
+  }
 }

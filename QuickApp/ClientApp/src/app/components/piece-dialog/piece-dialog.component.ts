@@ -30,7 +30,7 @@ export class PieceDialogComponent implements OnInit, OnDestroy {
   ngOnInit() {
     const getViewData = this.service.readObs<Piece>(Piece.prototype, "pieceId=" + this.pcId).subscribe(
       res => {
-        this.piece = res[0] as Piece;1
+        this.piece = res[0] as Piece;
 
         if (this.piece.imageJson != null && this.piece.imageJson != "") {
           this.piece.images = JSON.parse(this.piece.imageJson);

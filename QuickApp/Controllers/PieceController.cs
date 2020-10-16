@@ -95,6 +95,30 @@ namespace QuickApp.Controllers
                 return NotFound();
             }
 
+            var pieceContentTags = _unitOfWork.PieceContentTag.GetAll().Where(pc => pc.ProjectId == pieceId && pc.ContentTagId == 2).ToArray<PieceContentTag>();
+
+            var relatedPieces = _unitOfWork.PieceContentTag.GetAll().Where(pc => pc.ProjectId == pieceId && pc.ContentTagId == 1).ToArray<PieceContentTag>();
+
+            foreach (PieceContentTag pct in pieceContentTags)
+            {
+                if (piece[0].contentTags == null)
+                {
+                    piece[0].contentTags = new List<PieceContentTag>();
+                }
+
+                piece[0].contentTags.Add(pct);
+            }
+
+            foreach (PieceContentTag pct in relatedPieces)
+            {
+                if (piece[0].relatedPieces == null)
+                {
+                    piece[0].relatedPieces = new List<PieceContentTag>();
+                }
+
+                piece[0].relatedPieces.Add(pct);
+            }
+
             return piece;
         }
 

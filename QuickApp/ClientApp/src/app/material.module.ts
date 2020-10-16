@@ -15,7 +15,7 @@ import {
   MatTabsModule,
   MatToolbarModule,
   MatDialogModule,
-  MatExpansionModule
+  MatExpansionModule,
 } from '@angular/material';
 
 @NgModule({
