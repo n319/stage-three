@@ -20,7 +20,6 @@ export class PieceDialogComponent implements OnInit, OnDestroy {
 
   pcId: string;
   piece: Piece;
-  step: number = -1;
 
   DataForm: FormGroup = new FormGroup({});
 
@@ -31,7 +30,7 @@ export class PieceDialogComponent implements OnInit, OnDestroy {
   ngOnInit() {
     const getViewData = this.service.readObs<Piece>(Piece.prototype, "pieceId=" + this.pcId).subscribe(
       res => {
-        this.piece = res[0] as Piece;
+        this.piece = res[0] as Piece;1
 
         if (this.piece.imageJson != null && this.piece.imageJson != "") {
           this.piece.images = JSON.parse(this.piece.imageJson);
@@ -49,35 +48,10 @@ export class PieceDialogComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    //TODO save contents of piece
     this.service.updateObs<Piece>(Piece.prototype, this.piece).subscribe(
       res => {
       }
     );
-  }
-
-  AddContentTag($event): void {
-
-    if (this.step == 0) {
-      event.stopPropagation();
-    }
-
-    const newTag = {
-      name: "New Tag",
-      pieceId: this.piece.id,
-      projectId: this.piece.projectId,
-      contentTagId: 1,
-      contentId: 0,
-      id: 0
-      }
-    let test = Object.create(newTag);
-
-    this.piece.contentTags.push(test);
-
-  }
-
-  setStep(index: number) {
-    this.step = index;
   }
 
   onClickContentTagToggleEdit(event) {

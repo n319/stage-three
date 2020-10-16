@@ -22,7 +22,8 @@ export class Piece implements IPiece {
     viewTypeAttributeId: number;
     applicationUserId: number;
     createdOn: Date;
-    contentTags: PieceContentTag[];
+  contentTags: PieceContentTag[];
+  relatedPieces: PieceContentTag[];
     images: string[];
   imageJson: string;
 

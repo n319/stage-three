@@ -1,16 +1,36 @@
-<div (click)="onClickContentTagToggleEdit($event)" [attr.data-tag-id]="contentTag.id">
-  <div *ngIf="!edit">
-      {{contentTag.pieceId}} - {{contentTag.id}} - {{contentTag.name}}
-    
-  </div>
-  <div *ngIf="edit">
+<mat-accordion class="row example-headers-align">
+  <mat-expansion-panel class="col-11" [expanded]="step === 0" (opened)="setStep(0)" hideToggle (closed)="setStep(-1)">
+    <mat-expansion-panel-header>
 
-    <div class="form-group">
-      <label for="name"></label>
-      <input type="text" class="form-control" id="name"
-             [(ngModel)]="contentTag.name" name="name"
-             (keyup.enter)="save()"
-             (click)="onClickName($event)"/>
-    </div>
-  </div>
-</div>
+      <mat-panel-description>
+
+        <div *ngFor="let contentTag of contentTags">
+
+          <div (click)="onClickContentTagToggleEdit($event)" [attr.data-tag-id]="contentTag.id">
+            <div *ngIf="!edit">
+              {{contentTag.pieceId}} - {{contentTag.id}} - {{contentTag.name}}
+            </div>
+            <div *ngIf="edit">
+
+              <div class="form-group">
+                <label for="name"></label>
+                <input type="text" class="form-control" id="name"
+                       [(ngModel)]="contentTag.name" name="name"
+                       (keyup.enter)="save()"
+                       (click)="onClickName($event)" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <!--  take contentTags  -->
+
+    <button mat-raised-button (click)="AddContentTag($event)">
+      <mat-icon aria-hidden="false" aria-label="add button" class="add-box-icon">add_box</mat-icon>
+    </button>
+
+  </mat-expansion-panel>
+</mat-accordion>

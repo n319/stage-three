@@ -27,14 +27,14 @@ namespace Api.Controllers
         public IActionResult Get(string projectId)
         {
            int id = int.Parse(projectId);
-            BoardModel model = new 
-                BoardModel();
+           BoardModel model = new BoardModel();
 
             model.project = _unitOfWork.Project.Get(id);
             model.projectPieces = _unitOfWork.Piece.GetAll().Where(pc => pc.ProjectId == id).ToArray();
             model.pieceContentTags = _unitOfWork.PieceContentTag.GetAll().Where(pc => pc.ProjectId == id).ToArray<PieceContentTag>();
-            //model.projectPieces.Any(pp => pp.contentTags = new List<PieceContentTag>());
             
+            //model.projectPieces.Any(pp => pp.contentTags = new List<PieceContentTag>());
+
             foreach (PieceContentTag pct in model.pieceContentTags)
             {
                 var pc = model.projectPieces.Where(pp => pp.Id == pct.PieceId).First();

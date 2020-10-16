@@ -1,12 +1,12 @@
-import { Component, OnInit, Input, EventEmitter, Output, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { PieceContentTag } from '../../models/projectr/pieceContentTag.model';
 
 @Component({
-  selector: 'app-content-tag',
-  templateUrl: './content-tag.component.html',
-  styleUrls: ['./content-tag.component.scss']
+  selector: 'app-content-related',
+  templateUrl: './content-related.component.html',
+  styleUrls: ['./content-related.component.scss']
 })
-export class ContentTagComponent implements OnInit, OnDestroy {
+export class ContentRelatedComponent implements OnInit {
 
   @Input() contentTags: PieceContentTag[];
   @Output() valueChange = new EventEmitter<string>();
@@ -17,37 +17,29 @@ export class ContentTagComponent implements OnInit, OnDestroy {
   edit: boolean = false;
   dirty: boolean = false;
   filter: PieceContentTag;
-
+   
   constructor() {
 
     this.filter = new PieceContentTag();
-    this.filter.contentTagId = 2; //label tags
+    this.filter.contentTagId = 1; //related tags
   }
-    
+
   ngOnInit() {
-    
+
   }
 
   setStep(index: number) {
     this.step = index;
-    debugger;
-    if (this.step == 0) {
-      this.edit = true;
-    }
-    else {
-      this.edit = false;
-    }
-
+    
   }
-                                                                                                             
+
   onClickContentTagToggleEdit(event) {
-    debugger;
     this.edit = !this.edit;
   }
 
   AddContentTag($event): void {
     debugger;
-    if (this.step == 1) {
+    if (this.step == 0) {
       event.stopPropagation();
     }
 
@@ -55,15 +47,19 @@ export class ContentTagComponent implements OnInit, OnDestroy {
       name: "New Tag",
       pieceId: this.pieceId,
       projectId: this.projectId,
-      contentTagId: 2,
+      contentTagId: 1,
       contentId: 0,
       id: 0
     }
     let test = Object.create(newTag);
 
-    this.contentTags.push(test);
+    if (this.contentTags === undefined) {
+      this.contentTags = [];
+    }
 
+    this.contentTags.push(test);
   }
+
 
   onClickName(event) {
     event.stopPropagation();

@@ -56,10 +56,17 @@ export class BoardComponent implements OnInit, OnDestroy {
           for (let item of res[0]) {
             for (let lane of item.viewTypeAttributes) {
               lane.boardPieces = item.projectPieces.filter(pc => pc.viewTypeAttributeId == lane.id);
+
+              for (let pc of lane.boardPieces) {
+                debugger;
+                let test = pc;
+              }
+
               this.lanesAndPieces.push(lane);
             }
           }
           this.lanesAndPieces.sort((a, b) => a.order - b.order);
+          
         },
         err => console.error(err)
       );
@@ -164,6 +171,7 @@ export class BoardComponent implements OnInit, OnDestroy {
       tableDefinition: 'Piece',
       dirty: true,
       contentTags: [],
+      relatedPieces: [],
       images: [],
       imageJson: "",
       files: [],

@@ -11,7 +11,7 @@ namespace DAL.Models
     public class PieceContentTag
     {
         public int Id { get; set; }
-        public int ContentTagId { get; set; }
+        public int ContentTagId { get; set; } //Type
         public string Name { get; set; }
         public int ProjectId { get; set; }
         public int PieceId { get; set; }

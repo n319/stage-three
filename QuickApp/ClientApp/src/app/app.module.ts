@@ -80,6 +80,8 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 import { UploadComponent } from './components/upload/upload.component';
 import { ContentImageComponent } from './components/content-image/content-image.component';
 import { ContentFileComponent } from './components/content-file/content-file.component';
+import { ContentTagFilterPipe } from './pipes/content-tag-filter.pipe';
+import { ContentRelatedComponent } from './components/content-related/content-related.component';
 
 
 
@@ -118,6 +120,7 @@ import { ContentFileComponent } from './components/content-file/content-file.com
       BoardComponent,
       PieceDialogComponent,
       ContentTagComponent,
+      ContentRelatedComponent,
       UploadComponent,
       ContentImageComponent,
       ContentFileComponent,
@@ -141,7 +144,8 @@ import { ContentFileComponent } from './components/content-file/content-file.com
         BootstrapToggleDirective,
         BootstrapSelectDirective,
         BootstrapDatepickerDirective,
-        GroupByPipe,
+      GroupByPipe,
+      ContentTagFilterPipe,
       LaneFilterPipe,
       CarouselComponent
     ],
