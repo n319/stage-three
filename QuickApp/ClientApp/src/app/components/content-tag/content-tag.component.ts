@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output, OnDestroy } from '@angular/core';
 import { PieceContentTag } from '../../models/projectr/pieceContentTag.model';
 
+
 @Component({
   selector: 'app-content-tag',
   templateUrl: './content-tag.component.html',

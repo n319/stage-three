@@ -85,15 +85,6 @@ import { ContentFileComponent } from './components/content-file/content-file.com
 import { ContentTagFilterPipe } from './pipes/content-tag-filter.pipe';
 import { ContentRelatedComponent } from './components/content-related/content-related.component';
 
-import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
-
-import { faCoffee, fas } from '@fortawesome/free-solid-svg-icons';
-
-import { IconPickerModule } from 'ngx-icon-picker';
-
-import { far } from '@fortawesome/free-regular-svg-icons';
-import { fab } from '@fortawesome/free-brands-svg-icons';
-
 @NgModule({
   imports: [
     CommonModule,
@@ -122,9 +113,7 @@ import { fab } from '@fortawesome/free-brands-svg-icons';
         ReactiveFormsModule,
         MatAutocompleteModule,
     MatFormFieldModule,
-        FontAwesomeModule,
     Select2Module,
-    IconPickerModule
     ],
     declarations: [
         AppComponent,
@@ -184,10 +173,6 @@ import { fab } from '@fortawesome/free-brands-svg-icons';
   entryComponents: [PieceDialogComponent]
 })
 export class AppModule {
-  constructor(library: FaIconLibrary) {
-    library.addIconPacks(fas);
-    library.addIconPacks(fab);
-    library.addIconPacks(far);
-
+  constructor() {
   }
 }

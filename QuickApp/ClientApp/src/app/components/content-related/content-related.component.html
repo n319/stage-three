@@ -33,38 +33,6 @@
     </div>
 
     <button mat-raised-button (click)="AddContentTag($event)">
-      <div>
-        <div>{{ icons.length }} Icons</div>
-        <input type="text" [(ngModel)]="searchText" class="form-control">
-      </div>
-      <hr>
-      <div [formGroup]="myFormGroup">
-        <label>Icon</label>
-        <div class="input-group">
-          <span class="input-group-addon"><i [ngClass]="iconCss.value"></i></span>
-          <input type="text" name="iconCss" class="form-control"
-                 formControlName="iconCss"
-                 [iconPicker]="iconCss.value"
-                 [ipPosition]="'bottom'"
-                 [ipWidth]="'250px'"
-                 [ipIconSize]="'16px'"
-                 [ipIconVerticalPadding]="'6px'"
-                 [ipIconHorizontalPadding]="'10px'"
-                 [ipKeepSearchFilter]="'false'"
-                 [ipPlaceHolder]="'Choose an icon'"
-                 [ipFallbackIcon]="fallbackIcon"
-                 (iconPickerSelect)="onIconPickerSelect($event)" />
-        </div>
-      </div>
-
-        <!--<ng-container *ngFor="let icon of filter(searchText)">-->
-        <!-- {{ getIconObject(icon) }} -->
-        <!--<button type="button" class="btn btn-outline-dark mr-2 mb-2">
-        <fa-icon [icon]="getIconObject(icon)" [fixedWidth]="true" size="2x"></fa-icon>
-        <div>{{ getIconName(icon)}}</div>
-      </button>
-    </ng-container>-->
-
         <mat-icon aria-hidden="false" aria-label="add button" class="add-box-icon">add_box</mat-icon>
     </button>
 

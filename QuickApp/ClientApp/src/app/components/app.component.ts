@@ -21,7 +21,6 @@ import { LoginComponent } from '../components/login/login.component';
 import { Select2OptionData } from 'ng2-select2';
 
 const alertify: any = require('../assets/scripts/alertify.js');
-const iconpicker: any = require('../assets/scripts/fontawesome-iconpicker.js');
 
 @Component({
   selector: 'app-root',
